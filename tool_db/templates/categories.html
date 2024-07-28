@@ -3,19 +3,23 @@
 
     <h3 class="white-text center-align">Categories</h3>
 
+
     <div class="row content-wrapper">
-        <div class="col s16 m3">
-            <div class="card teal lighten-3">
-                <div class="card-content white-text">
-                    <span class="card-title">Hand Tools</span>
-                    <p>I am a very simple card. I am good at containing small bits of information.
-                        I am convenient because I require little markup to use effectively.</p>
-                </div>
-                <div class="card-action">
-                    <a href="#" class="brown-text darken-4">Go to Hand Tools</a>
+
+        {% for category in main_categories %}
+            <div class="col s12 m6 lg4">
+                <div class="card teal lighten-3">
+                    <div class="card-content white-text">
+                        <span class="card-title">{{ category.main_category_name }}</span>
+                        <p>I am a very simple card. I am good at containing small bits of information.
+                            I am convenient because I require little markup to use effectively.</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="#" class="brown-text darken-4">Go to {{ category.main_category_name }}</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+        {% endfor %}
 
+    </div>
 {% endblock %}
