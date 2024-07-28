@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h3 class="white-text center-align">Manage Categories</h3>
+
+    <div class="row">
+        <div class="col s12 center-align">
+            <h4 class="white-text">Main Categories</h4>
+            <br>
+            <a href="{{ url_for('add_main_category') }}" class="btn">Add Main Category</a>
+            <a href="{{ url_for('edit_main_category') }}" class="btn">Edit Main Category</a>
+            <a href="" class="btn">Delete Main Category</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 center-align">
+            <h4 class="white-text">Sub Categories</h4>
+            <br>
+            <a href="{{ url_for('add_sub_category') }}" class="btn">Add Sub Category</a>
+            <a href="{{ url_for('edit_sub_category') }}" class="btn">Edit Sub Category</a>
+            <a href="" class="btn">Delete Sub Category</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 center-align">
+            <h4 class="white-text">Tools</h4>
+            <br>
+            <a href="{{ url_for('add_tool') }}" class="btn">Add Tool</a>
+            <a href="{{ url_for('edit_tool') }}" class="btn">Edit Tool</a>
+            <a href="" class="btn">Delete Tool</a>
+        </div>
+    </div>
+
+{% endblock %}

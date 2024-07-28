@@ -14,6 +14,7 @@ class MainCategory(db.Model):
 class SubCategory(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     sub_category_name = db.Column(db.String(100), unique=True, nullable=False)
+    main_category_id = db.Column(db.Integer, db.ForeignKey("main_category.id", ondelete="CASCADE"), nullable=False)
     tools = db.relationship("Tool", backref="sub_category", cascade="all, delete", lazy=True)
 
     def __repr__(self):

@@ -9,3 +9,11 @@ body {
 .content-wrapper {
     margin-top: 25px;
 }
+
+.input-field {
+    border-radius: 4px;
+}
+
+.form-btn {
+    border-radius: 4px;
+}
