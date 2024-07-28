@@ -7,13 +7,14 @@
     {% for sub_category in sub_categories %}
         <div class="col s12 m6 l4">
             <div class="card teal lighten-3">
+                <div class="card-image">
+                    <img src="{{ url_for('static', filename='images/' + sub_category.sub_category_name.lower() + '.jpg') }}" alt="{{ sub_category.sub_category_name }}">
+                </div>
                 <div class="card-content white-text">
                     <span class="card-title">{{ sub_category.sub_category_name }}</span>
                 </div>
                 <div class="card-action">
-                    <a href="{{ url_for('sub_category_page', sub_category_id=sub_category.id) }}" class="brown-text darken-4">
-                        Go to {{ sub_category.sub_category_name }}
-                    </a>
+                    <a href="{{ url_for('sub_category_page', sub_category_id=sub_category.id) }}" class="brown-text darken-4">Go to {{ sub_category.sub_category_name }}</a>
                 </div>
             </div>
         </div>
