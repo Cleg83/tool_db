@@ -12,11 +12,11 @@
 
     <nav>
         <div class="nav-wrapper teal lighten-3">
-            <a href="#" class="brand-logo">Tool DB</a>
+            <a href="{{ url_for('home') }}" class="brand-logo">Tool DB</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="#">Log In</a></li>
-                <li><a href="#">Categories</a></li>
-                <li><a href="#">Profile</a></li>
+                <li><a href="{{ url_for('categories') }}">Categories</a></li>
+                <li><a href="#">Glossary</a></li>
             </ul>
         </div>
     </nav>
