@@ -11,7 +11,15 @@ def home():
 @app.route("/categories")
 def categories():
     main_categories = list(MainCategory.query.order_by(MainCategory.main_category_name).all())
-    return render_template("categories.html", main_categories=main_categories)
+    category_icons = {
+        "Hand Tools": "fa-solid fa-hammer",
+        "Power Tools": "fa-solid fa-plug-circle-bolt",
+        "Machines": "fa-solid fa-gears",
+        "Measuring & Marking": "fa-solid fa-ruler-horizontal",
+        "Sharpening": "fa-solid fa-arrow-rotate-right",
+        "Dust Extraction": "fa-solid fa-broom"
+    }
+    return render_template("categories.html", main_categories=main_categories, category_icons=category_icons)
 
 
 @app.route("/manage_categories")
