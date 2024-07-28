@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/6cbc018174.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="/tool_db/static/css/style.css" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
     <title>Home Page</title>
 </head>
 <body>
@@ -21,58 +21,13 @@
         </div>
     </nav>
 
-    <div class="row card-wrapper">
-        <div class="col s12 m4">
-            <div class="card large">
-                <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="/tool_db/static/images/chisels.jpg">
-                </div>
-                <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">Chisels<i class="fa-solid fa-plus right"></i></span>
-                    <br>
-                    <p><a href="#" class="deep-orange-text text-lighten-1">Main Chisels Page</a></p>
-                </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">Chisels<i class="fa-solid fa-minus right"></i></span>
-                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col s12 m4">
-            <div class="card large">
-                <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="/tool_db/static/images/jigsaw.webp">
-                </div>
-                <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">Jigsaw<i class="fa-solid fa-plus right"></i></span>
-                    <br>
-                    <p><a href="#" class="deep-orange-text text-lighten-1">Main Jigsaw Page</a></p>
-                </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">Chisels<i class="fa-solid fa-minus right"></i></span>
-                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col s12 m4">
-            <div class="card large">
-                <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="/tool_db/static/images/table_saw.jpg">
-                </div>
-                <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">Table Saw<i class="fa-solid fa-plus right"></i></span>
-                    <br>
-                    <p><a href="#" class="deep-orange-text text-lighten-1">Main Table Saw Page</a></p>
-                </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">Chisels<i class="fa-solid fa-minus right"></i></span>
-                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                </div>
-            </div>
-        </div>
-    </div>
+    <main>
+        {% block content%}
+        {%  endblock %}
+    </main>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="static/scripts/script.js"></script>
+    <script src="{{ url_for('static', filename='scripts/script.js') }}"></script>
 </body>
 </html>
