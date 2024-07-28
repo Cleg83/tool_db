@@ -55,14 +55,26 @@ def edit_sub_category():
 
 @app.route('/category_page/<category_name>.html')
 def category_page(category_name):
-    # Fetch the main category by name
-    main_category = MainCategory.query.filter_by(main_category_name=category_name.replace('_', ' ').title()).first()
+    # Convert the URL parameter back to a proper main category name
+    main_category_name = category_name.replace('_', ' ').title()
+    # Query the main category from the database
+    main_category = MainCategory.query.filter_by(main_category_name=main_category_name).first()
+
     if main_category:
+        # Fetch the subcategories associated with this main category
         sub_categories = SubCategory.query.filter_by(main_category_id=main_category.id).all()
-        return render_template('category_page.html', category_name=category_name, sub_categories=sub_categories)
+        # Pass both the main category and its subcategories to the template
+        return render_template('category_page.html', main_category=main_category, sub_categories=sub_categories)
     else:
-        # Handle case where category is not found
         return render_template('404.html'), 404
+    
+
+@app.route('/sub_category_page/<int:sub_category_id>.html')
+def sub_category_page(sub_category_id):
+    sub_category = SubCategory.query.get_or_404(sub_category_id)
+    tools = Tool.query.filter_by(sub_category_id=sub_category_id).all()
+    return render_template('sub_category_page.html', sub_category=sub_category, tools=tools)
+
 
 
 @app.route("/add_tool")
