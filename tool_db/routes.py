@@ -34,14 +34,35 @@ def edit_main_category():
     return render_template("edit_main_category.html")
 
 
-@app.route("/add_sub_category")
+@app.route("/add_sub_category", methods=["GET", "POST"])
 def add_sub_category():
-    return render_template("add_sub_category.html")
+    if request.method == "POST":
+        sub_category_name = request.form.get("sub_category_name")
+        main_category_id = request.form.get("main_category_id")
+        sub_category = SubCategory(sub_category_name=sub_category_name, main_category_id=main_category_id)
+        db.session.add(sub_category)
+        db.session.commit()
+        return redirect(url_for("categories"))
+    
+    main_categories = MainCategory.query.all()
+    return render_template("add_sub_category.html", main_categories=main_categories)
 
 
 @app.route("/edit_sub_category")
 def edit_sub_category():
     return render_template("edit_sub_category.html")
+
+
+@app.route('/category_page/<category_name>.html')
+def category_page(category_name):
+    # Fetch the main category by name
+    main_category = MainCategory.query.filter_by(main_category_name=category_name.replace('_', ' ').title()).first()
+    if main_category:
+        sub_categories = SubCategory.query.filter_by(main_category_id=main_category.id).all()
+        return render_template('category_page.html', category_name=category_name, sub_categories=sub_categories)
+    else:
+        # Handle case where category is not found
+        return render_template('404.html'), 404
 
 
 @app.route("/add_tool")
