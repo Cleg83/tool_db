@@ -16,14 +16,7 @@
             <!-- main category select -->
             <div class="row">
                 <div class="input-field col s12 grey lighten-4">
-                    <i class="fa-solid fa-folder-open prefix"></i>
-                    <select id="main_category_id" name="main_category_id" class="validate" required>
-                        <option value="" disabled selected>Choose Main Category</option>
-                        {% for category in main_categories %}
-                            <option value="{{ category.id }}">{{ category.main_category_name }}</option>
-                        {% endfor %}
-                    </select>
-                    <label for="main_category_id"><span class="sr-only">Main Category</span></label>
+                    {% include '_dropdown_one.html' %}
                 </div>
             </div>
             <!-- submit button -->

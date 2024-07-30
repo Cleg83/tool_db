@@ -1,0 +1,8 @@
+<i class="fa-solid fa-folder-tree prefix"></i>
+<select id="sub_cat_id", name="sub_cat_id" class="validate" required>
+    <option value="" disabled selected>Choose Sub Category</option>
+    {% for category in sub_categories %}
+        <option value="{{ category.id }}">{{ category.sub_category_name }}</option>
+    {% endfor %}
+</select>
+<label for="sub_cat_id"><span class="sr-only">Sub Category</span></label>
