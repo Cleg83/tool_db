@@ -1,9 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Nunito:wght@200..1000&display=swap');
 body {
-    background-color: #757d7e;
+    background-color: #757575;
+    font-family: "Lato", sans-serif;
 }
 
 .brand-logo {
     margin-left: 10px;
+}
+
+.nav-font {
+    font-family: "Josefin Sans", sans-serif;
 }
 
 .content-wrapper {
@@ -15,5 +21,9 @@ body {
 }
 
 .form-btn {
+    border-radius: 4px;
+}
+
+.add-tool-form {
     border-radius: 4px;
 }
