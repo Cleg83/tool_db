@@ -1,25 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h3 class="white-text center-align">Add Main Category</h3>
+    <h3 class="white-text center-align">Choose Subcategory</h3>
 
     <div class="row card-panel teal lighten-3">
-        <form class="col s12" method="POST" action="{{ url_for('add_main_category') }}">
+        <form class="col s12 add-tool-form" method="POST" action="{{ url_for('add_tool') }}">
+            <input type="hidden" name="step" value="3">
+            <!-- sub category id -->
             <div class="row">
                 <div class="input-field col s10 offset-s1 grey lighten-4">
-                    <i class="fa-solid fa-folder-open prefix"></i>
-                    <input id="main-category-name" name="main_category_name" minlength="3" maxlength="50" type="text" class="validate" required>
-                    <label for="main-category-name">Category Name</label>
+                    {% include '_dropdown_sub.html' %}
                 </div>
             </div>
+            <!-- submit button -->
             <div class="row">
                 <div class="col s10 offset-s1 center-align">
                     <button type="submit" class="btn-large grey lighten-4 black-text form-btn">
-                        Add Category <i class="fa-solid fa-folder-plus right"></i>
+                        Add Tool <i class="fa-solid fa-square-plus right"></i>
                     </button>
                 </div>
             </div>
         </form>
     </div>
-
 {% endblock %}
