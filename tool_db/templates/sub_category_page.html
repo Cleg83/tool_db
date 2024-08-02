@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h3 class="white-text center-align">{{ sub_category.sub_category_name }}</h3>
+    
+    {% if tools %}
+        <ul class="collection">
+            {% for tool in tools %}
+                <li class="collection-item">
+                    <h5>{{ tool.tool_name }}</h5>
+                    <p><strong>Description:</strong> {{ tool.tool_description }}</p>
+                    {% if tool.tool_videos %}
+                        <p><strong>Videos:</strong> {{ tool.tool_videos }}</p>
+                    {% endif %}
+                    {% if tool.tool_links %}
+                        <p><strong>Links:</strong> {{ tool.tool_links }}</p>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No tools found for this subcategory.</p>
+    {% endif %}
+{% endblock %}
