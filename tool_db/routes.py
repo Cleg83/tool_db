@@ -46,12 +46,25 @@ def edit_main_category():
 def add_sub_category():
     if request.method == "POST":
         sub_category_name = request.form.get("sub_category_name")
-        main_category_id = request.form.get("main_category_id")
+        main_category = request.form.get("main_category")
+
+        if not main_category:
+            # Handle the case where main_category is missing
+            flash("Main category is required.", "error")
+            return redirect(url_for("add_sub_category"))
+
+        # Ensure that main_category is converted to integer if it's not already
+        try:
+            main_category_id = int(main_category)
+        except ValueError:
+            flash("Invalid main category selected.", "error")
+            return redirect(url_for("add_sub_category"))
+
         sub_category = SubCategory(sub_category_name=sub_category_name, main_category_id=main_category_id)
         db.session.add(sub_category)
         db.session.commit()
         return redirect(url_for("categories"))
-    
+
     main_categories = MainCategory.query.all()
     return render_template("add_sub_category.html", main_categories=main_categories)
 
