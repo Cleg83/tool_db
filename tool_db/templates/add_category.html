@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h3 class="white-text center-align">Add Categories</h3>
+
+    <div class="row">
+        <div class="col s12 center-align">
+            <a href="{{ url_for('add_main_category') }}" class="btn">Add Main Category</a>
+            <a href="{{ url_for('add_sub_category') }}" class="btn">Add Subcategory</a>
+        </div>
+    </div>
+
+{% endblock %}
