@@ -22,9 +22,9 @@ def categories():
     return render_template("categories.html", main_categories=main_categories, category_icons=category_icons)
 
 
-@app.route("/manage_categories")
-def manage_categories():
-    return render_template("manage_categories.html")
+@app.route("/add_category")
+def add_category():
+    return render_template("add_category.html")
 
 
 @app.route("/add_main_category", methods=["GET", "POST"])
@@ -142,3 +142,15 @@ def add_tool():
 @app.route("/edit_tool")
 def edit_tool():
     return render_template("edit_tool.html")
+
+
+@app.route("/glossary")
+def glossary():
+    tools = Tool.query.order_by(Tool.tool_name).all()  # Fetch tools in alphabetical order
+    return render_template("glossary.html", tools=tools)
+
+
+@app.route("/tool/<int:tool_id>")
+def tool(tool_id):
+    tool = Tool.query.get_or_404(tool_id)
+    return render_template("tool.html", tool=tool)
