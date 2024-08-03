@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h3 class="white-text center-align">{{ tool.tool_name }}</h3>
+
+    <div class="tool-details">
+        <p>{{ tool.tool_description }}</p>
+
+        {% if tool.tool_videos %}
+            <h5>Videos</h5>
+            <ul>
+                {% for video in tool.tool_videos %}
+                    <li><a href="{{ video }}" target="_blank">{{ video }}</a></li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% if tool.tool_links %}
+            <h5>Product Links</h5>
+            <ul>
+                {% for link in tool.tool_links %}
+                    <li><a href="{{ link }}" target="_blank">{{ link }}</a></li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+
+{% endblock %}
