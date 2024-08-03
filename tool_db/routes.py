@@ -74,23 +74,23 @@ def edit_sub_category():
     return render_template("edit_sub_category.html")
 
 
-@app.route("/category_page/<category_name>.html")
-def category_page(category_name):
+@app.route("/selected_category/<category_name>.html")
+def selected_category(category_name):
     main_category_name = category_name.replace("_", " ").title()
     main_category = MainCategory.query.filter_by(main_category_name=main_category_name).first()
 
     if main_category:
         sub_categories = SubCategory.query.filter_by(main_category_id=main_category.id).all()
-        return render_template("category_page.html", main_category=main_category, sub_categories=sub_categories)
+        return render_template("selected_category.html", main_category=main_category, sub_categories=sub_categories)
     else:
         return render_template("404.html"), 404
     
 
-@app.route("/sub_category_page/<int:sub_category_id>.html")
-def sub_category_page(sub_category_id):
+@app.route("/selected_subcategory/<int:sub_category_id>.html")
+def selected_subcategory(sub_category_id):
     sub_category = SubCategory.query.get_or_404(sub_category_id)
     tools = Tool.query.filter_by(sub_category_id=sub_category_id).all()
-    return render_template("sub_category_page.html", sub_category=sub_category, tools=tools)
+    return render_template("selected_subcategory.html", sub_category=sub_category, tools=tools)
 
 
 @app.route("/add_tool", methods=["GET", "POST"])

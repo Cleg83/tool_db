@@ -14,7 +14,7 @@
                     <span class="card-title">{{ sub_category.sub_category_name }}</span>
                 </div>
                 <div class="card-action">
-                    <a href="{{ url_for('sub_category_page', sub_category_id=sub_category.id) }}" class="brown-text darken-4">Go to {{ sub_category.sub_category_name }}</a>
+                    <a href="{{ url_for('selected_subcategory', sub_category_id=sub_category.id) }}" class="brown-text darken-4">Go to {{ sub_category.sub_category_name }}</a>
                 </div>
             </div>
         </div>
