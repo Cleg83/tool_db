@@ -15,6 +15,10 @@
                 </div>
                 <div class="card-action">
                     <a href="{{ url_for('selected_subcategory', sub_category_id=sub_category.id) }}" class="brown-text darken-4">Go to {{ sub_category.sub_category_name }}</a>
+                    <div class="right">
+                        <a href="{{ url_for('edit_sub_category') }}" class="btn edit-button">Edit</a>
+                        <a href="" class="btn delete-button">Delete</a>
+                    </div>
                 </div>
             </div>
         </div>
