@@ -27,3 +27,11 @@ body {
 .add-tool-form {
     border-radius: 4px;
 }
+
+.edit-button {
+    background-color: #505050;
+}
+
+.delete-button {
+    background-color: #c62828;
+}
