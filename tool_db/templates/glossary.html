@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h3 class="white-text center-align">Tool Glossary</h3>
+
+    <ul class="glossary">
+        {% for tool in tools %}
+            <li class="glossary-item">
+                <a href="{{ url_for('tool', tool_id=tool.id) }}">
+                    <h5>{{ tool.tool_name }}</h5>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
