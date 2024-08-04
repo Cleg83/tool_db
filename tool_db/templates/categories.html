@@ -23,8 +23,16 @@
                     </div>
                     <div id="subcat-{{ category.id }}" class="card-reveal">
                         <span class="card-title grey-text text-darken-4">Subcategories<i class="fa-solid fa-minus right"></i></span>
-                        {% for subcategory in category.sub_cats %}      
-                            <p>{{ subcategory.sub_category_name }}</p>
+                        {% for subcategory in category.sub_cats %}   
+                            <p>
+                                <a href="{{ url_for('selected_subcategory', sub_category_id=subcategory.id) }}">
+                                    {{ subcategory.sub_category_name }}
+                                </a>
+                                <span class="right">
+                                    <a href="{{ url_for('edit_sub_category', sub_category_id=subcategory.id)}}" id="edit-small" class="subcat-button">Edit</a>
+                                    <a href="" id="delete-small" class="subcat-button">Delete</a> 
+                                </span>
+                            </p>
                         {% endfor %}
                     </div>
                     <div class="card-action center">

@@ -39,3 +39,12 @@ body {
 #tool-content {
     margin-top: 3rem;
 }
+
+#edit-small {
+    color: #505050;
+}
+
+#delete-small {
+    color: #c62828;
+    margin-left: 10px;
+}

@@ -70,9 +70,12 @@ def add_sub_category():
     return render_template("add_sub_category.html", main_categories=main_categories)
 
 
-@app.route("/edit_sub_category")
-def edit_sub_category():
-    return render_template("edit_sub_category.html")
+@app.route("/edit_sub_category/<int:sub_category_id>")
+def edit_sub_category(sub_category_id):
+    sub_category = SubCategory.query.get_or_404(sub_category_id)
+    tools = Tool.query.filter_by(sub_category_id=sub_category_id).all()
+    main_categories = MainCategory.query.order_by(MainCategory.main_category_name).all()
+    return render_template("edit_sub_category.html", sub_category=sub_category, tools=tools, main_categories=main_categories)
 
 
 @app.route("/selected_category/<category_name>.html")

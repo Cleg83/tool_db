@@ -1,6 +1,45 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h3 class="white-text center-align">Edit Sub Category</h3>
+    {% for subcategory in sub_categories %}
+
+        <h3 class="white-text center-align">Edit {{ sub_category.sub_category_name }}</h3>
+
+        <div class="row card-panel teal lighten-3">
+            <form class="col s12" method="POST" action="{{ url_for('edit_sub_category', sub_category_id=sub_category.id) }}">
+                <div class="row">
+                    <div class="input-field col s10 offset-s1 grey lighten-4">
+                        <i class="fa-solid fa-folder-open prefix"></i>
+                        <input id="subcategory_name" name="subcategory_name" value="{{ sub_category.sub_category_name }}" minlength="3" maxlength="50" type="text" class="validate" required>
+                        <label for="subcategory_name" class="active">Category Name</label>
+                    </div>
+                </div>
+                <!-- main category select -->
+                <div class="row">
+                    <div class="input-field col s10 offset-s1 grey lighten-4">
+                        {% include '_dropdown_main.html' %}
+                    </div>
+                </div>
+                <!-- delete tool -->
+                {% for tool in tools %}
+                    <div class="row">
+                        <div class="input-field col s10 offset-s1 grey lighten-4">
+                            <a href="{{ url_for('tool', tool_id=tool.id) }}">
+                                <p>{{ tool.tool_name }}</p>>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+                <!-- submit button -->
+                <div class="row">
+                    <div class="col s10 offset-s1 center-align">
+                        <button type="submit" class="btn-large grey lighten-4 black-text form-btn">
+                            Save changes <i class="fa-solid fa-folder-plus right"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    {% endfor %}
 
 {% endblock %}
