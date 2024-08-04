@@ -44,7 +44,7 @@ body {
     color: #505050;
 }
 
-#delete-small {
+.delete-small {
     color: #c62828;
     margin-left: 10px;
 }
