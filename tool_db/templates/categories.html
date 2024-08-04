@@ -1,33 +1,45 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h3 class="white-text center-align">Categories</h3>
+    <h3 class="center-align white-text">Categories</h3>
 
 
     <div class="row content-wrapper">
 
         {% for category in main_categories %}
-            <div class="col s12 m6 l4">
-                <div class="card teal lighten-3">
+            <div class="col s12 m4 l3">
+                <div class="card z-depth-3 teal lighten-3">
                     <div class="card-content white-text">
                         <span class="card-title"> 
                             {{ category.main_category_name }}
                             <i class="{{ category_icons.get(category.main_category_name, 'fa-solid fa-folder-open') }} right"></i>
                         </span>
                     </div>
-                    <div class="card-action">
+                    <div class="card-content">
+                        <a href="#subcat-{{ category.id }}">
+                            <span class="activator grey-text text-darken-4">Show subcategories<i class="fa-solid fa-plus right"></i></span>
+                            <br>
+                        </a>
+                    </div>
+                    <div id="subcat-{{ category.id }}" class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Subcategories<i class="fa-solid fa-minus right"></i></span>
+                        {% for subcategory in category.sub_cats %}      
+                            <p>{{ subcategory.sub_category_name }}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="card-action center">
                         <a href="{{ url_for('selected_category', category_name=category.main_category_name|lower|replace(' ', '_')) }}" class="brown-text darken-4">
                             Go to {{ category.main_category_name }}
                         </a>
-                        <div class="right">
-                            <a href="{{ url_for('edit_main_category') }}" class="btn edit-button">Edit</a>
-                            <a href="" class="btn delete-button">Delete</a>
-                        </div>
+                    </div>
+                    <div class="card-action center">
+                        <a href="{{ url_for('edit_main_category') }}" class="btn edit-button">Edit</a>
+                        <a href="" class="btn delete-button">Delete</a>
                     </div>
                     <br>
                 </div>
             </div>
         {% endfor %}
-
     </div>
+
 {% endblock %}

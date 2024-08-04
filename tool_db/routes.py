@@ -10,7 +10,8 @@ def home():
 
 @app.route("/categories")
 def categories():
-    main_categories = list(MainCategory.query.order_by(MainCategory.main_category_name).all())
+    main_categories = MainCategory.query.order_by(MainCategory.main_category_name).all()
+
     category_icons = {
         "Hand Tools": "fa-solid fa-hammer",
         "Power Tools": "fa-solid fa-plug-circle-bolt",
@@ -102,30 +103,30 @@ def add_tool():
 
         if step == "1":
             # Store the tool details in session
-            session['tool_name'] = request.form.get('tool_name')
-            session['tool_description'] = request.form.get('tool_description')
-            session['tool_videos'] = request.form.get('tool_videos')
-            session['product_links'] = request.form.get('product_links')
+            session["tool_name"] = request.form.get('tool_name')
+            session["tool_description"] = request.form.get("tool_description")
+            session["tool_videos"] = request.form.get("tool_videos")
+            session["product_links"] = request.form.get("product_links")
             return render_template("add_tool_step2.html", main_categories=main_categories)
         
         elif step == "2":
             # Store the main category selection in session
-            session['main_category_id'] = request.form.get('main_category')
+            session["main_category_id"] = request.form.get("main_category")
             # Filter sub-categories based on main category
-            subcategories = SubCategory.query.filter_by(main_category_id=session['main_category_id']).all()
+            subcategories = SubCategory.query.filter_by(main_category_id=session["main_category_id"]).all()
             return render_template("add_tool_step3.html", subcategories=subcategories)
         
         elif step == "3":
             # Store the sub-category selection in session
-            sub_category_id = request.form.get('sub_category')
+            sub_category_id = request.form.get("sub_category")
 
             # Create a new tool and save to the database
             new_tool = Tool(
-                tool_name=session['tool_name'],
-                tool_description=session['tool_description'],
-                tool_videos=session['tool_videos'],
-                tool_links=session['product_links'],
-                main_category_id=session['main_category_id'],
+                tool_name=session["tool_name"],
+                tool_description=session["tool_description"],
+                tool_videos=session["tool_videos"],
+                tool_links=session["product_links"],
+                main_category_id=session["main_category_id"],
                 sub_category_id=sub_category_id
             )
             db.session.add(new_tool)
@@ -134,7 +135,7 @@ def add_tool():
             # Clear the session
             session.clear()
 
-            return redirect(url_for('categories'))
+            return redirect(url_for("categories"))
     
     return render_template("add_tool_step1.html")
 
