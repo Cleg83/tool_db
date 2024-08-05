@@ -5,19 +5,19 @@
 
 <!-- displays a card, similar to the home page but only for the selected category -->
 <div class="row content-wrapper">
-    {% for sub_category in sub_categories %}
+    {% for subcategory in sub_categories %}
         <div class="col s12 m6 l4">
             <div class="card large teal lighten-3">
                 <div class="card-image">
-                    <img src="{{ url_for('static', filename='images/' + sub_category.sub_category_name.lower().replace(' ', '_') + '.jpg') }}" alt="{{ sub_category.sub_category_name }}">
+                    <img src="{{ url_for('static', filename='images/' + subcategory.sub_category_name.lower().replace(' ', '_') + '.jpg') }}" alt="{{ subcategory.sub_category_name }}">
                 </div>
                 <div class="card-content white-text">
-                    <span class="card-title">{{ sub_category.sub_category_name }}</span>
+                    <span class="card-title">{{ subcategory.sub_category_name }}</span>
                 </div>
                 <div class="card-action">
-                    <a href="{{ url_for('selected_subcategory', sub_category_id=sub_category.id) }}" class="brown-text darken-4">Go to {{ sub_category.sub_category_name }}</a>
+                    <a href="{{ url_for('selected_subcategory', sub_category_id=subcategory.id) }}" class="brown-text darken-4">Go to {{ subcategory.sub_category_name }}</a>
                     <div class="right">
-                        <a href="{{ url_for('edit_sub_category') }}" class="btn edit-button">Edit</a>
+                        <a href="{{ url_for('edit_sub_category', sub_category_id=subcategory.id)}}" class="btn edit-button">Edit</a>
                         <a href="" class="btn delete-button">Delete</a>
                     </div>
                 </div>

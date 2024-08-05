@@ -91,8 +91,8 @@ def selected_category(category_name):
 
     # Check if main category exisits in db
     if main_category:
-        sub_categories = SubCategory.query.filter_by(main_category_id=main_category.id).all()
-        return render_template("selected_category.html", main_category=main_category, sub_categories=sub_categories)
+        subcategories = SubCategory.query.filter_by(main_category_id=main_category.id).all()
+        return render_template("selected_category.html", main_category=main_category, sub_categories=subcategories)
     else:
         # Handle case where main cateogry doesn't exist
         return render_template("404.html"), 404
@@ -100,9 +100,9 @@ def selected_category(category_name):
 
 @app.route("/selected_subcategory/<int:sub_category_id>.html")
 def selected_subcategory(sub_category_id):
-    sub_category = SubCategory.query.get_or_404(sub_category_id)
+    subcategory = SubCategory.query.get_or_404(sub_category_id)
     tools = Tool.query.filter_by(sub_category_id=sub_category_id).all()
-    return render_template("selected_subcategory.html", sub_category=sub_category, tools=tools)
+    return render_template("selected_subcategory.html", subcategory=subcategory, tools=tools)
 
 
 @app.route("/add_tool", methods=["GET", "POST"])
