@@ -6,15 +6,22 @@
 
     <div class="row content-wrapper">
 
+        <!-- iterate through main categories -->
         {% for category in main_categories %}
             <div class="col s12 m4 l3">
+
+                <!-- cards to display each category -->
                 <div class="card z-depth-3 teal lighten-3">
                     <div class="card-content white-text">
                         <span class="card-title"> 
                             {{ category.main_category_name }}
+
+                            <!-- icons are dynamically rendered based on category name -->
                             <i class="{{ category_icons.get(category.main_category_name, 'fa-solid fa-folder-open') }} right"></i>
                         </span>
                     </div>
+
+                    <!-- each card has a reveal which shows their subcategories -->
                     <div class="card-content">
                         <a href="#subcat-{{ category.id }}">
                             <span class="activator grey-text text-darken-4">Show subcategories<i class="fa-solid fa-plus right"></i></span>
@@ -23,11 +30,13 @@
                     </div>
                     <div id="subcat-{{ category.id }}" class="card-reveal">
                         <span class="card-title grey-text text-darken-4">Subcategories<i class="fa-solid fa-minus right"></i></span>
+                        <!-- loop for generating the relevant subcategories -->
                         {% for subcategory in category.sub_cats %}   
                             <p>
                                 <a href="{{ url_for('selected_subcategory', sub_category_id=subcategory.id) }}">
                                     {{ subcategory.sub_category_name }}
                                 </a>
+                                <!-- only available if logged in as "admin" -->
                                 <span class="right">
                                     <a href="{{ url_for('edit_sub_category', sub_category_id=subcategory.id)}}" id="edit-small" class="subcat-button">Edit</a>
                                     <a href="" class="subcat-button delete-small">Delete</a> 
@@ -35,11 +44,13 @@
                             </p>
                         {% endfor %}
                     </div>
+                    <!-- link for all users to go to selected category page -->
                     <div class="card-action center">
                         <a href="{{ url_for('selected_category', category_name=category.main_category_name|lower|replace(' ', '_')) }}" class="brown-text darken-4">
                             Go to {{ category.main_category_name }}
                         </a>
                     </div>
+                    <!-- only available if logged in as admin -->
                     <div class="card-action center">
                         <a href="{{ url_for('edit_main_category') }}" class="btn edit-button">Edit</a>
                         <a href="" class="btn delete-button">Delete</a>

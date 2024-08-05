@@ -11,6 +11,8 @@
 </head>
 <body>
 
+
+    <!-- simple navbar - will add mobile collapse elements -->
     <nav>
         <div class="nav-wrapper teal lighten-3 nav-font">
             <a href="{{ url_for('home') }}" class="brand-logo">The Woodworker's Tool Database</a>
@@ -29,6 +31,7 @@
         </div>
     </nav>
 
+    <!-- all below content generated in temaplates -->
     <main>
         {% block content%}
         {%  endblock %}
