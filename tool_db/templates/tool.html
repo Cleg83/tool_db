@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
+    <!-- page to show all tool info for the selected tool -->
     <div class="row">
         <div id="tool-content" class="col s8 offset-s2 white center-align">
             <h3 class="black-text center-align">{{ tool.tool_name }}</h3>
@@ -8,11 +9,12 @@
             <div class="tool-details">
                 <p>{{ tool.tool_description }}</p>
 
+                <!-- checks if the tool has videos and displays them if it does -->
                 {% if tool.tool_videos %}
                     <h5>Videos</h5>
                     <ul>
                         {% for video in tool.tool_videos %}
-                            <li><a href="{{ video }}" target="_blank">{{ video }}</a></li>
+                            <li><a href="" target="_blank">{{ video }}</a></li>
                         {% endfor %}
                     </ul>
                 {% endif %}
@@ -21,7 +23,7 @@
                     <h5>Product Links</h5>
                     <ul>
                         {% for link in tool.tool_links %}
-                            <li><a href="{{ link }}" target="_blank">{{ link }}</a></li>
+                            <li><a href="" target="_blank">{{ link }}</a></li>
                         {% endfor %}
                     </ul>
                 {% endif %}
