@@ -2,6 +2,7 @@ from tool_db import db
 from sqlalchemy import Text
 
 
+# main category model
 class MainCategory(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     main_category_name = db.Column(db.String(100), unique=True, nullable=False)
@@ -11,6 +12,7 @@ class MainCategory(db.Model):
         return f"{self.main_category_name}"
     
 
+# subcategory model
 class SubCategory(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     sub_category_name = db.Column(db.String(100), unique=True, nullable=False)
@@ -21,6 +23,7 @@ class SubCategory(db.Model):
         return f"{self.sub_category_name}"
 
 
+# tool model
 class Tool(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     tool_name = db.Column(db.String(50), unique=True, nullable=False)
@@ -36,6 +39,7 @@ class Tool(db.Model):
         )
     
 
+# my toolbox model (where users can save their favourite tools)
 class MyToolbox(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     tool_name = db.Column(db.String(50), nullable=False)
@@ -46,6 +50,7 @@ class MyToolbox(db.Model):
         return f"{self.tool_name}"
 
 
+# my videos model (where users can save their favourite videos)
 class MyVideos(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     tool_name = db.Column(db.String(50), nullable=False)
@@ -56,6 +61,7 @@ class MyVideos(db.Model):
         return f"{self.tool_name}"
 
     
+# user model
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False)

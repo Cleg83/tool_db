@@ -10,8 +10,10 @@ def home():
 
 @app.route("/categories")
 def categories():
+    # Fetch main categories and sort them alphabetically
     main_categories = MainCategory.query.order_by(MainCategory.main_category_name).all()
 
+    # Icon dictionary (may be removed and replaced with icon field added to MainCategory model)
     category_icons = {
         "Hand Tools": "fa-solid fa-hammer",
         "Power Tools": "fa-solid fa-plug-circle-bolt",
@@ -20,6 +22,7 @@ def categories():
         "Sharpening": "fa-solid fa-arrow-rotate-right",
         "Dust Extraction": "fa-solid fa-broom"
     }
+    # Pass variables to template
     return render_template("categories.html", main_categories=main_categories, category_icons=category_icons)
 
 
@@ -28,6 +31,7 @@ def add_category():
     return render_template("add_category.html")
 
 
+# Simple method for adding a main category
 @app.route("/add_main_category", methods=["GET", "POST"])
 def add_main_category():
     if request.method =="POST":
@@ -61,6 +65,7 @@ def add_sub_category():
             flash("Invalid main category selected.", "error")
             return redirect(url_for("add_sub_category"))
 
+        # Calls SubCategory method passing variables delcared above
         sub_category = SubCategory(sub_category_name=sub_category_name, main_category_id=main_category_id)
         db.session.add(sub_category)
         db.session.commit()
@@ -73,6 +78,7 @@ def add_sub_category():
 @app.route("/edit_sub_category/<int:sub_category_id>")
 def edit_sub_category(sub_category_id):
     sub_category = SubCategory.query.get_or_404(sub_category_id)
+    # Fetches tool belogning to subcategory using sub_category_id
     tools = Tool.query.filter_by(sub_category_id=sub_category_id).all()
     main_categories = MainCategory.query.order_by(MainCategory.main_category_name).all()
     return render_template("edit_sub_category.html", sub_category=sub_category, tools=tools, main_categories=main_categories)
@@ -83,10 +89,12 @@ def selected_category(category_name):
     main_category_name = category_name.replace("_", " ").title()
     main_category = MainCategory.query.filter_by(main_category_name=main_category_name).first()
 
+    # Check if main category exisits in db
     if main_category:
         sub_categories = SubCategory.query.filter_by(main_category_id=main_category.id).all()
         return render_template("selected_category.html", main_category=main_category, sub_categories=sub_categories)
     else:
+        # Handle case where main cateogry doesn't exist
         return render_template("404.html"), 404
     
 
@@ -105,7 +113,7 @@ def add_tool():
         step = request.form.get('step')
 
         if step == "1":
-            # Store the tool details in session
+            # Store tool details in session
             session["tool_name"] = request.form.get('tool_name')
             session["tool_description"] = request.form.get("tool_description")
             session["tool_videos"] = request.form.get("tool_videos")
@@ -113,17 +121,17 @@ def add_tool():
             return render_template("add_tool_step2.html", main_categories=main_categories)
         
         elif step == "2":
-            # Store the main category selection in session
+            # Store main category selection in session
             session["main_category_id"] = request.form.get("main_category")
-            # Filter sub-categories based on main category
+            # Filter sub-categories by main category
             subcategories = SubCategory.query.filter_by(main_category_id=session["main_category_id"]).all()
             return render_template("add_tool_step3.html", subcategories=subcategories)
         
         elif step == "3":
-            # Store the sub-category selection in session
+            # Store sub-category selection in session
             sub_category_id = request.form.get("sub_category")
 
-            # Create a new tool and save to the database
+            # Create new tool and save to db
             new_tool = Tool(
                 tool_name=session["tool_name"],
                 tool_description=session["tool_description"],
@@ -150,7 +158,7 @@ def edit_tool():
 
 @app.route("/glossary")
 def glossary():
-    tools = Tool.query.order_by(Tool.tool_name).all()  # Fetch tools in alphabetical order
+    tools = Tool.query.order_by(Tool.tool_name).all()
     return render_template("glossary.html", tools=tools)
 
 
