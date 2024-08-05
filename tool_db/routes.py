@@ -5,7 +5,8 @@ from tool_db.models import MainCategory, SubCategory, Tool, User, MyToolbox, MyV
 
 @app.route("/")
 def home():
-    return render_template("home.html")
+    tools = Tool.query.order_by(Tool.tool_name).all()
+    return render_template("home.html", tools=tools)
 
 
 @app.route("/categories")
