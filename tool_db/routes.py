@@ -110,6 +110,8 @@ def add_tool():
     main_categories = MainCategory.query.all()
 
     if request.method == "POST":
+        # Fetches name="step" input element from add_tool templates which allows
+        # splitting of add_tool into 3 steps
         step = request.form.get('step')
 
         if step == "1":
@@ -123,12 +125,12 @@ def add_tool():
         elif step == "2":
             # Store main category selection in session
             session["main_category_id"] = request.form.get("main_category")
-            # Filter sub-categories by main category
+            # Filter subcategories by main category to only show relevant subcategories in step 3
             subcategories = SubCategory.query.filter_by(main_category_id=session["main_category_id"]).all()
             return render_template("add_tool_step3.html", subcategories=subcategories)
         
         elif step == "3":
-            # Store sub-category selection in session
+            # Store subcategory selection in session
             sub_category_id = request.form.get("sub_category")
 
             # Create new tool and save to db
