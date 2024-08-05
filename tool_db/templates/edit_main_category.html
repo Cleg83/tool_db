@@ -3,8 +3,11 @@
 
     <h3 class="white-text center-align">Edit Main Category</h3>
 
+    <!-- very simple page that only needs one editable input field -->
+
     <div class="row card-panel teal lighten-3">
         <form class="col s12" method="POST" action="{{ url_for('edit_main_category') }}">
+            <!-- name input -->
             <div class="row">
                 <div class="input-field col s10 offset-s1 grey lighten-4">
                     <i class="fa-solid fa-folder-open prefix"></i>
@@ -13,6 +16,7 @@
                     <label for="main-category-name">Category Name</label>
                 </div>
             </div>
+            <!-- submit button -->
             <div class="row">
                 <div class="col s10 offset-s1 center-align">
                     <button type="submit" class="btn-large grey lighten-4 black-text form-btn">
