@@ -169,3 +169,13 @@ def glossary():
 def tool(tool_id):
     tool = Tool.query.get_or_404(tool_id)
     return render_template("tool.html", tool=tool)
+
+
+@app.route("/register")
+def register():
+    return render_template("register.html")
+
+
+@app.route("/login")
+def login():
+    return render_template("login.html")

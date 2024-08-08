@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h3 class="white-text center-align">Log In</h3>
+    <h3 class="white-text center-align">Register</h3>
 
     <div class="row card-panel teal lighten-3">
-        <form class="col s12 add-tool-form" method="POST" action="{{ url_for('login') }}">
-            <!-- enter username -->
+        <form class="col s12 add-tool-form" method="POST" action="{{ url_for('register') }}">
+            <!-- create username -->
             <div class="row">
                 <div class="input-field col s10 offset-s1 grey lighten-4 center-align">
                     <i class="fa-solid fa-user prefix"></i>
@@ -14,7 +14,7 @@
                     <label for="username">Username</label>
                 </div>
             </div>
-            <!-- enter password -->
+            <!-- create password -->
             <div class="row">
                 <div class="input-field col s10 offset-s1 grey lighten-4">
                     <i class="fa-solid fa-lock prefix"></i>
@@ -23,22 +23,30 @@
                     <label for="password">Password</label>
                 </div>
             </div>
+            <!-- confirm password -->
+            <div class="row">
+                <div class="input-field col s10 offset-s1 grey lighten-4">
+                    <i class="fa-solid fa-lock prefix"></i>
+                    <input id="password_confirm" name="password_confirm" minlength="5" maxlength="25" type="password">
+                    <label for="password_confirm">Confirm Password</label>
+                </div>
+            </div>
             <!-- Register button -->
             <div class="row">
                 <div class="col s10 offset-s1 center-align">
                     <button type="submit" class="btn-large grey lighten-4 black-text form-btn">
-                        Login <i class="fa-solid fa-check right"></i>
+                        Register <i class="fa-solid fa-check right"></i>
                     </button>
                 </div>
             </div>
         </form>
     </div>
-    <!-- link to register page if new user -->
+    <!-- link to login page if already registered -->
     <div class="row">
         <div class="col s12">
             <p class="center-align white-text">
-                Not yet registered? 
-                <a href="{{ url_for('register') }}" class="teal-text text-lighten-3">Register</a>
+                Already registered? 
+                <a href="{{ url_for('login') }}" class="teal-text text-lighten-3">Log In</a>
             </p>
         </div>
     </div>
