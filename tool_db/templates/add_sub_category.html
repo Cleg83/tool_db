@@ -9,7 +9,8 @@
             <div class="row">
                 <div class="input-field col s10 offset-s1 grey lighten-4">
                     <i class="fa-solid fa-folder-tree prefix"></i>
-                    <input id="sub_category_name" name="sub_category_name" minlength="3" maxlength="50" type="text" class="validate" required>
+                    <input id="sub_category_name" name="sub_category_name" minlength="3" maxlength="50"
+                        pattern="^(?!\s*$)[a-zA-Z0-9\s]+$" type="text" class="validate" required>
                     <label for="sub_category_name">Subcategory Name</label>
                 </div>
             </div>

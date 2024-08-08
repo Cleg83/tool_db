@@ -12,7 +12,7 @@
                 <div class="input-field col s10 offset-s1 grey lighten-4">
                     <i class="fa-solid fa-folder-open prefix"></i>
                     <input id="main_category_name" name="main_category_name" minlength="3" maxlength="50"
-                        type="text" class="validate" required>
+                        pattern="^(?!\s*$)[a-zA-Z0-9\s]+$" type="text" class="validate" required>
                     <label for="main_category_name">Category Name</label>
                 </div>
             </div>

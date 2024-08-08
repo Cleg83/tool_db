@@ -9,7 +9,8 @@
                 <div class="row content-wrapper">
                     <div class="input-field col s10 offset-s1 grey lighten-4">
                         <i class="fa-solid fa-folder-tree prefix"></i>
-                        <input id="subcategory_name" name="subcategory_name" value="{{ sub_category.sub_category_name }}" minlength="3" maxlength="50" type="text" class="validate" required>
+                        <input id="subcategory_name" name="subcategory_name" value="{{ sub_category.sub_category_name }}"
+                            pattern="^(?!\s*$)[a-zA-Z0-9\s]+$" minlength="3" maxlength="50" type="text" class="validate" required>
                         <label for="subcategory_name" class="active">Category Name</label>
                     </div>
                 </div>

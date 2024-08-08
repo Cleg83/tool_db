@@ -16,7 +16,8 @@
             <div class="row">
                 <div class="input-field col s10 offset-s1 grey lighten-4 center-align">
                     <i class="fa-solid fa-pencil prefix"></i>
-                    <input id="tool_name" name="tool_name" minlength="5" maxlength="50" type="text" class="validate" required>
+                    <input id="tool_name" name="tool_name" minlength="5" maxlength="50"
+                        pattern="^(?!\s*$)[a-zA-Z0-9\s]+$" type="text" class="validate" required>
                     <label for="tool_name">Tool Name</label>
                 </div>
             </div>
@@ -25,7 +26,7 @@
                 <div class="input-field col s10 offset-s1 grey lighten-4">
                     <i class="fa-solid fa-align-left prefix"></i>
                     <textarea id="tool_description" name="tool_description" minlength="5" maxlength="1500" 
-                        type="text" class="materialize-textarea validate black-text" required>
+                        pattern="^(?!\s*$)[a-zA-Z0-9\s]+$" type="text" class="materialize-textarea validate black-text" required>
                     </textarea>
                     <label for="tool_description"><span>Tool Description</span></label>
                 </div>
