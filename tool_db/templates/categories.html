@@ -52,7 +52,7 @@
                     </div>
                     <!-- only available if logged in as admin -->
                     <div class="card-action center">
-                        <a href="{{ url_for('edit_main_category') }}" class="btn edit-button">Edit</a>
+                        <a href="{{ url_for('edit_main_category', category_id=category.id) }}" class="btn edit-button">Edit</a>
                         <a href="" class="btn delete-button">Delete</a>
                     </div>
                     <br>
