@@ -53,6 +53,13 @@ def edit_main_category(category_id):
     return render_template("edit_main_category.html", category=category)
 
 
+@app.route("/delete_main_category/<int:category_id>")
+def delete_main_category(category_id):
+    category = MainCategory.query.get_or_404(category_id)
+    db.session.delete(category)
+    db.session.commit()
+    return redirect(url_for("categories"))
+
 @app.route("/add_sub_category", methods=["GET", "POST"])
 def add_sub_category():
     if request.method == "POST":
