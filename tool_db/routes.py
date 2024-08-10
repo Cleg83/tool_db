@@ -116,17 +116,26 @@ def edit_sub_category(subcategory_id):
     return render_template("edit_sub_category.html", subcategory=subcategory, tools=tools, main_categories=main_categories)
 
 
+
+@app.route("/delete_sub_category/<int:subcategory_id>")
+def delete_sub_category(subcategory_id):
+    subcategory = SubCategory.query.get_or_404(subcategory_id)
+    db.session.delete(subcategory)
+    db.session.commit()
+    return redirect(url_for("categories"))
+
+
 @app.route("/selected_category/<category_name>.html")
 def selected_category(category_name):
     main_category_name = category_name.replace("_", " ").title()
     main_category = MainCategory.query.filter_by(main_category_name=main_category_name).first()
 
-    # Check if main category exisits in db
+    # Check if main category exists in db
     if main_category:
         subcategories = SubCategory.query.filter_by(main_category_id=main_category.id).all()
         return render_template("selected_category.html", main_category=main_category, sub_categories=subcategories)
     else:
-        # Handle case where main cateogry doesn't exist
+        # Handle case where main category doesn't exist
         return render_template("404.html"), 404
     
 
