@@ -60,6 +60,7 @@ def delete_main_category(category_id):
     db.session.commit()
     return redirect(url_for("categories"))
 
+
 @app.route("/add_sub_category", methods=["GET", "POST"])
 def add_sub_category():
     if request.method == "POST":
@@ -88,13 +89,31 @@ def add_sub_category():
     return render_template("add_sub_category.html", main_categories=main_categories)
 
 
-@app.route("/edit_sub_category/<int:sub_category_id>")
-def edit_sub_category(sub_category_id):
-    sub_category = SubCategory.query.get_or_404(sub_category_id)
-    # Fetches tool belogning to subcategory using sub_category_id
-    tools = Tool.query.filter_by(sub_category_id=sub_category_id).all()
+@app.route("/edit_sub_category/<int:subcategory_id>", methods=["GET", "POST"])
+def edit_sub_category(subcategory_id):
+    subcategory = SubCategory.query.get_or_404(subcategory_id)
     main_categories = MainCategory.query.order_by(MainCategory.main_category_name).all()
-    return render_template("edit_sub_category.html", sub_category=sub_category, tools=tools, main_categories=main_categories)
+    # Fetches tool belonging to subcategory using sub_category_id
+    tools = Tool.query.filter_by(sub_category_id=subcategory_id).all()
+
+    if request.method == "POST":
+        # Update the subcategory name
+        subcategory.sub_category_name = request.form.get("subcategory_name")
+
+        # Retrieve the selected main category ID from the form
+        main_category_id = request.form.get("main_category")
+        
+        # Find the corresponding MainCategory instance
+        main_category = MainCategory.query.get(main_category_id)
+
+        if main_category:
+            # Update the subcategory's main category
+            subcategory.main_category = main_category
+
+        db.session.commit()
+        return redirect(url_for("categories"))
+
+    return render_template("edit_sub_category.html", subcategory=subcategory, tools=tools, main_categories=main_categories)
 
 
 @app.route("/selected_category/<category_name>.html")
@@ -111,10 +130,10 @@ def selected_category(category_name):
         return render_template("404.html"), 404
     
 
-@app.route("/selected_subcategory/<int:sub_category_id>.html")
-def selected_subcategory(sub_category_id):
-    subcategory = SubCategory.query.get_or_404(sub_category_id)
-    tools = Tool.query.filter_by(sub_category_id=sub_category_id).all()
+@app.route("/selected_subcategory/<int:subcategory_id>.html")
+def selected_subcategory(subcategory_id):
+    subcategory = SubCategory.query.get_or_404(subcategory_id)
+    tools = Tool.query.filter_by(sub_category_id=subcategory.id).all()
     return render_template("selected_subcategory.html", subcategory=subcategory, tools=tools)
 
 

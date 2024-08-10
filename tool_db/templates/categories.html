@@ -33,12 +33,12 @@
                         <!-- loop for generating the relevant subcategories -->
                         {% for subcategory in category.sub_cats %}   
                             <p>
-                                <a href="{{ url_for('selected_subcategory', sub_category_id=subcategory.id) }}">
+                                <a href="{{ url_for('selected_subcategory', subcategory_id=subcategory.id) }}">
                                     {{ subcategory.sub_category_name }}
                                 </a>
                                 <!-- only available if logged in as "admin" -->
                                 <span class="right">
-                                    <a href="{{ url_for('edit_sub_category', sub_category_id=subcategory.id)}}" id="edit-small" class="subcat-button">Edit</a>
+                                    <a href="{{ url_for('edit_sub_category', subcategory_id=subcategory.id)}}" id="edit-small" class="subcat-button">Edit</a>
                                     <a href="" class="subcat-button delete-small">Delete</a> 
                                 </span>
                             </p>
@@ -46,7 +46,7 @@
                     </div>
                     <!-- link for all users to go to selected category page -->
                     <div class="card-action center">
-                        <a href="{{ url_for('selected_category', sub_category_id=category.sub_cats.id, category_name=category.main_category_name|lower|replace(' ', '_')) }}" class="brown-text darken-4">
+                        <a href="{{ url_for('selected_category', subcategory_id=category.sub_cats.id, category_name=category.main_category_name|lower|replace(' ', '_')) }}" class="brown-text darken-4">
                             Go to {{ category.main_category_name }}
                         </a>
                     </div>
