@@ -34,10 +34,13 @@
                     <div class="row valign-wrapper">
                         {% for tool in tools %}
                             <div class="input-field col s2 offset-s1 grey lighten-4">
-                                <a class="left" href="{{ url_for('tool', tool_id=tool.id) }}">
+                                <a class="center" href="{{ url_for('tool', tool_id=tool.id) }}">
                                     <p>{{ tool.tool_name }}</p>
                                 </a>
-                                <a href="" class="delete-small right"><p></p><small>Delete</small></p></a>
+                                <div id="tiny-btn-container" class="col s12">
+                                    <a href="" class="edit-small left"><small>Move</small></a>
+                                    <a href="" class="delete-small right"><small>Delete</small></a>
+                                </div>
                             </div>
                         {% endfor %}
                     </div>
