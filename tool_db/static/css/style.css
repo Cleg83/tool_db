@@ -57,3 +57,7 @@ body {
 #tiny-btn-container {
     margin-bottom: 10px;
 }
+
+.flashes h4 {
+    line-height: 2;
+}

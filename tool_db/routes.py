@@ -1,6 +1,7 @@
-from flask import render_template, request, redirect, url_for, session
+from flask import render_template, request, redirect, url_for, session, flash
 from tool_db import app, db
 from tool_db.models import MainCategory, SubCategory, Tool, User, MyToolbox, MyVideos
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 @app.route("/")
@@ -254,8 +255,34 @@ def tool(tool_id):
     return render_template("tool.html", tool=tool)
 
 
-@app.route("/register")
+@app.route("/register", methods=["GET", "POST"])
 def register():
+    if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
+        password_confirm = request.form.get("password_confirm")
+
+        # Server-side validation
+        if password != password_confirm:
+            flash("Passwords do not match!", "error")
+            return render_template("register.html")
+
+        # Check if username already exists
+        if User.query.filter_by(username=username).first():
+            flash("Username already exists!", "error")
+            return render_template("register.html")
+
+        # Hash the password
+        hashed_password = generate_password_hash(password, method="pbkdf2:sha256")
+
+        # Create a new user
+        new_user = User(username=username, password_hash=hashed_password)
+        db.session.add(new_user)
+        db.session.commit()
+
+        flash("Registration successful! Please log in.", "success")
+        return redirect(url_for("login"))
+
     return render_template("register.html")
 
 
