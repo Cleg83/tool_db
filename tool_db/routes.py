@@ -295,7 +295,8 @@ def login():
         user = User.query.filter_by(username=username).first()
 
         if user and check_password_hash(user.password_hash, password):
-            session["username"] = username  # Store username in session
+            session["username"] = username
+            session["role"] = "admin" if username == 'admin' else 'user'
             flash(f"Logged in as {username}", "success")
             return redirect(url_for('home'))  # Redirect to home page (will change to profile page in future)
         else:
@@ -304,8 +305,8 @@ def login():
     return render_template("login.html")
 
 
-@app.route('/logout')
+@app.route("/logout")
 def logout():
-    session.pop('username', None)  # Remove username from session
-    flash('You have been logged out.', 'info')
-    return redirect(url_for('login'))  # Redirect to login or another page
+    session.pop("username", None)  # Remove username from session
+    flash("You have been logged out.", "info")
+    return redirect(url_for("login"))  # Redirect to login or another page
