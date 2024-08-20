@@ -233,13 +233,13 @@ def edit_tool(tool_id):
 
 @app.route("/delete_tool/<int:tool_id>")
 def delete_tool(tool_id):
+    # Fetch tool to delete
     tool = Tool.query.get_or_404(tool_id)
     db.session.delete(tool)
     db.session.commit()
-    main_categories = MainCategory.query.order_by(MainCategory.main_category_name).all()
-    subcategory = SubCategory.query.get_or_404(tool.sub_category_id)
-    tools = Tool.query.filter_by(sub_category_id=subcategory.id).all()
-    return render_template("edit_sub_category.html", subcategory=subcategory, tools=tools, main_categories=main_categories)
+    # Fetch all tools to ensure glossary displays correctly when redirected
+    tools = Tool.query.order_by(Tool.tool_name).all()
+    return render_template("glossary.html", tools=tools)
 
 
 @app.route("/glossary")
