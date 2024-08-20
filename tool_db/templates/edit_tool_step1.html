@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3 class="white-text center-align">Edit Tool Details</h3>
+
+<div class="row card-panel teal lighten-3">
+    <form class="col s12 edit-tool-form" method="POST" action="{{ url_for('edit_tool', tool_id=tool.id) }}">
+        <input type="hidden" name="step" value="1">
+
+        <!-- Tool Name -->
+        <div class="row">
+            <div class="input-field col s10 offset-s1 grey lighten-4 center-align">
+                <i class="fa-solid fa-pencil prefix"></i>
+                <input id="tool_name_{{ tool.id }}" name="tool_name" minlength="5" maxlength="50"
+                       pattern="^(?!\s*$)[a-zA-Z0-9\s]+$" type="text" class="validate" value="{{ tool.tool_name }}" required>
+                <label for="tool_name_{{ tool.id }}">Tool Name</label>
+            </div>
+        </div>
+
+        <!-- Tool Description -->
+        <div class="row">
+            <div class="input-field col s10 offset-s1 grey lighten-4">
+                <i class="fa-solid fa-align-left prefix"></i>
+                <textarea id="tool_description_{{ tool.id }}" name="tool_description" minlength="5" maxlength="1500" 
+                          pattern="^(?!\s*$)[a-zA-Z0-9\s]+$" class="materialize-textarea validate black-text" required>{{ tool.tool_description }}</textarea>
+                <label for="tool_description_{{ tool.id }}">Tool Description</label>
+            </div>
+        </div>
+
+        <!-- Tool Videos -->
+        <div class="row">
+            <div class="input-field col s10 offset-s1 grey lighten-4">
+                <i class="fa-solid fa-video prefix"></i>
+                <input id="tool_videos_{{ tool.id }}" name="tool_videos" minlength="5" maxlength="500" type="text" value="{{ tool.tool_videos }}">
+                <label for="tool_videos_{{ tool.id }}">Videos</label>
+            </div>
+        </div>
+
+        <!-- Product Links -->
+        <div class="row">
+            <div class="input-field col s10 offset-s1 grey lighten-4">
+                <i class="fa-solid fa-link prefix"></i>
+                <input id="product_links_{{ tool.id }}" name="product_links" minlength="5" maxlength="500" type="text" pattern="https?://.*(,https?://.*){0,2}" value="{{ tool.tool_links }}">
+                <label for="product_links_{{ tool.id }}">Product Links (up to 3, separated by commas)</label>
+                <span class="helper-text" data-error="Please enter valid URLs, separated by commas (e.g., http://example.com, http://example2.com)"></span>
+            </div>
+        </div>
+
+        <!-- Next Button -->
+        <div class="row">
+            <div class="col s10 offset-s1 center-align">
+                <button type="submit" class="btn-large grey lighten-4 black-text form-btn">
+                    Next <i class="fa-solid fa-arrow-right right"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

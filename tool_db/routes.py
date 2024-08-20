@@ -194,9 +194,52 @@ def add_tool():
     return render_template("add_tool_step1.html")
 
 
-@app.route("/edit_tool")
-def edit_tool():
-    return render_template("edit_tool.html")
+# TO FIX - The edit_tool is not working correctly - it is not displaying main or subcategories
+@app.route("/edit_tool/<int:tool_id>", methods=["GET", "POST"])
+def edit_tool(tool_id):
+    tool = Tool.query.get_or_404(tool_id)
+    main_categories = MainCategory.query.all()
+
+    if request.method == "POST":
+        step = request.form.get('step')
+
+        if step == "1":
+            # Update the tool details
+            tool.tool_name = request.form.get('tool_name')
+            tool.tool_description = request.form.get("tool_description")
+            tool.tool_videos = request.form.get("tool_videos")
+            tool.tool_links = request.form.get("product_links")
+            return render_template("edit_tool_step2.html", tool=tool, main_categories=main_categories)
+        
+        elif step == "2":
+            # Update the main category
+            main_category_id = request.form.get("main_category")
+            tool.main_category_id = main_category_id
+            # Filter subcategories by main category to only show relevant subcategories in step 3
+            subcategories = SubCategory.query.filter_by(main_category_id=main_category_id).all()
+            return render_template("edit_tool_step3.html", tool=tool, subcategories=subcategories)
+        
+        elif step == "3":
+            # Update the subcategory
+            tool.sub_category_id = request.form.get("sub_category")
+
+            # Commit the updates to the database
+            db.session.commit()
+
+            return redirect(url_for("selected_subcategory", subcategory_id=tool.sub_category_id))
+    
+    return render_template("edit_tool_step1.html", tool=tool, main_categories=main_categories)
+
+
+@app.route("/delete_tool/<int:tool_id>")
+def delete_tool(tool_id):
+    tool = Tool.query.get_or_404(tool_id)
+    db.session.delete(tool)
+    db.session.commit()
+    main_categories = MainCategory.query.order_by(MainCategory.main_category_name).all()
+    subcategory = SubCategory.query.get_or_404(tool.sub_category_id)
+    tools = Tool.query.filter_by(sub_category_id=subcategory.id).all()
+    return render_template("edit_sub_category.html", subcategory=subcategory, tools=tools, main_categories=main_categories)
 
 
 @app.route("/glossary")
