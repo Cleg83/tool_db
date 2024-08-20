@@ -1,5 +1,6 @@
 from tool_db import db
 from sqlalchemy import Text
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 # main category model
@@ -61,13 +62,20 @@ class MyVideos(db.Model):
         return f"{self.tool_name}"
 
     
-# user model
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False)
-    password = db.Column(db.String(128), nullable=False)
+    password_hash = db.Column(db.String(128), nullable=False)
     toolbox_items = db.relationship('MyToolbox', backref='user', cascade='all, delete', lazy=True)
     video_items = db.relationship('MyVideos', backref='user', cascade='all, delete', lazy=True)
+
+    def set_password(self, password):
+        # Hashes the password 
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        # Checks the password against the stored hash.
+        return check_password_hash(self.password_hash, password)
 
     def __repr__(self):
         return f"{self.username}"
