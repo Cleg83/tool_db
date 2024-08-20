@@ -6,3 +6,5 @@ node_modules/
 .github/
 cloudinary_python.txt
 .vscode/
+tool_db/__pycache__
+migrations/__pycache__
