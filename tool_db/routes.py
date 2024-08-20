@@ -286,6 +286,26 @@ def register():
     return render_template("register.html")
 
 
-@app.route("/login")
+@app.route("/login", methods=["GET", "POST"])
 def login():
+    if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
+
+        user = User.query.filter_by(username=username).first()
+
+        if user and check_password_hash(user.password_hash, password):
+            session["username"] = username  # Store username in session
+            flash(f"Logged in as {username}", "success")
+            return redirect(url_for('home'))  # Redirect to home page (will change to profile page in future)
+        else:
+            flash("Login failed. Check your username and/or password.", "error")
+
     return render_template("login.html")
+
+
+@app.route('/logout')
+def logout():
+    session.pop('username', None)  # Remove username from session
+    flash('You have been logged out.', 'info')
+    return redirect(url_for('login'))  # Redirect to login or another page
