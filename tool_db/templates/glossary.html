@@ -17,8 +17,10 @@
                             <p>{{ tool.tool_name }}</p>
                         </a>
                         {% if session.get("role") == "admin" %}
-                            <a href="{{ url_for('edit_tool', tool_id=tool.id)}}" class="edit-small subcat-button">Edit</a>
-                            <a href="#modal-glossary-{{ tool.id }}" class="delete-small right modal-trigger"><small>Delete</small></a>
+                            <span>
+                                <a href="{{ url_for('edit_tool', tool_id=tool.id)}}" class="edit-small"><small>Edit</small></a>
+                                <a href="#modal-glossary-{{ tool.id }}" class="delete-small modal-trigger"><small>Delete</small></a>
+                            </span>
                         {% endif %}
                     </li>
                 {% endfor %}
