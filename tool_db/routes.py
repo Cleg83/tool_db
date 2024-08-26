@@ -298,7 +298,10 @@ def login():
             session["username"] = username
             session["role"] = "admin" if username == 'admin' else 'user'
             flash(f"Logged in as {username}", "success")
-            return redirect(url_for('home'))  # Redirect to home page (will change to profile page in future)
+            if session.get("role") == "admin":
+                return redirect(url_for('categories'))
+            else:
+                return redirect(url_for('home'))  # Redirect to home page (will change to profile page in future)
         else:
             flash("Login failed. Check your username and/or password.", "error")
 
