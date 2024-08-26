@@ -5,25 +5,53 @@
 This is a placeholder until I dynamically generate a random tool carousel
  -->
 
-<div class="row content-wrapper">
+    <div class="row content-wrapper">
+        {% for tool in tools %}
+            <div class="col s12 m3">
+                <div class="card large">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="{{ url_for('static', filename='images/' + tool.tool_name.lower().replace(' ', '_') + '.jpg') }}" alt="{{ tool.tool_name }}">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">{{ tool.tool_name }}<i class="fa-solid fa-plus right"></i></span>
+                        <br>
+                        <p>
+                            <a href="{{ url_for('tool', tool_id=tool.id) }}" class="deep-orange-text text-lighten-1">
+                                {{ tool.tool_name }} page
+                            </a>
+                            {% if "username" in session %}
+                                {% if session.get("role") == "admin" %}  
+                                    <a href="#modal-home-{{ tool.id }}" class="delete-small subcat-button right modal-trigger">Delete</a>
+                                {% endif %}
+                                {% if session.get("role") != "admin" %}
+                                    <a href="#" class="edit-small subcat-button right">Add to My Toolbox</a>
+                                {% endif %}
+                            {% endif %}
+                        </p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">{{ tool.tool_name }}<i class="fa-solid fa-minus right"></i></span>
+                        <p>{{ tool.tool_description }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- delete tool modal -->
     {% for tool in tools %}
-        <div class="col s12 m3">
-            <div class="card large">
-                <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="{{ url_for('static', filename='images/' + tool.tool_name.lower().replace(' ', '_') + '.jpg') }}" alt="{{ tool.tool_name }}">
-                </div>
-                <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">{{ tool.tool_name }}<i class="fa-solid fa-plus right"></i></span>
-                    <br>
-                    <p><a href="{{ url_for('tool', tool_id=tool.id) }}" class="deep-orange-text text-lighten-1">{{ tool.tool_name }} page</a></p>
-                </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">{{ tool.tool_name }}<i class="fa-solid fa-minus right"></i></span>
-                    <p>{{ tool.tool_description }}</p>
-                </div>
+        <div id="modal-home-{{ tool.id }}" class="modal">
+            <div class="modal-content">
+                <h4>Are you sure you want to delete this tool?</h4>
+                <p>This action cannot be undone!</p>
+            </div>
+            <div class="modal-footer">
+                <a href="{{ url_for('delete_tool', tool_id=tool.id) }}" class="btn delete-button">Delete</a>
+                <a href="#!" class="modal-close btn edit-button">Cancel</a>
             </div>
         </div>
     {% endfor %}
-</div>
+
+
 
 {% endblock %}
