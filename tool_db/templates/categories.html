@@ -35,15 +35,19 @@
                                     {{ subcategory.sub_category_name }}
                                 </a>
                                 <!-- Only available if logged in as "admin" -->
+                                {% if session.get("role") == "admin" %}
                                 <span class="right">
                                     <a href="{{ url_for('edit_sub_category', subcategory_id=subcategory.id)}}" class="edit-small subcat-button">Edit</a>
                                     <a href="#modal-subcat-{{ subcategory.id }}" class="subcat-button delete-small modal-trigger">Delete</a> 
                                 </span>
+                                {% endif %}
                             </p>
                         {% endfor %}
+                        {% if session.get("role") == "admin" %}
                         <div class="col s12 center-align">
                             <a href="{{ url_for('add_sub_category') }}" class="btn">Add Subcategory</a>
                         </div>
+                        {% endif %}
                     </div>
                     <!-- Link for all users to go to selected category page -->
                     <div class="card-action center">
@@ -52,15 +56,18 @@
                         </a>
                     </div>
                     <!-- Only available if logged in as admin -->
+                    {% if session.get("role") == "admin" %}
                     <div class="card-action center">
                         <a href="{{ url_for('edit_main_category', category_id=category.id) }}" class="btn edit-button">Edit</a>
                         <a href="#modal-{{ category.id }}" class="btn delete-button modal-trigger" >Delete</a>
                     </div>
                     <br>
+                    {% endif %}
                 </div>
             </div>
         {% endfor %}
-        <!-- add new main category card -->
+        <!-- add new main category card - admin only -->
+        {% if session.get("role") == "admin" %}
         <div class="col s12 m4 l3">
             <div class="card z-depth-3 teal lighten-3">
                 <div class="card-content white-text center">
@@ -68,6 +75,7 @@
                 </div>
             </div>
         </div>
+        {% endif %}
     </div>
 
     <!-- Delete Main Category Modals -->

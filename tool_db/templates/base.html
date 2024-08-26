@@ -24,10 +24,12 @@
                     {% if session.get("role") == "admin" %}
                         <li><a href="{{ url_for('add_category') }}">Add Category</a></li>
                         <li><a href="{{ url_for('add_tool') }}">Add Tool</a></li>
-                    {% endif %}                
-                    <li><a href="#">My Toolbox</a></li>
-                    <li><a href="#">My Videos</a></li>
-                    <li><a href="#">Profile</a></li>
+                    {% endif %}  
+                    {% if session.get("role") != "admin" %}              
+                        <li><a href="#">My Toolbox</a></li>
+                        <li><a href="#">My Videos</a></li>
+                        <li><a href="#">Profile</a></li>
+                    {% endif %}
                     <li><a href="{{ url_for('logout') }}">Log Out</a></li>
                 {% else %}
                     <li><a href="{{ url_for('login') }}">Log In</a></li>
