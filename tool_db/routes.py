@@ -187,8 +187,12 @@ def add_tool():
             db.session.add(new_tool)
             db.session.commit()
 
-            # Clear the session
-            session.clear()
+            # Clear the tool info from session but keep admin logged in
+            session.pop("tool_name", None)
+            session.pop("tool_description", None)
+            session.pop("tool_videos", None)
+            session.pop("product_links", None)
+            session.pop("main_category_id", None)
 
             return redirect(url_for("categories"))
     
@@ -240,7 +244,7 @@ def delete_tool(tool_id):
     db.session.commit()
     # Fetch all tools to ensure glossary displays correctly when redirected
     tools = Tool.query.order_by(Tool.tool_name).all()
-    return render_template("glossary.html", tools=tools)
+    return render_template("home.html", tools=tools)
 
 
 @app.route("/glossary")
