@@ -13,7 +13,8 @@
                 <select id="sub_category_{{ tool.id }}" name="sub_category" required>
                     <option value="" disabled selected>Choose your option</option>
                     {% for subcategory in subcategories %}
-                        <option value="{{ subcategory.id }}" {% if tool.sub_category_id == subcategory.id %}selected{% endif %}>{{ subcategory.name }}</option>
+                        <option value="{{ subcategory.id }}" {% if tool.sub_category_id == subcategory.id %}selected{% endif %}>
+                            {{- subcategory.sub_category_name }}</option>
                     {% endfor %}
                 </select>
                 <label for="sub_category_{{ tool.id }}">Subcategory</label>
