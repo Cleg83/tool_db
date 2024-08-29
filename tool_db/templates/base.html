@@ -26,7 +26,7 @@
                         <li><a href="{{ url_for('add_tool') }}">Add Tool</a></li>
                     {% endif %}  
                     {% if session.get("role") != "admin" %}              
-                        <li><a href="#">My Toolbox</a></li>
+                        <li><a href="{{ url_for('my_toolbox') }}">My Toolbox</a></li>
                         <li><a href="#">My Videos</a></li>
                         <li><a href="#">Profile</a></li>
                     {% endif %}
