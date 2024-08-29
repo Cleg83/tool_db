@@ -13,7 +13,9 @@
                 <select id="main_category_{{ tool.id }}" name="main_category" required>
                     <option value="" disabled selected>Choose main category</option>
                     {% for category in main_categories %}
-                        <option value="{{ category.id }}" {% if tool.main_category_id == category.id %}selected{% endif %}>{{ category.name }}</option>
+                        <option value="{{ category.id }}" {% if tool.main_category_id == category.id %}selected{% endif %}>
+                            {{- category.main_category_name }}
+                        </option>
                     {% endfor %}
                 </select>
                 <label for="main_category_{{ tool.id }}">Main Category</label>
