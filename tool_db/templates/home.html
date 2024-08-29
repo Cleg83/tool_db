@@ -21,10 +21,13 @@ This is a placeholder until I dynamically generate a random tool carousel
                             </a>
                             {% if "username" in session %}
                                 {% if session.get("role") == "admin" %}  
-                                    <a href="#modal-home-{{ tool.id }}" class="delete-small subcat-button right modal-trigger">Delete</a>
+                                    <a href="#modal-home-{{ tool.id }}" class="delete-small right modal-trigger">Delete</a>
                                 {% endif %}
                                 {% if session.get("role") != "admin" %}
-                                    <a href="#" class="edit-small subcat-button right">Add to My Toolbox</a>
+                                    <a href="{{ url_for('my_toolbox') }}" class="edit-small right">
+                                        <i class="fa-solid fa-toolbox"></i>
+                                        <small class="small-icon-text">Add to My Toolbox</small>
+                                    </a>
                                 {% endif %}
                             {% endif %}
                         </p>
