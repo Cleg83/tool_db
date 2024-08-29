@@ -152,8 +152,6 @@ def add_tool():
     main_categories = MainCategory.query.all()
 
     if request.method == "POST":
-        # Fetches name="step" input element from add_tool templates which allows
-        # splitting of add_tool into 3 steps
         step = request.form.get('step')
 
         if step == "1":
@@ -167,7 +165,7 @@ def add_tool():
         elif step == "2":
             # Store main category selection in session
             session["main_category_id"] = request.form.get("main_category")
-            # Filter subcategories by main category to only show relevant subcategories in step 3
+            # Filter subcategories by main category
             subcategories = SubCategory.query.filter_by(main_category_id=session["main_category_id"]).all()
             return render_template("add_tool_step3.html", subcategories=subcategories)
         
@@ -175,19 +173,23 @@ def add_tool():
             # Store subcategory selection in session
             sub_category_id = request.form.get("sub_category")
 
-            # Create new tool and save to db
+            # Convert comma-separated strings to lists
+            tool_videos = [video.strip() for video in session.get("tool_videos", "").split(',') if video.strip()]
+            product_links = [link.strip() for link in session.get("product_links", "").split(',') if link.strip()]
+
+            # Create and save the new tool
             new_tool = Tool(
                 tool_name=session["tool_name"],
                 tool_description=session["tool_description"],
-                tool_videos=session["tool_videos"],
-                tool_links=session["product_links"],
+                tool_videos=tool_videos,
+                tool_links=product_links,
                 main_category_id=session["main_category_id"],
                 sub_category_id=sub_category_id
             )
             db.session.add(new_tool)
             db.session.commit()
 
-            # Clear the tool info from session but keep admin logged in
+            # Clear the tool info from session
             session.pop("tool_name", None)
             session.pop("tool_description", None)
             session.pop("tool_videos", None)
@@ -199,7 +201,7 @@ def add_tool():
     return render_template("add_tool_step1.html")
 
 
-# TO FIX - The edit_tool is not working correctly - it is not displaying main or subcategories
+# Very similar to adding a tool
 @app.route("/edit_tool/<int:tool_id>", methods=["GET", "POST"])
 def edit_tool(tool_id):
     tool = Tool.query.get_or_404(tool_id)
@@ -209,11 +211,16 @@ def edit_tool(tool_id):
         step = request.form.get('step')
 
         if step == "1":
+            # Convert comma-separated strings to lists
+            tool_videos = [video.strip() for video in request.form.get("tool_videos", "").split(',') if video.strip()]
+            product_links = [link.strip() for link in request.form.get("product_links", "").split(',') if link.strip()]
+
             # Update the tool details
             tool.tool_name = request.form.get('tool_name')
             tool.tool_description = request.form.get("tool_description")
-            tool.tool_videos = request.form.get("tool_videos")
-            tool.tool_links = request.form.get("product_links")
+            tool.tool_videos = tool_videos
+            tool.tool_links = product_links
+
             return render_template("edit_tool_step2.html", tool=tool, main_categories=main_categories)
         
         elif step == "2":
@@ -233,7 +240,11 @@ def edit_tool(tool_id):
 
             return redirect(url_for("selected_subcategory", subcategory_id=tool.sub_category_id))
     
-    return render_template("edit_tool_step1.html", tool=tool, main_categories=main_categories)
+    # Prepare existing values for form fields
+    tool_videos = ','.join(tool.tool_videos or [])
+    product_links = ','.join(tool.tool_links or [])
+
+    return render_template("edit_tool_step1.html", tool=tool, main_categories=main_categories, tool_videos=tool_videos, product_links=product_links)
 
 
 @app.route("/delete_tool/<int:tool_id>")
@@ -317,3 +328,8 @@ def logout():
     session.pop("username", None)  # Remove username from session
     flash("You have been logged out.", "info")
     return redirect(url_for("login"))  # Redirect to login or another page
+
+
+@app.route("/my_toolbox")
+def my_toolbox():
+    return render_template("my_toolbox.html")
