@@ -40,6 +40,25 @@ class Tool(db.Model):
         )
     
 
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(50), unique=True, nullable=False)
+    password_hash = db.Column(db.String(128), nullable=False)
+    toolbox_items = db.relationship('MyToolbox', backref='user', cascade='all, delete', lazy=True)
+    video_items = db.relationship('MyVideos', backref='user', cascade='all, delete', lazy=True)
+
+    def set_password(self, password):
+        # Hashes the password 
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        # Checks the password against the stored hash.
+        return check_password_hash(self.password_hash, password)
+
+    def __repr__(self):
+        return f"{self.username}"
+    
+
 # my toolbox model (where users can save their favourite tools)
 class MyToolbox(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -60,22 +79,3 @@ class MyVideos(db.Model):
 
     def __repr__(self):
         return f"{self.tool_name}"
-
-    
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(50), unique=True, nullable=False)
-    password_hash = db.Column(db.String(128), nullable=False)
-    toolbox_items = db.relationship('MyToolbox', backref='user', cascade='all, delete', lazy=True)
-    video_items = db.relationship('MyVideos', backref='user', cascade='all, delete', lazy=True)
-
-    def set_password(self, password):
-        # Hashes the password 
-        self.password_hash = generate_password_hash(password)
-
-    def check_password(self, password):
-        # Checks the password against the stored hash.
-        return check_password_hash(self.password_hash, password)
-
-    def __repr__(self):
-        return f"{self.username}"
