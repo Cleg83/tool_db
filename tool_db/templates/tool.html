@@ -12,18 +12,19 @@
                 <!-- checks if the tool has videos and displays them if it does -->
                 {% if tool.tool_videos %}
                     <h5>Videos</h5>
-                    <ul>
+                    <div>
                         {% for video in tool.tool_videos %}
-                            <li><a href="" target="_blank">{{ video }}</a></li>
+                            {% set embed_url = video | replace("watch?v=", "embed/") %}
+                                <iframe width="426" height="240" src="{{ embed_url }}" frameborder="0" allowfullscreen></iframe>
                         {% endfor %}
-                    </ul>
+                    </div>
                 {% endif %}
 
                 {% if tool.tool_links %}
                     <h5>Product Links</h5>
                     <ul>
                         {% for link in tool.tool_links %}
-                            <li><a href="" target="_blank">{{ link }}</a></li>
+                            <li><a href="{{ link }}" target="_blank">Buy here</a></li>
                         {% endfor %}
                     </ul>
                 {% endif %}
