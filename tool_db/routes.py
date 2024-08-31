@@ -137,7 +137,8 @@ def selected_category(category_name):
         return render_template("selected_category.html", main_category=main_category, sub_categories=subcategories)
     else:
         # Handle case where main category doesn't exist
-        return render_template("404.html"), 404
+        flash("Category doesn't exist!", "error")
+        return render_template("categories.html")
     
 
 @app.route("/selected_subcategory/<int:subcategory_id>.html")
@@ -201,7 +202,6 @@ def add_tool():
     return render_template("add_tool_step1.html")
 
 
-# Very similar to adding a tool
 @app.route("/edit_tool/<int:tool_id>", methods=["GET", "POST"])
 def edit_tool(tool_id):
     tool = Tool.query.get_or_404(tool_id)
@@ -211,38 +211,50 @@ def edit_tool(tool_id):
         step = request.form.get('step')
 
         if step == "1":
-            # Convert comma-separated strings to lists
-            tool_videos = [video.strip() for video in request.form.get("tool_videos", "").split(',') if video.strip()]
-            product_links = [link.strip() for link in request.form.get("product_links", "").split(',') if link.strip()]
-
-            # Update the tool details
-            tool.tool_name = request.form.get('tool_name')
-            tool.tool_description = request.form.get("tool_description")
-            tool.tool_videos = tool_videos
-            tool.tool_links = product_links
+            # Get and update session variables for the tool details
+            session["tool_name"] = request.form.get('tool_name')
+            session["tool_description"] = request.form.get("tool_description")
+            
+            # Convert comma-separated strings to lists and store in session
+            session["tool_videos"] = [video.strip() for video in request.form.get("tool_videos", "").split(',') if video.strip()]
+            session["product_links"] = [link.strip() for link in request.form.get("product_links", "").split(',') if link.strip()]
 
             return render_template("edit_tool_step2.html", tool=tool, main_categories=main_categories)
         
         elif step == "2":
-            # Update the main category
-            main_category_id = request.form.get("main_category")
-            tool.main_category_id = main_category_id
-            # Filter subcategories by main category to only show relevant subcategories in step 3
-            subcategories = SubCategory.query.filter_by(main_category_id=main_category_id).all()
+            # Update the main category in session
+            session["main_category_id"] = request.form.get("main_category")
+            # Filter subcategories by main category
+            subcategories = SubCategory.query.filter_by(main_category_id=session["main_category_id"]).all()
             return render_template("edit_tool_step3.html", tool=tool, subcategories=subcategories)
         
         elif step == "3":
             # Update the subcategory
-            tool.sub_category_id = request.form.get("sub_category")
+            sub_category_id = request.form.get("sub_category")
+
+            # Apply all updates to the tool object from session data
+            tool.tool_name = session.get("tool_name")
+            tool.tool_description = session.get("tool_description")
+            tool.tool_videos = session.get("tool_videos")
+            tool.tool_links = session.get("product_links")
+            tool.main_category_id = session.get("main_category_id")
+            tool.sub_category_id = sub_category_id
 
             # Commit the updates to the database
             db.session.commit()
 
+            # Clear the session data for the tool
+            session.pop("tool_name", None)
+            session.pop("tool_description", None)
+            session.pop("tool_videos", None)
+            session.pop("product_links", None)
+            session.pop("main_category_id", None)
+
             return redirect(url_for("selected_subcategory", subcategory_id=tool.sub_category_id))
     
-    # Prepare existing values for form fields
-    tool_videos = ','.join(tool.tool_videos or [])
-    product_links = ','.join(tool.tool_links or [])
+    # Prepare existing values for form fields for the GET request
+    tool_videos = ",".join(tool.tool_videos or [])
+    product_links = ",".join(tool.tool_links or [])
 
     return render_template("edit_tool_step1.html", tool=tool, main_categories=main_categories, tool_videos=tool_videos, product_links=product_links)
 
@@ -310,6 +322,7 @@ def login():
         user = User.query.filter_by(username=username).first()
 
         if user and check_password_hash(user.password_hash, password):
+            session["user_id"] = user.id
             session["username"] = username
             session["role"] = "admin" if username == 'admin' else 'user'
             flash(f"Logged in as {username}", "success")
@@ -327,8 +340,15 @@ def login():
 def logout():
     session.pop("username", None)  # Remove username from session
     flash("You have been logged out.", "info")
-    return redirect(url_for("login"))  # Redirect to login or another page
+    return redirect(url_for("login"))  # Redirect to login 
 
+
+@app.route("/profile", methods=["GET", "POST"])
+def profile():
+    user_id = session.get("user_id")
+    user = User.query.get_or_404(user_id)
+    return render_template("profile.html", user=user)
+    
 
 @app.route("/my_toolbox")
 def my_toolbox():
