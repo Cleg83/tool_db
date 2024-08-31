@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h3 class="white-text center-align">{{ user.username }}</h3>
+
+    <div class="row card-panel teal lighten-3">
+        <form class="col s12" method="POST" action="{{ url_for('profile') }}">
+            <div class="container col s4 offset-s4 grey lighten-4 center-align"> 
+                <!-- change username -->   
+                <p id="profile-text">Username: <span class="strong">{{ user.username }}</span>
+                </p>
+                <a href="#" class="btn edit-button profile-button">Change Username</a>
+                <!-- change password -->   
+                <a href="#" class="btn edit-button profile-button">Change Password</a>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

@@ -28,7 +28,7 @@
                     {% if session.get("role") != "admin" %}              
                         <li><a href="{{ url_for('my_toolbox') }}">My Toolbox</a></li>
                         <li><a href="#">My Videos</a></li>
-                        <li><a href="#">Profile</a></li>
+                        <li><a href="{{ url_for('profile') }}">Profile</a></li>
                     {% endif %}
                     <li><a href="{{ url_for('logout') }}">Log Out</a></li>
                 {% else %}

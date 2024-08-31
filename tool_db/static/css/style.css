@@ -17,6 +17,10 @@ body {
     margin-top: 25px;
 }
 
+.container {
+    border-radius: 4px;
+}
+
 .input-field {
     border-radius: 4px;
 }
@@ -70,3 +74,15 @@ body {
 .toolbox-link {
     padding-right: 5px;
 }
+
+.strong{
+    font-weight:bold;
+   }
+
+#profile-text {
+    font-size: 2rem;
+    }
+
+   .profile-button {
+    margin-bottom: 1rem;
+   }
