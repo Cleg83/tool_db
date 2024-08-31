@@ -276,6 +276,20 @@ def manage_users():
     return render_template("manage_users.html", users=users)
 
 
+@app.route("/delete_user/<int:user_id>", methods=["POST"])
+def delete_user(user_id):
+
+    # Fetch the user by ID
+    user = User.query.get_or_404(user_id)
+
+    # Delete the user
+    db.session.delete(user)
+    db.session.commit()
+
+    flash(f"User {user.username} has been deleted.", "success")
+    return redirect(url_for("manage_users"))
+
+
 @app.route("/glossary")
 def glossary():
     tools = Tool.query.order_by(Tool.tool_name).all()
