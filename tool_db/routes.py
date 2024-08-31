@@ -370,6 +370,33 @@ def edit_username():
         return redirect(url_for("profile"))
 
     return render_template("edit_username.html", user=user)
+
+
+@app.route("/edit_password", methods=["GET", "POST"])
+def edit_password():
+    user_id = session.get("user_id")
+    user = User.query.get_or_404(user_id)
+
+    if request.method == "POST":
+        password = request.form.get("edit_password")
+        password_confirm = request.form.get("edit_password_confirm")
+
+        # Server-side validation
+        if password != password_confirm:
+            flash("Passwords do not match!", "error")
+            return render_template("edit_password.html")
+
+        # Hash the password
+        hashed_password = generate_password_hash(password, method="pbkdf2:sha256")
+
+        # Update the user's password in the database
+        user.password_hash = hashed_password
+        db.session.commit()
+
+        flash("Password updated successfully!", "success")
+        return redirect(url_for("profile"))
+
+    return render_template("edit_password.html")
     
 
 @app.route("/my_toolbox")
