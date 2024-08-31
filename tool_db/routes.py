@@ -270,6 +270,12 @@ def delete_tool(tool_id):
     return render_template("home.html", tools=tools)
 
 
+@app.route("/manage_users")
+def manage_users():
+    users = User.query.order_by(User.username).all()
+    return render_template("manage_users.html", users=users)
+
+
 @app.route("/glossary")
 def glossary():
     tools = Tool.query.order_by(Tool.tool_name).all()

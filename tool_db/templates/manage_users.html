@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h3 class="white-text center-align">Manage Users</h3>
+    <div class="row">
+        <div class="col s8 offset-s2 teal lighten-3 add-tool-form">
+            <h5 class="white-text center">Users</h4>
+            <div class="row valign-wrapper">
+                {% for user in users %}
+                    <div class="container col s2 grey lighten-4">
+                        <p class="center">{{ user.username }}</p>
+                        <div id="tiny-btn-container" class="col s12">
+                            <a href="#" class="edit-small left"><small>Reset Password</small></a>
+                            <a href="#modal" class="delete-small right modal-trigger"><small>Delete</small></a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

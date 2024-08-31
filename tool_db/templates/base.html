@@ -24,6 +24,7 @@
                     {% if session.get("role") == "admin" %}
                         <li><a href="{{ url_for('add_category') }}">Add Category</a></li>
                         <li><a href="{{ url_for('add_tool') }}">Add Tool</a></li>
+                        <li><a href="{{ url_for('manage_users')}}">Manage Users</a></li>
                     {% endif %}  
                     {% if session.get("role") != "admin" %}              
                         <li><a href="{{ url_for('my_toolbox') }}">My Toolbox</a></li>
