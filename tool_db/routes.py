@@ -397,6 +397,20 @@ def edit_password():
         return redirect(url_for("profile"))
 
     return render_template("edit_password.html")
+
+
+@app.route("/delete_profile", methods=["POST"])
+def delete_profile():
+    user_id = session.get("user_id")
+    user = User.query.get_or_404(user_id)
+
+    db.session.delete(user)
+    db.session.commit()
+
+    session.clear() # Clears session
+
+    flash("Your profile has been deleted", "info")
+    return redirect(url_for("home"))
     
 
 @app.route("/my_toolbox")
