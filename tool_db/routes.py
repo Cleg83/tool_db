@@ -343,11 +343,33 @@ def logout():
     return redirect(url_for("login"))  # Redirect to login 
 
 
-@app.route("/profile", methods=["GET", "POST"])
+@app.route("/profile", methods=["GET"])
 def profile():
     user_id = session.get("user_id")
     user = User.query.get_or_404(user_id)
     return render_template("profile.html", user=user)
+
+
+@app.route("/edit_username", methods=["GET", "POST"])
+def edit_username():
+    # Retrieves session user info
+    user_id = session.get("user_id")
+    user = User.query.get_or_404(user_id)
+
+    if request.method == "POST":
+        new_username = request.form.get("edit_username")
+        
+        # Updates username
+        if new_username:
+            user.username = new_username
+            db.session.commit()
+            flash("Your username has been updated!", "success")
+        else:
+            flash("Username cannot be empty.", "danger")
+        
+        return redirect(url_for("profile"))
+
+    return render_template("edit_username.html", user=user)
     
 
 @app.route("/my_toolbox")
