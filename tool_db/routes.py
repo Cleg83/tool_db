@@ -429,7 +429,7 @@ def login():
 
 @app.route("/logout")
 def logout():
-    session.pop("username", None)  # Remove username from session
+    session.clear()
     flash("You have been logged out.", "info")
     return redirect(url_for("login"))  # Redirect to login 
 
@@ -438,6 +438,12 @@ def logout():
 def profile():
     
     user_id = session.get("user_id")
+
+    # Check if the user is logged in
+    if user_id is None:
+        flash("You need to be logged in to access that page!", "danger")
+        return redirect(url_for("home"))  # Redirect to home page
+    
     user = User.query.get_or_404(user_id)
 
     # Ensure the user is the one logged in
