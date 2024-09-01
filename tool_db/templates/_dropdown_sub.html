@@ -1,10 +1,10 @@
 <!-- dropdown / select for subcategroies -->
 
 <i class="fa-solid fa-folder-tree prefix"></i>
-<select id="sub_category", name="sub_category" class="validate" required>
+<select id="sub_category" , name="sub_category" class="validate" required>
     <option value="" disabled selected>Choose Subcategory</option>
     {% for subcategory in subcategories %}
-        <option value="{{ subcategory.id }}">{{ subcategory.sub_category_name }}</option>
+    <option value="{{ subcategory.id }}">{{ subcategory.sub_category_name }}</option>
     {% endfor %}
 </select>
 <label for="sub_category"><span class="sr-only">Subcategory</span></label>

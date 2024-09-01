@@ -1,34 +1,34 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h3 class="white-text center-align">Add Sub Category</h3>
+<h3 class="white-text center-align">Add Sub Category</h3>
 
-    <div class="row card-panel teal lighten-3">
-        <form class="col s12" method="POST" action="{{ url_for('add_sub_category') }}">
-            <!-- sub category name -->
-            <div class="row">
-                <div class="input-field col s10 offset-s1 grey lighten-4">
-                    <i class="fa-solid fa-folder-tree prefix"></i>
-                    <input id="sub_category_name" name="sub_category_name" minlength="3" maxlength="50"
-                        pattern="^(?!\s*$)[a-zA-Z0-9\s]+$" type="text" class="validate" required>
-                    <label for="sub_category_name">Subcategory Name</label>
-                </div>
+<div class="row card-panel teal lighten-3">
+    <form class="col s12" method="POST" action="{{ url_for('add_sub_category') }}">
+        <!-- sub category name -->
+        <div class="row">
+            <div class="input-field col s10 offset-s1 grey lighten-4">
+                <i class="fa-solid fa-folder-tree prefix"></i>
+                <input id="sub_category_name" name="sub_category_name" minlength="3" maxlength="50"
+                    pattern="^(?!\s*$)[a-zA-Z0-9\s]+$" type="text" class="validate" required>
+                <label for="sub_category_name">Subcategory Name</label>
             </div>
-            <!-- main category select utilising _dropdown_main to generate main categories -->
-            <div class="row">
-                <div class="input-field col s10 offset-s1 grey lighten-4">
-                    {% include '_dropdown_main.html' %}
-                </div>
+        </div>
+        <!-- main category select utilising _dropdown_main to generate main categories -->
+        <div class="row">
+            <div class="input-field col s10 offset-s1 grey lighten-4">
+                {% include '_dropdown_main.html' %}
             </div>
-            <!-- submit button -->
-            <div class="row">
-                <div class="col s10 offset-s1 center-align">
-                    <button type="submit" class="btn-large grey lighten-4 black-text form-btn">
-                        Add Subcategory <i class="fa-solid fa-folder-plus right"></i>
-                    </button>
-                </div>
+        </div>
+        <!-- submit button -->
+        <div class="row">
+            <div class="col s10 offset-s1 center-align">
+                <button type="submit" class="btn-large grey lighten-4 black-text form-btn">
+                    Add Subcategory <i class="fa-solid fa-folder-plus right"></i>
+                </button>
             </div>
-        </form>
-    </div>
+        </div>
+    </form>
+</div>
 
 {% endblock %}

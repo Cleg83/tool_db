@@ -3,26 +3,26 @@
 <!-- shows all the tools in the selected subcategory -->
 
 {% block content %}
-    <h3 class="white-text center-align">{{ subcategory.sub_category_name }}</h3>
-    
-    {% if tools %}
-        <ul class="collection">
-            {% for tool in tools %}
-                <li class="collection-item">
-                    <a href="{{ url_for('tool', tool_id=tool.id) }}">
-                        <h5>{{ tool.tool_name }}</h5>
-                    </a>
-                    <p><strong>Description:</strong> {{ tool.tool_description }}</p>
-                    {% if tool.tool_videos %}
-                        <p><strong>Videos:</strong> {{ tool.tool_videos }}</p>
-                    {% endif %}
-                    {% if tool.tool_links %}
-                        <p><strong>Links:</strong> {{ tool.tool_links }}</p>
-                    {% endif %}
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p class="white center-align">No tools found for this subcategory.</p>
-    {% endif %}
+<h3 class="white-text center-align">{{ subcategory.sub_category_name }}</h3>
+
+{% if tools %}
+<ul class="collection">
+    {% for tool in tools %}
+    <li class="collection-item">
+        <a href="{{ url_for('tool', tool_id=tool.id) }}">
+            <h5>{{ tool.tool_name }}</h5>
+        </a>
+        <p><strong>Description:</strong> {{ tool.tool_description }}</p>
+        {% if tool.tool_videos %}
+        <p><strong>Videos:</strong> {{ tool.tool_videos }}</p>
+        {% endif %}
+        {% if tool.tool_links %}
+        <p><strong>Links:</strong> {{ tool.tool_links }}</p>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p class="white center-align">No tools found for this subcategory.</p>
+{% endif %}
 {% endblock %}

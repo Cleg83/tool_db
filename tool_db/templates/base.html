@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link rel="icon" type="image/x-icon" href="../../favicon.ico">
     <title>The Woodworker's Tool DB</title>
 </head>
+
 <body>
 
 
@@ -21,20 +23,20 @@
                 <li><a href="{{ url_for('categories') }}">Categories</a></li>
                 <li><a href="{{ url_for('glossary') }}">Glossary</a></li>
                 {% if "username" in session %}
-                    {% if session.get("role") == "admin" %}
-                        <li><a href="{{ url_for('add_category') }}">Add Category</a></li>
-                        <li><a href="{{ url_for('add_tool') }}">Add Tool</a></li>
-                        <li><a href="{{ url_for('manage_users')}}">Manage Users</a></li>
-                    {% endif %}  
-                    {% if session.get("role") != "admin" %}              
-                        <li><a href="{{ url_for('my_toolbox') }}">My Toolbox</a></li>
-                        <li><a href="#">My Videos</a></li>
-                        <li><a href="{{ url_for('profile') }}">Profile</a></li>
-                    {% endif %}
-                    <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+                {% if session.get("role") == "admin" %}
+                <li><a href="{{ url_for('add_category') }}">Add Category</a></li>
+                <li><a href="{{ url_for('add_tool') }}">Add Tool</a></li>
+                <li><a href="{{ url_for('manage_users')}}">Manage Users</a></li>
+                {% endif %}
+                {% if session.get("role") != "admin" %}
+                <li><a href="{{ url_for('my_toolbox') }}">My Toolbox</a></li>
+                <li><a href="#">My Videos</a></li>
+                <li><a href="{{ url_for('profile') }}">Profile</a></li>
+                {% endif %}
+                <li><a href="{{ url_for('logout') }}">Log Out</a></li>
                 {% else %}
-                    <li><a href="{{ url_for('login') }}">Log In</a></li>
-                {% endif %}    
+                <li><a href="{{ url_for('login') }}">Log In</a></li>
+                {% endif %}
             </ul>
         </div>
     </nav>
@@ -42,13 +44,13 @@
     <section>
         <!-- flash messages -->
         {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="row flashes">
-                        <h4 class="red lighten-3 center-align">{{ message }}</h4>
-                    </div>
-                {% endfor %}
-            {% endif %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="row flashes">
+            <h4 class="red lighten-3 center-align">{{ message }}</h4>
+        </div>
+        {% endfor %}
+        {% endif %}
         {% endwith %}
     </section>
 
@@ -62,4 +64,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="{{ url_for('static', filename='scripts/script.js') }}"></script>
 </body>
+
 </html>

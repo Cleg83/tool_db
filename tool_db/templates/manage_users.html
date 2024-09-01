@@ -1,38 +1,39 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h3 class="white-text center-align">Manage Users</h3>
-    <div class="row">
-        <div class="col s8 offset-s2 teal lighten-3 add-tool-form">
-            <h5 class="white-text center">Users</h4>
+<h3 class="white-text center-align">Manage Users</h3>
+<div class="row">
+    <div class="col s8 offset-s2 teal lighten-3 add-tool-form">
+        <h5 class="white-text center">Users</h4>
             <div class="row valign-wrapper">
                 {% for user in users %}
-                    <div class="container col s2 grey lighten-4">
-                        <p class="center">{{ user.username }}</p>
-                        <div id="tiny-btn-container" class="col s12">
-                            <a href="#" class="edit-small left"><small>Reset Password</small></a>
-                            <a href="#delete-user-modal-{{ user.id }}" class="delete-small right modal-trigger"><small>Delete</small></a>
-                        </div>
+                <div class="container col s2 grey lighten-4">
+                    <p class="center">{{ user.username }}</p>
+                    <div id="tiny-btn-container" class="col s12">
+                        <a href="#" class="edit-small left"><small>Reset Password</small></a>
+                        <a href="#delete-user-modal-{{ user.id }}"
+                            class="delete-small right modal-trigger"><small>Delete</small></a>
                     </div>
+                </div>
                 {% endfor %}
             </div>
-        </div>
     </div>
+</div>
 
-    {% for user in users %}
-        <!-- Delete user modal -->
-        <div id="delete-user-modal-{{ user.id }}" class="modal">
-            <div class="modal-content">
-                <h4>Are you sure you want to delete this user?</h4>
-                <p>This action cannot be undone!</p>
-            </div>
-            <div class="modal-footer">
-                <form method="POST" action="{{ url_for('delete_user', user_id=user.id) }}">
-                    <button type="submit" class="btn delete-button">Delete</button>
-                    <a href="#!" class="modal-close btn edit-button">Cancel</a>
-                </form>          
-            </div>
-        </div>
-    {% endfor %}
+{% for user in users %}
+<!-- Delete user modal -->
+<div id="delete-user-modal-{{ user.id }}" class="modal">
+    <div class="modal-content">
+        <h4>Are you sure you want to delete this user?</h4>
+        <p>This action cannot be undone!</p>
+    </div>
+    <div class="modal-footer">
+        <form method="POST" action="{{ url_for('delete_user', user_id=user.id) }}">
+            <button type="submit" class="btn delete-button">Delete</button>
+            <a href="#!" class="modal-close btn edit-button">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endfor %}
 
 {% endblock %}

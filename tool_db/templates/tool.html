@@ -1,34 +1,34 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <!-- page to show all tool info for the selected tool -->
-    <div class="row">
-        <div id="tool-content" class="col s8 offset-s2 white center-align">
-            <h3 class="black-text center-align">{{ tool.tool_name }}</h3>
+<!-- page to show all tool info for the selected tool -->
+<div class="row">
+    <div id="tool-content" class="col s8 offset-s2 white center-align">
+        <h3 class="black-text center-align">{{ tool.tool_name }}</h3>
 
-            <div class="tool-details">
-                <p>{{ tool.tool_description }}</p>
+        <div class="tool-details">
+            <p>{{ tool.tool_description }}</p>
 
-                <!-- checks if the tool has videos and displays them if it does -->
-                {% if tool.tool_videos %}
-                    <h5>Videos</h5>
-                    <div>
-                        {% for video in tool.tool_videos %}
-                            {% set embed_url = video | replace("watch?v=", "embed/") %}
-                                <iframe width="426" height="240" src="{{ embed_url }}" frameborder="0" allowfullscreen></iframe>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-
-                {% if tool.tool_links %}
-                    <h5>Product Links</h5>
-                    <ul>
-                        {% for link in tool.tool_links %}
-                            <li><a href="{{ link }}" target="_blank">Buy here</a></li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
+            <!-- checks if the tool has videos and displays them if it does -->
+            {% if tool.tool_videos %}
+            <h5>Videos</h5>
+            <div>
+                {% for video in tool.tool_videos %}
+                {% set embed_url = video | replace("watch?v=", "embed/") %}
+                <iframe width="426" height="240" src="{{ embed_url }}" frameborder="0" allowfullscreen></iframe>
+                {% endfor %}
             </div>
+            {% endif %}
+
+            {% if tool.tool_links %}
+            <h5>Product Links</h5>
+            <ul>
+                {% for link in tool.tool_links %}
+                <li><a href="{{ link }}" target="_blank">Buy here</a></li>
+                {% endfor %}
+            </ul>
+            {% endif %}
         </div>
     </div>
+</div>
 {% endblock %}
