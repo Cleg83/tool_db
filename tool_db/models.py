@@ -45,7 +45,6 @@ class User(db.Model):
     username = db.Column(db.String(50), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
     toolbox_items = db.relationship('MyToolbox', backref='user', cascade='all, delete', lazy=True)
-    video_items = db.relationship('MyVideos', backref='user', cascade='all, delete', lazy=True)
 
     def set_password(self, password):
         # Hashes the password 
@@ -64,17 +63,6 @@ class MyToolbox(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     tool_name = db.Column(db.String(50), nullable=False)
     product_links = db.Column(db.JSON, nullable=True)  # Storing up to 3 product links in JSON
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
-
-    def __repr__(self):
-        return f"{self.tool_name}"
-
-
-# my videos model (where users can save their favourite videos)
-class MyVideos(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    tool_name = db.Column(db.String(50), nullable=False)
-    video_link = db.Column(db.String(255), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
 
     def __repr__(self):

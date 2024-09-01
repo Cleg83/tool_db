@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, url_for, session, flash, abort
 from tool_db import app, db
-from tool_db.models import MainCategory, SubCategory, Tool, User, MyToolbox, MyVideos
+from tool_db.models import MainCategory, SubCategory, Tool, User, MyToolbox
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
