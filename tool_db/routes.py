@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for, session, flash
+from flask import render_template, request, redirect, url_for, session, flash, abort
 from tool_db import app, db
 from tool_db.models import MainCategory, SubCategory, Tool, User, MyToolbox, MyVideos
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -30,12 +30,24 @@ def categories():
 
 @app.route("/add_category")
 def add_category():
+
+    # Check if current user is admin
+    if not session.get("role") == "admin":
+        flash("Wind your neck in, you don't have permission to do that!", "error")
+        return redirect(url_for("home"))
+    
     return render_template("add_category.html")
 
 
 # Simple method for adding a main category
 @app.route("/add_main_category", methods=["GET", "POST"])
 def add_main_category():
+
+    # Check if current user is admin
+    if not session.get("role") == "admin":
+        flash("Wind your neck in, you don't have permission to do that!", "error")
+        return redirect(url_for("home"))
+    
     if request.method =="POST":
         main_category = MainCategory(main_category_name=request.form.get("main_category_name"))
         db.session.add(main_category)
@@ -46,6 +58,12 @@ def add_main_category():
 
 @app.route("/edit_main_category/<int:category_id>", methods=["GET", "POST"])
 def edit_main_category(category_id):
+
+    # Check if current user is admin
+    if not session.get("role") == "admin":
+        flash("Wind your neck in, you don't have permission to do that!", "error")
+        return redirect(url_for("home"))
+    
     category = MainCategory.query.get_or_404(category_id)
     if request.method == "POST":
         category.main_category_name = request.form.get("main_category_name")
@@ -56,6 +74,12 @@ def edit_main_category(category_id):
 
 @app.route("/delete_main_category/<int:category_id>")
 def delete_main_category(category_id):
+
+    # Check if current user is admin
+    if not session.get("role") == "admin":
+        flash("Wind your neck in, you don't have permission to do that!", "error")
+        return redirect(url_for("home"))
+    
     category = MainCategory.query.get_or_404(category_id)
     db.session.delete(category)
     db.session.commit()
@@ -64,6 +88,12 @@ def delete_main_category(category_id):
 
 @app.route("/add_sub_category", methods=["GET", "POST"])
 def add_sub_category():
+
+    # Check if current user is admin
+    if not session.get("role") == "admin":
+        flash("Wind your neck in, you don't have permission to do that!", "error")
+        return redirect(url_for("home"))
+    
     if request.method == "POST":
         sub_category_name = request.form.get("sub_category_name")
         main_category = request.form.get("main_category")
@@ -92,6 +122,12 @@ def add_sub_category():
 
 @app.route("/edit_sub_category/<int:subcategory_id>", methods=["GET", "POST"])
 def edit_sub_category(subcategory_id):
+
+    # Check if current user is admin
+    if not session.get("role") == "admin":
+        flash("Wind your neck in, you don't have permission to do that!", "error")
+        return redirect(url_for("home"))
+    
     subcategory = SubCategory.query.get_or_404(subcategory_id)
     main_categories = MainCategory.query.order_by(MainCategory.main_category_name).all()
     # Fetches tool belonging to subcategory using sub_category_id
@@ -120,6 +156,12 @@ def edit_sub_category(subcategory_id):
 
 @app.route("/delete_sub_category/<int:subcategory_id>")
 def delete_sub_category(subcategory_id):
+
+    # Check if current user is admin
+    if not session.get("role") == "admin":
+        flash("Wind your neck in, you don't have permission to do that!", "error")
+        return redirect(url_for("home"))
+    
     subcategory = SubCategory.query.get_or_404(subcategory_id)
     db.session.delete(subcategory)
     db.session.commit()
@@ -150,6 +192,12 @@ def selected_subcategory(subcategory_id):
 
 @app.route("/add_tool", methods=["GET", "POST"])
 def add_tool():
+
+    # Check if current user is admin
+    if not session.get("role") == "admin":
+        flash("Wind your neck in, you don't have permission to do that!", "error")
+        return redirect(url_for("home"))
+    
     main_categories = MainCategory.query.all()
 
     if request.method == "POST":
@@ -204,6 +252,12 @@ def add_tool():
 
 @app.route("/edit_tool/<int:tool_id>", methods=["GET", "POST"])
 def edit_tool(tool_id):
+
+    # Check if current user is admin
+    if not session.get("role") == "admin":
+        flash("Wind your neck in, you don't have permission to do that!", "error")
+        return redirect(url_for("home"))
+    
     tool = Tool.query.get_or_404(tool_id)
     main_categories = MainCategory.query.all()
 
@@ -261,6 +315,12 @@ def edit_tool(tool_id):
 
 @app.route("/delete_tool/<int:tool_id>")
 def delete_tool(tool_id):
+
+    # Check if current user is admin
+    if not session.get("role") == "admin":
+        flash("Wind your neck in, you don't have permission to do that!", "error")
+        return redirect(url_for("home"))
+    
     # Fetch tool to delete
     tool = Tool.query.get_or_404(tool_id)
     db.session.delete(tool)
@@ -272,12 +332,23 @@ def delete_tool(tool_id):
 
 @app.route("/manage_users")
 def manage_users():
+
+    # Check if current user is admin
+    if not session.get("role") == "admin":
+        flash("Wind your neck in, you don't have permission to do that!", "error")
+        return redirect(url_for("home"))
+    
     users = User.query.order_by(User.username).all()
     return render_template("manage_users.html", users=users)
 
 
 @app.route("/delete_user/<int:user_id>", methods=["POST"])
 def delete_user(user_id):
+
+    # Check if current user is admin
+    if not session.get("role") == "admin":
+        flash("Wind your neck in, you don't have permission to do that!", "error")
+        return redirect(url_for("home"))
 
     # Fetch the user by ID
     user = User.query.get_or_404(user_id)
@@ -365,8 +436,14 @@ def logout():
 
 @app.route("/profile", methods=["GET"])
 def profile():
+    
     user_id = session.get("user_id")
     user = User.query.get_or_404(user_id)
+
+    # Ensure the user is the one logged in
+    if user_id != user.id:
+        abort(403)
+
     return render_template("profile.html", user=user)
 
 
@@ -375,6 +452,10 @@ def edit_username():
     # Retrieves session user info
     user_id = session.get("user_id")
     user = User.query.get_or_404(user_id)
+
+    # Ensure the user is the one logged in
+    if user_id != user.id:
+        abort(403)
 
     if request.method == "POST":
         new_username = request.form.get("edit_username")
@@ -396,6 +477,10 @@ def edit_username():
 def edit_password():
     user_id = session.get("user_id")
     user = User.query.get_or_404(user_id)
+
+    # Ensure the user is the one logged in
+    if user_id != user.id:
+        abort(403)
 
     if request.method == "POST":
         password = request.form.get("edit_password")
@@ -421,8 +506,13 @@ def edit_password():
 
 @app.route("/delete_profile", methods=["POST"])
 def delete_profile():
+
     user_id = session.get("user_id")
     user = User.query.get_or_404(user_id)
+
+    # Ensure the user is the one logged in
+    if user_id != user.id:
+        abort(403)
 
     db.session.delete(user)
     db.session.commit()
