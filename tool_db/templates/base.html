@@ -17,7 +17,8 @@
     <!-- simple navbar - will add mobile collapse elements -->
     <nav>
         <div class="nav-wrapper teal lighten-3 nav-font">
-            <a href="{{ url_for('home') }}" class="brand-logo">The Woodworker's Tool Database</a>
+            <a href="{{ url_for('home') }}" class="brand-logo logo-small">The Woodworker's Tool Database</a>
+            <a href="#" data-target="nav-collapse" class="sidenav-trigger right"><i class="fa-solid fa-bars"></i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="{{ url_for('home') }}">Home</a></li>
                 <li><a href="{{ url_for('categories') }}">Categories</a></li>
@@ -30,7 +31,6 @@
                 {% endif %}
                 {% if session.get("role") != "admin" %}
                 <li><a href="{{ url_for('my_toolbox') }}">My Toolbox</a></li>
-                <li><a href="#">My Videos</a></li>
                 <li><a href="{{ url_for('profile') }}">Profile</a></li>
                 {% endif %}
                 <li><a href="{{ url_for('logout') }}">Log Out</a></li>
@@ -40,6 +40,27 @@
             </ul>
         </div>
     </nav>
+    
+    <!-- mobile collapsible sidenav -->
+    <ul class="sidenav" id="nav-collapse">
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="{{ url_for('categories') }}">Categories</a></li>
+        <li><a href="{{ url_for('glossary') }}">Glossary</a></li>
+        {% if "username" in session %}
+        {% if session.get("role") == "admin" %}
+        <li><a href="{{ url_for('add_category') }}">Add Category</a></li>
+        <li><a href="{{ url_for('add_tool') }}">Add Tool</a></li>
+        <li><a href="{{ url_for('manage_users')}}">Manage Users</a></li>
+        {% endif %}
+        {% if session.get("role") != "admin" %}
+        <li><a href="{{ url_for('my_toolbox') }}">My Toolbox</a></li>
+        <li><a href="{{ url_for('profile') }}">Profile</a></li>
+        {% endif %}
+        <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+        {% else %}
+        <li><a href="{{ url_for('login') }}">Log In</a></li>
+        {% endif %}
+    </ul>
 
     <section>
         <!-- flash messages -->
