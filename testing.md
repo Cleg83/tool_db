@@ -21,11 +21,21 @@ Feature | Expected Outcome	| Testing Performed |	Result	| Pass/Fail |
 
 ### Default Categories page
 
+Feature | Expected Outcome	| Testing Performed |	Result	| Pass/Fail |
+| --- | --- | --- | --- | --- |
+
+| Main Category Text & Icon Link | Redirects user to selected main category page | Clicked link | User redirected to correct selected category page | Pass |
+| Show Subcategory Text & Icon | Reveals card content with list of related subcategories | Clicked link | Correct card content revealed | Pass |
+| Subcategory links in revealed card content  | Redirects user to selected subcategory | Clicked all subcategory links | User redirected to correct selected subcategory page | Pass |
+| Go To Main Category link | User redirected to selected main category page | Clicked link | User redirected to correct selected category page | Pass |
+
+
 ### Default Glossary page
 
+Feature | Expected Outcome	| Testing Performed |	Result	| Pass/Fail |
+| --- | --- | --- | --- | --- |
 
-
-
+Tool link | Redirects user to selected tool page | Clicked link | User redirected to correct selected tool page | Pass |
 
 
 
