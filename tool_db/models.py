@@ -18,7 +18,7 @@ class SubCategory(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     sub_category_name = db.Column(db.String(100), unique=True, nullable=False)
     main_category_id = db.Column(db.Integer, db.ForeignKey("main_category.id", ondelete="CASCADE"), nullable=False)
-    tools = db.relationship("Tool", backref="sub_category", cascade="all, delete", lazy=True)
+    tools = db.relationship("Tool", backref="sub_category_ref", cascade="all, delete", lazy=True)
 
     def __repr__(self):
         return f"{self.sub_category_name}"
@@ -33,6 +33,7 @@ class Tool(db.Model):
     tool_links = db.Column(db.JSON, nullable=True)
     main_category_id = db.Column(db.Integer, db.ForeignKey("main_category.id", ondelete="CASCADE"), nullable=False)
     sub_category_id = db.Column(db.Integer, db.ForeignKey("sub_category.id", ondelete="CASCADE"), nullable=False)
+    sub_category = db.relationship("SubCategory", backref="related_tools")
 
     def __repr__(self):
         return "Name: {0} | Sub-Category: {1}".format(

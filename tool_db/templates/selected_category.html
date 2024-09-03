@@ -3,30 +3,24 @@
 
 <h3 class="white-text center-align">{{ main_category.main_category_name }}</h3>
 
-<!-- displays a card, similar to the home page but only for the selected category -->
-<div class="row content-wrapper">
-    {% for subcategory in sub_categories %}
-    <div class="col s12 m6 l4">
-        <div class="card large teal lighten-3">
-            <div class="card-image">
-                <img src="{{ url_for('static', filename='images/' + subcategory.sub_category_name.lower().replace(' ', '_') + '.jpg') }}"
-                    alt="{{ subcategory.sub_category_name }}">
-            </div>
-            <div class="card-content white-text">
-                <span class="card-title">{{ subcategory.sub_category_name }}</span>
-            </div>
-            <div class="card-action">
-                <a href="{{ url_for('selected_subcategory', subcategory_id=subcategory.id) }}"
-                    class="brown-text darken-4">Go to {{ subcategory.sub_category_name }}</a>
-                <div class="right">
-                    <a href="{{ url_for('edit_sub_category', subcategory_id=subcategory.id)}}"
-                        class="btn edit-button">Edit</a>
-                    <a href="" class="btn delete-button">Delete</a>
-                </div>
-            </div>
-        </div>
-    </div>
+{% if tools %}
+<ul class="collection">
+    {% for tool in tools %}
+    <li class="collection-item">
+        <a href="{{ url_for('tool', tool_id=tool.id) }}">
+            <h5>{{ tool.tool_name }}</h5>
+        </a>
+            <p>Subcategory: 
+                <a href="{{ url_for('selected_subcategory', subcategory_id=tool.sub_category_id) }}">
+                    <strong>{{ tool.sub_category.sub_category_name }}</strong>
+                </a>
+            <p>
+        <p><strong>Description:</strong> {{ tool.tool_description }}</p>
+    </li>
     {% endfor %}
-</div>
+</ul>
+{% else %}
+<p class="white center-align">No tools found for this subcategory.</p>
+{% endif %}
 
 {% endblock %}

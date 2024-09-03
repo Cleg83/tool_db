@@ -14,8 +14,8 @@
                     {{ category.main_category_name }}
 
                     <!-- Icons are dynamically rendered based on category name -->
-                    <i
-                        class="{{ category_icons.get(category.main_category_name, 'fa-solid fa-folder-open') }} right"></i>
+                    <i class="{{ category_icons.get(category.main_category_name, 
+                        'fa-solid fa-folder-open') }} right"></i>
                 </span>
             </div>
 
@@ -56,7 +56,7 @@
             </div>
             <!-- Link for all users to go to selected category page -->
             <div class="card-action center">
-                <a href="{{ url_for('selected_category', subcategory_id=category.sub_cats.id, category_name=category.main_category_name|lower|replace(' ', '_')) }}"
+                <a href="{{ url_for('selected_category', tool_id=tool_id, subcategory_id=category.sub_cats.id, category_name=category.main_category_name|lower|replace(' ', '_')) }}"
                     class="brown-text darken-4">
                     Go to {{ category.main_category_name }}
                 </a>

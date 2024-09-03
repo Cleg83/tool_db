@@ -175,8 +175,9 @@ def selected_category(category_name):
 
     # Check if main category exists in db
     if main_category:
-        subcategories = SubCategory.query.filter_by(main_category_id=main_category.id).all()
-        return render_template("selected_category.html", main_category=main_category, sub_categories=subcategories)
+        tools = Tool.query.filter_by(main_category_id=main_category.id).all()
+        subcategories = Tool.query.filter_by(sub_category_id=Tool.sub_category_id).all()
+        return render_template("selected_category.html", main_category=main_category, tools=tools, sub_categories=subcategories)
     else:
         # Handle case where main category doesn't exist
         flash("Category doesn't exist!", "error")
@@ -305,10 +306,18 @@ def edit_tool(tool_id):
             session.pop("main_category_id", None)
 
             return redirect(url_for("selected_subcategory", subcategory_id=tool.sub_category_id))
+        
+    # Debugging output
+    print(f"tool_videos (raw): {tool.tool_videos}, type: {type(tool.tool_videos)}")
+    print(f"tool_links (raw): {tool.tool_links}, type: {type(tool.tool_links)}")
     
-    # Prepare existing values for form fields for the GET request
+    # Displays links and videos as comma separated lists
     tool_videos = ",".join(tool.tool_videos or [])
     product_links = ",".join(tool.tool_links or [])
+
+    # Debugging output after conversion
+    print(f"tool_videos (converted): {tool_videos}")
+    print(f"tool_links (converted): {product_links}")
 
     return render_template("edit_tool_step1.html", tool=tool, main_categories=main_categories, tool_videos=tool_videos, product_links=product_links)
 

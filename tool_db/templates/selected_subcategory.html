@@ -13,12 +13,6 @@
             <h5>{{ tool.tool_name }}</h5>
         </a>
         <p><strong>Description:</strong> {{ tool.tool_description }}</p>
-        {% if tool.tool_videos %}
-        <p><strong>Videos:</strong> {{ tool.tool_videos }}</p>
-        {% endif %}
-        {% if tool.tool_links %}
-        <p><strong>Links:</strong> {{ tool.tool_links }}</p>
-        {% endif %}
     </li>
     {% endfor %}
 </ul>

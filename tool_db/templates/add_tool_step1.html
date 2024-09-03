@@ -36,8 +36,11 @@
         <div class="row">
             <div class="input-field col s10 offset-s1 grey lighten-4">
                 <i class="fa-solid fa-video prefix"></i>
-                <input id="tool_videos" name="tool_videos" minlength="5" maxlength="500" type="text">
-                <label for="tool_videos">Videos</label>
+                <input id="tool_videos" name="tool_videos" minlength="5" maxlength="500" type="text"
+                    pattern="https?://.*(,https?://.*){0,2}">
+                <label for="tool_videos">Video URLs (up to 3, separated by commas)</label>
+                <span class="helper-text"
+                data-error="Please enter valid URLs, separated by commas (e.g., http://example.com, http://example2.com)"></span>
             </div>
         </div>
         <!-- tool product links -->
