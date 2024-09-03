@@ -65,11 +65,16 @@ Feature | Expected Outcome	| Testing Performed |	Result	| Pass/Fail |
 
 ### User Glossary Page
 
+Feature | Expected Outcome	| Testing Performed |	Result	| Pass/Fail |
+| --- | --- | --- | --- | --- |
+| Tool name link | Redirects user to selected tool page | Clicked link | User redirected to correct tool page | Pass |
+| Add to my toolbox link | Adds tool to users toolbox, redirects user to my toolbox page and correct flash message is shown | Clicked link to add tool | Tool added to user's toolbox, redirected to my toolbox page and correct flash message displayed | ??? | 
 
 
 ### My Toolbox page
 
-
+Feature | Expected Outcome	| Testing Performed |	Result	| Pass/Fail |
+| --- | --- | --- | --- | --- |
 
 
 
@@ -89,6 +94,8 @@ Feature | Expected Outcome	| Testing Performed |	Result	| Pass/Fail |
 | Log Out link | Logs user out and displays flash message | Clicked link | User logged out and flash message displayed | Pass |
 
 ### Admin Home page
+
+Exactly the same as the default home page so no additional testing required.
 
 ### Admin Categories page
 
