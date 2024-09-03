@@ -455,8 +455,15 @@ def profile():
 
 @app.route("/edit_username", methods=["GET", "POST"])
 def edit_username():
+    
     # Retrieves session user info
     user_id = session.get("user_id")
+
+    # Check if the user is logged in
+    if user_id is None:
+        flash("You need to be logged in to access that page!", "danger")
+        return redirect(url_for("home"))  # Redirect to home page
+    
     user = User.query.get_or_404(user_id)
 
     # Ensure the user is the one logged in
@@ -482,6 +489,12 @@ def edit_username():
 @app.route("/edit_password", methods=["GET", "POST"])
 def edit_password():
     user_id = session.get("user_id")
+
+    # Check if the user is logged in
+    if user_id is None:
+        flash("You need to be logged in to access that page!", "danger")
+        return redirect(url_for("home"))  # Redirect to home page
+    
     user = User.query.get_or_404(user_id)
 
     # Ensure the user is the one logged in
@@ -514,6 +527,12 @@ def edit_password():
 def delete_profile():
 
     user_id = session.get("user_id")
+
+    # Check if the user is logged in
+    if user_id is None:
+        flash("You need to be logged in to access that page!", "danger")
+        return redirect(url_for("home"))  # Redirect to home page
+    
     user = User.query.get_or_404(user_id)
 
     # Ensure the user is the one logged in
@@ -531,4 +550,18 @@ def delete_profile():
 
 @app.route("/my_toolbox")
 def my_toolbox():
+
+    user_id = session.get("user_id")
+
+    # Check if the user is logged in
+    if user_id is None:
+        flash("You need to be logged in to access that page!", "danger")
+        return redirect(url_for("home"))  # Redirect to home page
+    
+    user = User.query.get_or_404(user_id)
+
+    # Ensure the user is the one logged in
+    if user_id != user.id:
+        abort(403)
+    
     return render_template("my_toolbox.html")
