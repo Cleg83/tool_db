@@ -58,7 +58,14 @@ Feature | Expected Outcome	| Testing Performed |	Result	| Pass/Fail |
 
 ### User Categories page
 
+| Main Category Text & Icon Link | Redirects user to selected main category page | Clicked link | User redirected to correct selected category page | Pass |
+| Show Subcategory Text & Icon | Reveals card content with list of related subcategories | Clicked link | Correct card content revealed | Pass |
+| Subcategory links in revealed card content  | Redirects user to selected subcategory | Clicked all subcategory links | User redirected to correct selected subcategory page | Pass |
+| Go To Main Category link | User redirected to selected main category page | Clicked link | User redirected to correct selected category page | Pass |
+
 ### User Glossary Page
+
+
 
 ### My Toolbox page
 
@@ -84,6 +91,20 @@ Feature | Expected Outcome	| Testing Performed |	Result	| Pass/Fail |
 ### Admin Home page
 
 ### Admin Categories page
+
+| Main Category Text & Icon Link | Redirects user to selected main category page | Clicked link | User redirected to correct selected category page | Pass |
+| Show Subcategory Text & Icon | Reveals card content with list of related subcategories + edit & delete buttons | Clicked link | Correct card content revealed | Pass |
+| Subcategory links in revealed card content  | Redirects user to selected subcategory | Clicked all subcategory links | User redirected to correct selected subcategory page | Pass |
+| Edit Subcategory button  | Redirects user to correct edit subcategory page | Clicked button | User redirected to correct edit subcategory page | Pass |
+| Delete Subcategory button  | Displays confirm delete modal | Clicked button | Confirm delete modal displayed | Pass |
+| Modal Cancel button | Closes modal | Clicked button | Modal closed | Pass |
+| Modal Delete button | Deletes subcategory, redirects user to categories page and displays flash message | Clicked button | Subcategory deleted, user redirected to categories page and correct flash message displayed | Pass |
+| Go To Main Category link | User redirected to selected main category page | Clicked link | User redirected to correct selected category page | Pass |
+| Edit Main Category button | Redirects user to correct edit main category page | Clicked button | User redirected to correct edit main category page | Pass | 
+| Delete Main Category button  | Displays confirm delete modal | Clicked button | Confirm delete modal displayed | Pass |
+| Modal Cancel button | Closes modal | Clicked button | Modal closed | Pass |
+| Modal Delete button | Deletes main category, redirects user to categories page and displays flash message | Clicked button | Main category deleted, user redirected to categories page and correct flash message displayed | Pass |
+| Add category card icon link | redirects user to add category page | Clicked icon | User redirected to add main category page | Pass
 
 ### Admin Glossary Page
 
