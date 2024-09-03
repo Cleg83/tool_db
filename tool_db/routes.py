@@ -52,6 +52,7 @@ def add_main_category():
         main_category = MainCategory(main_category_name=request.form.get("main_category_name"))
         db.session.add(main_category)
         db.session.commit()
+        flash(f"{ main_category.main_category_name } added!", "success")
         return redirect(url_for("categories"))
     return render_template("add_main_category.html")
 
@@ -68,6 +69,7 @@ def edit_main_category(category_id):
     if request.method == "POST":
         category.main_category_name = request.form.get("main_category_name")
         db.session.commit()
+        flash(f"{ category.main_category_name } updated", "success")
         return redirect(url_for("categories"))
     return render_template("edit_main_category.html", category=category)
 
@@ -83,6 +85,7 @@ def delete_main_category(category_id):
     category = MainCategory.query.get_or_404(category_id)
     db.session.delete(category)
     db.session.commit()
+    flash(f"{ category.main_category_name } deleted!", "success")
     return redirect(url_for("categories"))
 
 
@@ -114,6 +117,7 @@ def add_sub_category():
         sub_category = SubCategory(sub_category_name=sub_category_name, main_category_id=main_category_id)
         db.session.add(sub_category)
         db.session.commit()
+        flash(f"{ sub_category_name } added!", "success")
         return redirect(url_for("categories"))
 
     main_categories = MainCategory.query.all()
@@ -148,6 +152,7 @@ def edit_sub_category(subcategory_id):
             subcategory.main_category = main_category
 
         db.session.commit()
+        flash(f"{ subcategory.sub_category_name } updated!", "success")
         return redirect(url_for("categories"))
 
     return render_template("edit_sub_category.html", subcategory=subcategory, tools=tools, main_categories=main_categories)
@@ -165,6 +170,7 @@ def delete_sub_category(subcategory_id):
     subcategory = SubCategory.query.get_or_404(subcategory_id)
     db.session.delete(subcategory)
     db.session.commit()
+    flash(f"{ subcategory.sub_category_name } deleted!", "success")
     return redirect(url_for("categories"))
 
 
@@ -239,13 +245,15 @@ def add_tool():
             db.session.add(new_tool)
             db.session.commit()
 
+            flash(f"{ tool.tool_name } added!", "success")
+
             # Clear the tool info from session
             session.pop("tool_name", None)
             session.pop("tool_description", None)
             session.pop("tool_videos", None)
             session.pop("product_links", None)
             session.pop("main_category_id", None)
-
+     
             return redirect(url_for("categories"))
     
     return render_template("add_tool_step1.html")
@@ -297,6 +305,7 @@ def edit_tool(tool_id):
 
             # Commit the updates to the database
             db.session.commit()
+            flash(f"{ tool.tool_name } updated!", "success")
 
             # Clear the session data for the tool
             session.pop("tool_name", None)
@@ -305,7 +314,7 @@ def edit_tool(tool_id):
             session.pop("product_links", None)
             session.pop("main_category_id", None)
 
-            return redirect(url_for("selected_subcategory", subcategory_id=tool.sub_category_id))
+            return redirect(url_for("edit_sub_category", subcategory_id=sub_category_id))
         
     # Debugging output
     print(f"tool_videos (raw): {tool.tool_videos}, type: {type(tool.tool_videos)}")
@@ -336,6 +345,7 @@ def delete_tool(tool_id):
     db.session.commit()
     # Fetch all tools to ensure glossary displays correctly when redirected
     tools = Tool.query.order_by(Tool.tool_name).all()
+    flash(f"{ tool.tool_name } deleted!", "success")
     return render_template("home.html", tools=tools)
 
 
