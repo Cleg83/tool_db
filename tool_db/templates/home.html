@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
+<h3 class="white-text center-align">Welcome to The Woodworker's Tool Database!</h3>
 <!-- 
 Random tool card is generated at a set interval
  -->
@@ -13,34 +14,15 @@ Random tool card is generated at a set interval
                 <div id="tool-videos" class="home-page-vids"></div>
                 <div id="tool-links"></div>
                 <!-- Buttons -->
-                {% if "username" in session %}
-                    {% if session.get("role") == "admin" %}
-                        <a href="#modal-home" class="delete-small modal-trigger">Delete</a>
-                    {% else %}
-                        <a href="{{ url_for('my_toolbox') }}" class="edit-small">
-                            <i class="fa-solid fa-toolbox"></i>
-                            <small class="small-icon-text">Add to My Toolbox</small>
-                        </a>
-                    {% endif %}
+                {% if "username" in session and session.get("role") != "admin" %}
+                    <a href="{{ url_for('my_toolbox') }}" class="edit-small">
+                        <i class="fa-solid fa-toolbox"></i>
+                        <small class="small-icon-text">Add to My Toolbox</small>
+                    </a>
                 {% endif %}
             </div>
         </div>
     </div>
 </div>
-<!-- delete tool modal -->
-{% for tool in tools %}
-<div id="modal-home-{{ tool.id }}" class="modal">
-    <div class="modal-content">
-        <h4>Are you sure you want to delete this tool?</h4>
-        <p>This action cannot be undone!</p>
-    </div>
-    <div class="modal-footer">
-        <a href="{{ url_for('delete_tool', tool_id=tool.id) }}" class="btn delete-button">Delete</a>
-        <a href="#!" class="modal-close btn edit-button">Cancel</a>
-    </div>
-</div>
-{% endfor %}
-
-
 
 {% endblock %}

@@ -9,10 +9,9 @@
                 {% for user in users %}
                 <div class="container col s2 grey lighten-4">
                     <p class="center">{{ user.username }}</p>
-                    <div id="tiny-btn-container" class="col s12">
-                        <a href="#" class="edit-small left"><small>Reset Password</small></a>
+                    <div id="tiny-btn-container" class="col s12 center">
                         <a href="#delete-user-modal-{{ user.id }}"
-                            class="delete-small right modal-trigger"><small>Delete</small></a>
+                            class="delete-small modal-trigger"><small>Delete</small></a>
                     </div>
                 </div>
                 {% endfor %}
