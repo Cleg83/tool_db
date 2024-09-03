@@ -21,6 +21,20 @@ body {
     border-radius: 4px;
 }
 
+.home-page-vids {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+#tool-videos iframe {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.home-page-links {
+    margin-top: 1rem;
+}
+
 .input-field {
     border-radius: 4px;
 }
