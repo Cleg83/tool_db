@@ -81,6 +81,48 @@
         {%  endblock %}
     </main>
 
+    <footer class="page-footer teal lighten-3 nav-font">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Contact</h5>
+                    <p class="black-text">
+                        If you have any suggestions, improvements, corrections, feedback or want to contribute, 
+                        please contact: tooldb.admin@proton.me
+                    </p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Links</h5>
+                    <ul>
+                        <li><a href="{{ url_for('home') }}">Home</a></li>
+                        <li><a href="{{ url_for('categories') }}">Categories</a></li>
+                        <li><a href="{{ url_for('glossary') }}">Glossary</a></li>
+                        {% if "username" in session %}
+                        {% if session.get("role") == "admin" %}
+                        <li><a href="{{ url_for('add_category') }}">Add Category</a></li>
+                        <li><a href="{{ url_for('add_tool') }}">Add Tool</a></li>
+                        <li><a href="{{ url_for('manage_users')}}">Manage Users</a></li>
+                        {% endif %}
+                        {% if session.get("role") != "admin" %}
+                        <li><a href="{{ url_for('my_toolbox') }}">My Toolbox</a></li>
+                        <li><a href="{{ url_for('profile') }}">Profile</a></li>
+                        {% endif %}
+                        <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+                        {% else %}
+                        <li><a href="{{ url_for('login') }}">Log In</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright center">
+            <div class="container white-text">
+                <p>© 2024 Tool DB</p>
+            </div>
+        </div>
+
+    </footer>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="{{ url_for('static', filename='scripts/script.js') }}"></script>
