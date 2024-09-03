@@ -3,7 +3,14 @@
 body {
     background-color: #757575;
     font-family: "Lato", sans-serif;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
+
+  main {
+    flex: 1 0 auto;
+  }
 
 .brand-logo {
     margin-left: 10px;
@@ -15,6 +22,7 @@ body {
 
 .content-wrapper {
     margin-top: 25px;
+    margin-bottom: 75px;
 }
 
 .container {
@@ -33,6 +41,10 @@ body {
 
 .home-page-links {
     margin: 1rem 1rem 0 1rem;
+}
+
+.category-page-content {
+    margin-bottom: 75px;
 }
 
 .input-field {
@@ -105,4 +117,12 @@ body {
 
 #category-link {
     color: white;
+}
+
+footer li a {
+    color: #000000;
+}
+
+footer li a:hover {
+    color: #ffffff;
 }
