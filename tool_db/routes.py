@@ -1,13 +1,32 @@
-from flask import render_template, request, redirect, url_for, session, flash, abort
+from flask import render_template, request, redirect, url_for, session, flash, abort, jsonify
 from tool_db import app, db
 from tool_db.models import MainCategory, SubCategory, Tool, User, MyToolbox
 from werkzeug.security import generate_password_hash, check_password_hash
+import random
 
 
 @app.route("/")
 def home():
-    tools = Tool.query.order_by(Tool.tool_name).all()
-    return render_template("home.html", tools=tools)
+    return render_template("home.html")
+
+
+@app.route('/random_tool')
+def random_tool():
+    tool_ids = [tool.id for tool in Tool.query.all()]
+    
+    if not tool_ids:
+        return jsonify({'error': 'No tools available'}), 404
+
+    random_tool_id = random.choice(tool_ids)
+    tool = Tool.query.get(random_tool_id)
+
+    return jsonify({
+        'tool_name': tool.tool_name,
+        'tool_description': tool.tool_description,
+        'tool_videos': tool.tool_videos,
+        'tool_links': tool.tool_links,
+        'tool_id': tool.id
+    })
 
 
 @app.route("/categories")

@@ -2,49 +2,31 @@
 {% block content %}
 
 <!-- 
-This is a placeholder until I dynamically generate a random tool carousel
+Random tool card is generated at a set interval
  -->
-
 <div class="row content-wrapper">
-    {% for tool in tools %}
-    <div class="col s12 m3">
-        <div class="card large">
-            <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator"
-                    src="{{ url_for('static', filename='images/' + tool.tool_name.lower().replace(' ', '_') + '.jpg') }}"
-                    alt="{{ tool.tool_name }}">
-            </div>
-            <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4">{{ tool.tool_name }}<i
-                        class="fa-solid fa-plus right"></i></span>
-                <br>
-                <p>
-                    <a href="{{ url_for('tool', tool_id=tool.id) }}" class="deep-orange-text text-lighten-1">
-                        {{ tool.tool_name }} page
-                    </a>
-                    {% if "username" in session %}
+    <div class="col s8 offset-s2 container">
+        <div id="random-tool-card" class="card">
+            <div class="card-content center-align">
+                <span id="tool-name" class="card-title">Tool Name</span>
+                <p id="tool-description">Tool Description</p>
+                <div id="tool-videos" class="home-page-vids"></div>
+                <div id="tool-links" class="home-page-links"></div>
+                <!-- Buttons -->
+                {% if "username" in session %}
                     {% if session.get("role") == "admin" %}
-                    <a href="#modal-home-{{ tool.id }}" class="delete-small right modal-trigger">Delete</a>
+                        <a href="#modal-home" class="delete-small modal-trigger">Delete</a>
+                    {% else %}
+                        <a href="{{ url_for('my_toolbox') }}" class="edit-small">
+                            <i class="fa-solid fa-toolbox"></i>
+                            <small class="small-icon-text">Add to My Toolbox</small>
+                        </a>
                     {% endif %}
-                    {% if session.get("role") != "admin" %}
-                    <a href="{{ url_for('my_toolbox') }}" class="edit-small right">
-                        <i class="fa-solid fa-toolbox"></i>
-                        <small class="small-icon-text">Add to My Toolbox</small>
-                    </a>
-                    {% endif %}
-                    {% endif %}
-                </p>
-            </div>
-            <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">{{ tool.tool_name }}<i
-                        class="fa-solid fa-minus right"></i></span>
-                <p>{{ tool.tool_description }}</p>
+                {% endif %}
             </div>
         </div>
     </div>
-    {% endfor %}
 </div>
-
 <!-- delete tool modal -->
 {% for tool in tools %}
 <div id="modal-home-{{ tool.id }}" class="modal">
