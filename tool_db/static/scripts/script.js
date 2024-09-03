@@ -38,9 +38,9 @@ document.addEventListener('DOMContentLoaded', function() {
         toolLinks.innerHTML = '';
         if (data.tool_links) {
           data.tool_links.forEach(link => {
-            toolLinks.innerHTML += `<li><a href="${link}" target="_blank">Buy here</a></li>`;
+            toolLinks.innerHTML += `<span class="home-page-links"><a href="${link}" target="_blank">Buy here</a></span>`;
           });
-        }
+        } 
       })
       .catch(error => console.error('Error fetching random tool:', error));
   }
