@@ -264,7 +264,7 @@ def add_tool():
             db.session.add(new_tool)
             db.session.commit()
 
-            flash(f"{ tool.tool_name } added!", "success")
+            flash(f"{ new_tool.tool_name } added!", "success")
 
             # Clear the tool info from session
             session.pop("tool_name", None)
