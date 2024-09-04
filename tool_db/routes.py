@@ -20,12 +20,16 @@ def random_tool():
     random_tool_id = random.choice(tool_ids)
     tool = Tool.query.get(random_tool_id)
 
+    # Check if the user is authenticated
+    is_authenticated = "username" in session
+
     return jsonify({
         'tool_name': tool.tool_name,
         'tool_description': tool.tool_description,
         'tool_videos': tool.tool_videos,
         'tool_links': tool.tool_links,
-        'tool_id': tool.id
+        'tool_id': tool.id,
+        'is_authenticated': is_authenticated
     })
 
 
@@ -71,7 +75,7 @@ def add_main_category():
         main_category = MainCategory(main_category_name=request.form.get("main_category_name"))
         db.session.add(main_category)
         db.session.commit()
-        flash(f"{ main_category.main_category_name } added!", "success")
+        flash(f"New main category added: { main_category.main_category_name }", "success")
         return redirect(url_for("categories"))
     return render_template("add_main_category.html")
 
@@ -88,7 +92,7 @@ def edit_main_category(category_id):
     if request.method == "POST":
         category.main_category_name = request.form.get("main_category_name")
         db.session.commit()
-        flash(f"{ category.main_category_name } updated", "success")
+        flash(f"Main category updated: { category.main_category_name }", "success")
         return redirect(url_for("categories"))
     return render_template("edit_main_category.html", category=category)
 
@@ -104,7 +108,7 @@ def delete_main_category(category_id):
     category = MainCategory.query.get_or_404(category_id)
     db.session.delete(category)
     db.session.commit()
-    flash(f"{ category.main_category_name } deleted!", "success")
+    flash(f"Main category deleted: { category.main_category_name }", "success")
     return redirect(url_for("categories"))
 
 
@@ -136,7 +140,7 @@ def add_sub_category():
         sub_category = SubCategory(sub_category_name=sub_category_name, main_category_id=main_category_id)
         db.session.add(sub_category)
         db.session.commit()
-        flash(f"{ sub_category_name } added!", "success")
+        flash(f"New subcategory added: { sub_category_name }", "success")
         return redirect(url_for("categories"))
 
     main_categories = MainCategory.query.all()
@@ -171,7 +175,7 @@ def edit_sub_category(subcategory_id):
             subcategory.main_category = main_category
 
         db.session.commit()
-        flash(f"{ subcategory.sub_category_name } updated!", "success")
+        flash(f"Subcategory updated: { subcategory.sub_category_name }", "success")
         return redirect(url_for("categories"))
 
     return render_template("edit_sub_category.html", subcategory=subcategory, tools=tools, main_categories=main_categories)
@@ -189,7 +193,7 @@ def delete_sub_category(subcategory_id):
     subcategory = SubCategory.query.get_or_404(subcategory_id)
     db.session.delete(subcategory)
     db.session.commit()
-    flash(f"{ subcategory.sub_category_name } deleted!", "success")
+    flash(f"Subcategory deleted: { subcategory.sub_category_name }", "success")
     return redirect(url_for("categories"))
 
 
@@ -264,7 +268,7 @@ def add_tool():
             db.session.add(new_tool)
             db.session.commit()
 
-            flash(f"{ new_tool.tool_name } added!", "success")
+            flash(f"New tool added: { new_tool.tool_name }", "success")
 
             # Clear the tool info from session
             session.pop("tool_name", None)
@@ -324,7 +328,7 @@ def edit_tool(tool_id):
 
             # Commit the updates to the database
             db.session.commit()
-            flash(f"{ tool.tool_name } updated!", "success")
+            flash(f"Tool updated: { tool.tool_name }", "success")
 
             # Clear the session data for the tool
             session.pop("tool_name", None)
@@ -364,7 +368,7 @@ def delete_tool(tool_id):
     db.session.commit()
     # Fetch all tools to ensure glossary displays correctly when redirected
     tools = Tool.query.order_by(Tool.tool_name).all()
-    flash(f"{ tool.tool_name } deleted!", "success")
+    flash(f"Tool deleted: { tool.tool_name }", "success")
     return render_template("home.html", tools=tools)
 
 
@@ -395,7 +399,7 @@ def delete_user(user_id):
     db.session.delete(user)
     db.session.commit()
 
-    flash(f"User {user.username} has been deleted.", "success")
+    flash(f"User deleted: {user.username}", "success")
     return redirect(url_for("manage_users"))
 
 
@@ -584,11 +588,51 @@ def delete_profile():
 
     flash("Your profile has been deleted", "info")
     return redirect(url_for("home"))
+
+
+@app.route("/add_to_my_toolbox/<int:tool_id>", methods=["POST"])
+def add_to_my_toolbox(tool_id):
+    if "username" not in session or session.get("role") == "admin":
+        flash("You need to be logged in to add tools to your toolbox.", "error")
+        return redirect(url_for("login"))
+
+    user_id = session["user_id"]
     
+    # Check if the tool is already in the user's toolbox
+    existing_entry = MyToolbox.query.filter_by(user_id=user_id, tool_id=tool_id).first()
+    
+    if existing_entry:
+        flash("Tool is already in your toolbox!", "info")
+    else:
+        # Add tool to the user's toolbox
+        new_toolbox_entry = MyToolbox(user_id=user_id, tool_id=tool_id)
+        db.session.add(new_toolbox_entry)
+        db.session.commit()
+        flash("Tool added to your toolbox!", "success")
+
+    return redirect(url_for("tool", tool_id=tool_id))
+    
+
+# @app.route("/my_toolbox")
+# def my_toolbox():
+
+#     user_id = session.get("user_id")
+
+#     # Check if the user is logged in
+#     if user_id is None:
+#         flash("You need to be logged in to access that page!", "danger")
+#         return redirect(url_for("home"))  # Redirect to home page
+    
+#     user = User.query.get_or_404(user_id)
+
+#     # Ensure the user is the one logged in
+#     if user_id != user.id:
+#         abort(403)
+    
+#     return render_template("my_toolbox.html")
 
 @app.route("/my_toolbox")
 def my_toolbox():
-
     user_id = session.get("user_id")
 
     # Check if the user is logged in
@@ -601,5 +645,9 @@ def my_toolbox():
     # Ensure the user is the one logged in
     if user_id != user.id:
         abort(403)
-    
-    return render_template("my_toolbox.html")
+
+    # Fetch the tools associated with the user's toolbox entries
+    toolbox_entries = MyToolbox.query.filter_by(user_id=user_id).all()
+    tools = [entry.tool for entry in toolbox_entries]
+
+    return render_template("my_toolbox.html", tools=tools)
