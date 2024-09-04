@@ -156,6 +156,33 @@ Adding a main category is pretty straightforward and only requires the user to t
 
 No other functionality or input fields were required as subcategories can be moved to different main categories when editing subcategories so this page is kept very simple indeed.
 
+### Edit Main Category
+
+This is pretty much identical to adding a main category with the exception of the input field being pre-populated with the current main category name.
+
+![edit main category](tool_db/static/images/edit-main-category.png)
+
+### Delete Main Category
+
+Deleting a main category is done via a modal confirming if the user wishes to delete the category or cancel.
+
+![delete main category modal](tool_db/static/images/delete-main-category.png)
+
+And if the user chooses to delete the category, they are redirected to the categories page and a flash message is displayed.
+
+![delete main category confirmation](tool_db/static/images/delete-main-category-confirmation.png)
+
+
+
+
+
+
+
+
+
+
+
+
 ### Add Subcategory
 
 Adding a subcategory is also straightforward; the user is given two input fields to complete, 1 for the subcategory name and a dropdown to select a main category. 
