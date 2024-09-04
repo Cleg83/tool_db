@@ -126,3 +126,11 @@ footer li a {
 footer li a:hover {
     color: #ffffff;
 }
+
+table a {
+    color: #80cbc4;
+}
+
+table a:hover {
+    color: #ef9a9a;
+}
