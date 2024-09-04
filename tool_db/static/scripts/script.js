@@ -40,13 +40,31 @@ document.addEventListener('DOMContentLoaded', function() {
           data.tool_links.forEach(link => {
             toolLinks.innerHTML += `<span class="home-page-links"><a href="${link}" target="_blank">Buy here</a></span>`;
           });
-        } 
+        }
+
+        // Update Add to My Toolbox button
+        let toolAction = document.getElementById('tool-action');
+        if (data.is_authenticated) {
+          // Construct the dynamic URL for the form action
+          const addToToolboxUrl = `/add_to_my_toolbox/${data.tool_id}`;
+          
+          toolAction.innerHTML = `
+            <form action="${addToToolboxUrl}" method="post">
+              <button type="submit" class="edit-small">
+                <i class="fa-solid fa-toolbox"></i>
+                <small class="small-icon-text">Add to My Toolbox</small>
+              </button>
+            </form>
+          `;
+        } else {
+          toolAction.innerHTML = ''; // Clear if not authenticated
+        }
       })
       .catch(error => console.error('Error fetching random tool:', error));
-  }
+}
 
-  // Initial fetch
-  fetchRandomTool();
+// Initial fetch
+fetchRandomTool();
 
-  // Fetch new random tool every 7.5 seconds
-  setInterval(fetchRandomTool, 7500);
+// Fetch new random tool every 7.5 seconds
+setInterval(fetchRandomTool, 7500);
