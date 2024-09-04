@@ -33,7 +33,9 @@ class Tool(db.Model):
     tool_links = db.Column(db.JSON, nullable=True)
     main_category_id = db.Column(db.Integer, db.ForeignKey("main_category.id", ondelete="CASCADE"), nullable=False)
     sub_category_id = db.Column(db.Integer, db.ForeignKey("sub_category.id", ondelete="CASCADE"), nullable=False)
+    
     sub_category = db.relationship("SubCategory", backref="related_tools")
+    toolbox_entries = db.relationship("MyToolbox", backref="tool_entries", cascade='all, delete', lazy=True)
 
     def __repr__(self):
         return "Name: {0} | Sub-Category: {1}".format(
@@ -45,7 +47,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
-    toolbox_items = db.relationship('MyToolbox', backref='user', cascade='all, delete', lazy=True)
+    toolbox_items = db.relationship("MyToolbox", backref="user_toolbox_items", cascade="all, delete", lazy=True)
 
     def set_password(self, password):
         # Hashes the password 
@@ -59,12 +61,14 @@ class User(db.Model):
         return f"{self.username}"
     
 
-# my toolbox model (where users can save their favourite tools)
+# my toolbox model (where users can save their favourite tools
 class MyToolbox(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    tool_name = db.Column(db.String(50), nullable=False)
-    product_links = db.Column(db.JSON, nullable=True)  # Storing up to 3 product links in JSON
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id", ondelete="CASCADE"), nullable=False)
+    tool_id = db.Column(db.Integer, db.ForeignKey("tool.id", ondelete="CASCADE"), nullable=False)
+
+    user = db.relationship("User", backref="my_toolbox_items", lazy=True)
+    tool = db.relationship("Tool", backref="my_toolbox_entries", lazy=True)
 
     def __repr__(self):
-        return f"{self.tool_name}"
+        return f"MyToolbox: User {self.user_id} | Tool {self.tool_id}"
