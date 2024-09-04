@@ -22,6 +22,14 @@
                     <a href="#modal-glossary-{{ tool.id }}" class="delete-small modal-trigger"><small>Delete</small></a>
                 </span>
                 {% endif %}
+                {% if "username" in session and session.get("role") != "admin" %}
+                <form action="{{ url_for('add_to_my_toolbox', tool_id=tool.id) }}" method="post">
+                    <button type="submit" class="edit-small">
+                        <i class="fa-solid fa-toolbox"></i>
+                        <small class="small-icon-text">Add to My Toolbox</small>
+                    </button>
+                </form>
+                {% endif %}
             </li>
             {% endfor %}
         </ul>

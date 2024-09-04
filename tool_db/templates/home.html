@@ -13,13 +13,8 @@ Random tool card is generated at a set interval
                 <p id="tool-description">Tool Description</p>
                 <div id="tool-videos" class="home-page-vids"></div>
                 <div id="tool-links"></div>
-                <!-- Buttons -->
-                {% if "username" in session and session.get("role") != "admin" %}
-                    <a href="{{ url_for('my_toolbox') }}" class="edit-small">
-                        <i class="fa-solid fa-toolbox"></i>
-                        <small class="small-icon-text">Add to My Toolbox</small>
-                    </a>
-                {% endif %}
+                <!-- Placeholder for Add to My Toolbox button -->
+                <div id="tool-action" class="tool-action"></div>
             </div>
         </div>
     </div>

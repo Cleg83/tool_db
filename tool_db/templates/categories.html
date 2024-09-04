@@ -49,7 +49,7 @@
                 {% endfor %}
                 {% if session.get("role") == "admin" %}
                 <div class="col s12 center-align">
-                    <a href="{{ url_for('add_sub_category') }}" class="btn">Add Subcategory</a>
+                    <a href="{{ url_for('add_sub_category') }}" class="btn edit-button">Add Subcategory</a>
                 </div>
                 {% endif %}
             </div>

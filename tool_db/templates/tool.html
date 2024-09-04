@@ -28,6 +28,14 @@
                 {% endfor %}
             </ul>
             {% endif %}
+            {% if "username" in session and session.get("role") != "admin" %}
+            <form action="{{ url_for('add_to_my_toolbox', tool_id=tool.id) }}" method="post">
+                <button type="submit" class="edit-small">
+                    <i class="fa-solid fa-toolbox"></i>
+                    <small class="small-icon-text">Add to My Toolbox</small>
+                </button>
+            </form>
+            {% endif %}
         </div>
     </div>
 </div>
