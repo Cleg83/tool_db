@@ -4,41 +4,50 @@
 <h3 class="white-text center-align">Log In</h3>
 
 <div class="row card-panel teal lighten-3">
-    <form class="col s12 add-tool-form" method="POST" action="{{ url_for('login') }}">
+    <form class="col s12 add-tool-form" method="POST" action="{{ url_for('login') }}" aria-labelledby="login-form-heading">
         <!-- enter username -->
         <div class="row">
             <div class="input-field col s10 offset-s1 grey lighten-4 center-align">
-                <i class="fa-solid fa-user prefix"></i>
+                <i class="fa-solid fa-user prefix" aria-hidden="true"></i>
                 <input id="username" name="username" minlength="5" maxlength="25" pattern="^(?!\s*$)[a-zA-Z0-9\s]+$"
-                    type="text" class="validate" required>
-                <label for="username">Username</label>
+                    type="text" class="validate" required aria-required="true" aria-describedby="username-help">
+                <label class="black-text" for="username">Username</label>
+                <span id="username-help" class="helper-text" aria-live="polite">
+                    Enter your username (5-25 characters).
+                </span>
             </div>
         </div>
         <!-- enter password -->
         <div class="row">
             <div class="input-field col s10 offset-s1 grey lighten-4">
-                <i class="fa-solid fa-lock prefix"></i>
+                <i class="fa-solid fa-lock prefix" aria-hidden="true"></i>
                 <input id="password" name="password" minlength="5" maxlength="25" pattern="^(?!\s*$)[a-zA-Z0-9\s]+$"
-                    type="password" class="validate" required>
-                <label for="password">Password</label>
+                    type="password" class="validate" required aria-required="true" aria-describedby="password-help">
+                <label class="black-text" for="password">Password</label>
+                <span id="password-help" class="helper-text" aria-live="polite">
+                    Enter your password (5-25 characters).
+                </span>
             </div>
         </div>
         <!-- Login button -->
         <div class="row">
             <div class="col s10 offset-s1 center-align">
-                <button type="submit" class="btn-large grey lighten-4 black-text form-btn">
-                    Login <i class="fa-solid fa-check right"></i>
+                <button type="submit" class="btn-large edit-button form-btn" aria-label="Log In">
+                    Login <i class="fa-solid fa-check right" aria-hidden="true"></i>
                 </button>
             </div>
         </div>
     </form>
 </div>
+
 <!-- link to register page if new user -->
 <div class="row">
     <div class="col s12">
         <p class="center-align white-text">
             Not yet registered?
-            <a href="{{ url_for('register') }}" class="teal-text text-lighten-3">Register</a>
+            <a href="{{ url_for('register') }}" class="teal-text text-lighten-3" aria-label="Register for a new account">
+                Register
+            </a>
         </p>
     </div>
 </div>

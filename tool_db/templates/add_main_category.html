@@ -1,24 +1,28 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h3 class="white-text center-align">Add Main Category</h3>
+<h3 class="white-text center-align" role="heading" aria-level="3">Add Main Category</h3>
 
 <div class="row card-panel teal lighten-3 content-wrapper">
-    <form class="col s12" method="POST" action="{{ url_for('add_main_category') }}">
+    <form class="col s12" method="POST" action="{{ url_for('add_main_category') }}" aria-labelledby="form-title">
         <!-- main category input -->
         <div class="row">
             <div class="input-field col s10 offset-s1 grey lighten-4">
-                <i class="fa-solid fa-folder-open prefix"></i>
+                <i class="fa-solid fa-folder-open prefix" aria-hidden="true"></i>
                 <input id="main_category_name" name="main_category_name" minlength="3" maxlength="50"
-                    pattern="^(?!\s*$)[a-zA-Z0-9\s]+$" type="text" class="validate" required>
-                <label for="main_category_name">Category Name</label>
+                    pattern="^(?!\s*$)[a-zA-Z0-9\s]+$" type="text" class="validate" aria-required="true" required
+                    aria-describedby="main-category-description">
+                <label class="black-text" for="main_category_name">Category Name</label>
+                <span id="main-category-description" class="sr-only">
+                    Category name must be between 3 and 50 characters long and only contain letters, numbers, and spaces.
+                </span>
             </div>
         </div>
         <!-- submit button -->
         <div class="row">
             <div class="col s10 offset-s1 center-align">
-                <button type="submit" class="btn-large grey lighten-4 black-text form-btn">
-                    Add Category <i class="fa-solid fa-folder-plus right"></i>
+                <button type="submit" class="btn-large edit-button white-text form-btn" aria-label="Add New Category">
+                    Add Category <i class="fa-solid fa-folder-plus right" aria-hidden="true"></i>
                 </button>
             </div>
         </div>

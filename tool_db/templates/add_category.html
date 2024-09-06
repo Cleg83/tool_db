@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h3 class="white-text center-align">Add Categories</h3>
+<h3 class="white-text center-align" role="heading" aria-level="3">Add Categories</h3>
 
-<div class="row">
+<div class="row content-wrapper container bottom-padding white">
     <div class="col s12 center-align">
-        <a href="{{ url_for('add_main_category') }}" class="btn">Add Main Category</a>
-        <a href="{{ url_for('add_sub_category') }}" class="btn">Add Subcategory</a>
+        <a href="{{ url_for('add_main_category') }}" class="btn add-button" aria-label="Add Main Category">Add Main Category</a>
+        <a href="{{ url_for('add_sub_category') }}" class="btn add-button"aria-label="Add Subcategory">Add Subcategory</a>
     </div>
 </div>
 

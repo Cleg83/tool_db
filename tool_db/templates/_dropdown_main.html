@@ -1,9 +1,9 @@
 <!-- dropdown / select for main categories -->
-<i class="fa-solid fa-folder-open prefix"></i>
-<select id="main_category" name="main_category" class="validate" required>
-    <option value="" disabled selected>Choose Main Category</option>
+<i class="fa-solid fa-folder-open prefix" aria-hidden="true"></i>
+<select id="main_category" name="main_category" class="validate" required aria-label="Main Category">
+    <option value="" disabled selected>Select a main category</option>
     {% for category in main_categories %}
     <option value="{{ category.id }}">{{ category.main_category_name }}</option>
     {% endfor %}
 </select>
-<label for="main_category"><span class="sr-only">Main Category</span></label>
+<label for="main_category"><span class="black-text">Choose Main Category</span></label>

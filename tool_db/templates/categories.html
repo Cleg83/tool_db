@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h3 class="center-align white-text">Categories</h3>
+<h3 class="center-align white-text" role="heading" aria-level="3">Categories</h3>
 
 <div class="row content-wrapper category-page-content">
     <!-- Iterate through main categories -->
@@ -9,11 +9,11 @@
     <div class="col s12 m4 l3">
         <!-- Cards to display each category -->
         <div class="card z-depth-3 teal lighten-3">
-            <div class="card-content white-text">
+            <div class="card-content black-text">
                 <a id="category-link" href="{{ url_for('selected_category', tool_id=tool_id, subcategory_id=category.sub_cats.id, category_name=category.main_category_name|lower|replace(' ', '_')) }}">
                     <span class="card-title">{{ category.main_category_name }}
                         <!-- Icons are dynamically rendered based on category name -->
-                        <i class="{{ category_icons.get(category.main_category_name, 'fa-solid fa-folder-open') }} right"></i>
+                        <i class="{{ category_icons.get(category.main_category_name, 'fa-solid fa-folder-open') }} right" aria-hidden="true"></i>
                     </span>
                 </a>
             </div>
@@ -22,13 +22,13 @@
             <div class="card-content">
                 <a href="#subcat-{{ category.id }}">
                     <span class="activator grey-text text-darken-4">Show subcategories<i
-                            class="fa-solid fa-plus right"></i></span>
+                            class="fa-solid fa-plus right" aria-hidden="true"></i></span>
                     <br>
                 </a>
             </div>
             <div id="subcat-{{ category.id }}" class="card-reveal">
                 <span class="card-title grey-text text-darken-4">Subcategories<i
-                        class="fa-solid fa-minus right"></i></span>
+                        class="fa-solid fa-minus right" aria-hidden="true"></i></span>
                 <!-- Loop for generating the relevant subcategories -->
                 {% for subcategory in category.sub_cats %}
                 <p>
@@ -39,24 +39,22 @@
                     <!-- Only available if logged in as "admin" -->
                     {% if session.get("role") == "admin" %}
                     <span class="right">
-                        <a href="{{ url_for('edit_sub_category', subcategory_id=subcategory.id)}}"
-                            class="edit-small subcat-button">Edit</a>
-                        <a href="#modal-subcat-{{ subcategory.id }}"
-                            class="subcat-button delete-small modal-trigger">Delete</a>
+                        <a href="{{ url_for('edit_sub_category', subcategory_id=subcategory.id)}}" class="edit-small subcat-button">Edit</a>
+                        <a href="#modal-subcat-{{ subcategory.id }}" class="subcat-button delete-small modal-trigger">Delete</a>
                     </span>
                     {% endif %}
                 </p>
                 {% endfor %}
                 {% if session.get("role") == "admin" %}
                 <div class="col s12 center-align">
-                    <a href="{{ url_for('add_sub_category') }}" class="btn edit-button">Add Subcategory</a>
+                    <a href="{{ url_for('add_sub_category', main_category_id=main_category_id) }}" class="btn edit-button">Add Subcategory</a>
                 </div>
                 {% endif %}
             </div>
             <!-- Link for all users to go to selected category page -->
             <div class="card-action center">
                 <a href="{{ url_for('selected_category', tool_id=tool_id, subcategory_id=category.sub_cats.id, category_name=category.main_category_name|lower|replace(' ', '_')) }}"
-                    class="brown-text darken-4">
+                    class="black-text">
                     Go to {{ category.main_category_name }}
                 </a>
             </div>
@@ -75,9 +73,11 @@
     {% if session.get("role") == "admin" %}
     <div class="col s12 m4 l3">
         <div class="card z-depth-3 teal lighten-3">
-            <div class="card-content white-text center">
-                <a href="{{ url_for('add_main_category') }}"><i
-                        class="fa-solid fa-folder-plus white-text large"></i></a>
+            <div class="card-content center">
+                <a class="black-text" href="{{ url_for('add_main_category') }}"><i class="fa-solid fa-folder-plus white-text large" aria-hidden="true"></i>
+                <br>
+                Add New Main Category
+            </a>
             </div>
         </div>
     </div>
@@ -107,8 +107,7 @@
         <p>This action cannot be undone and will delete all associated tools!</p>
     </div>
     <div class="modal-footer">
-        <a href="{{ url_for('delete_sub_category', subcategory_id=subcategory.id) }}"
-            class="btn delete-button">Delete</a>
+        <a href="{{ url_for('delete_sub_category', subcategory_id=subcategory.id) }}" class="btn delete-button">Delete</a>
         <a href="#!" class="modal-close btn edit-button">Cancel</a>
     </div>
 </div>

@@ -1,31 +1,27 @@
 {% extends "base.html" %}
 {% block content %}
 
-<!-- 
-    Step 3 requires the user to select a sub-cateogry.
-    It uses the _dropdown_sub template to dynamically display sub categories
-    belonging to the main category selected in step 2.
+<h3 class="white-text center-align" role="heading" aria-level="3">Choose Subcategory</h3>
 
-    Not added yet: Functionality to add a new subcategory instead of selecting one
--->
-
-<h3 class="white-text center-align">Choose Subcategory</h3>
-
-<div class="row card-panel teal lighten-3">
-    <form class="col s12 add-tool-form" method="POST" action="{{ url_for('add_tool') }}">
+<div class="row card-panel teal lighten-3 content-wrapper">
+    <form class="col s12 add-tool-form" method="POST" action="{{ url_for('add_tool') }}" aria-labelledby="form-title">
         <input type="hidden" name="step" value="3">
-        <!-- sub category id -->
+        
+        <!-- sub category dropdown -->
         <div class="row">
             <div class="input-field col s10 offset-s1 grey lighten-4">
                 {% include '_dropdown_sub.html' %}
+                <span id="sub-category-description" class="sr-only">Select a subcategory related to the main category you chose earlier.</span>
             </div>
         </div>
+        
         <!-- submit button -->
         <div class="row">
             <div class="col s10 offset-s1 center-align">
-                <button type="submit" class="btn-large grey lighten-4 black-text form-btn">
-                    Add Tool <i class="fa-solid fa-square-plus right"></i>
+                <button type="submit" class="btn-large edit-button white-text form-btn" aria-label="Add the tool to the selected subcategory">
+                    Add Tool <i class="fa-solid fa-square-plus right" aria-hidden="true"></i>
                 </button>
+                <a href="{{ url_for('home') }}" class="delete-small" aria-label="Cancel and return to home">Cancel</a>
             </div>
         </div>
     </form>

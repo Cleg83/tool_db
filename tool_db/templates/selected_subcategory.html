@@ -3,20 +3,29 @@
 <!-- shows all the tools in the selected subcategory -->
 
 {% block content %}
-<h3 class="white-text center-align">{{ subcategory.sub_category_name }}</h3>
+<header class="header-div white-text center">
+    <span id="main-category-label">Main Category: <strong>{{ main_category.main_category_name }}</strong></span>
+    <h3 class="white-text center-align" id="subcategory-title">{{ subcategory.sub_category_name }}</h3>
+    <p aria-labelledby="subcategory-title">(Subcategory)</p>
+</header>
 
-{% if tools %}
-<ul class="collection">
-    {% for tool in tools %}
-    <li class="collection-item">
-        <a href="{{ url_for('tool', tool_id=tool.id) }}">
-            <h5>{{ tool.tool_name }}</h5>
-        </a>
-        <p><strong>Description:</strong> {{ tool.tool_description }}</p>
-    </li>
-    {% endfor %}
-</ul>
-{% else %}
-<p class="white center-align">No tools found for this subcategory.</p>
-{% endif %}
+<div class="content-wrapper">
+    <h5 class="white-text">Tools in subcategory: {{ subcategory.sub_category_name }}</h5>
+    <p class="white-text"> (Main Cateogry: {{ main_category.main_category_name }})
+    {% if tools %}
+    <ul class="collection styled-links" role="list" aria-labelledby="tools-list">
+        <h4 id="tools-list" class="sr-only">List of tools in the selected subcategory</h4>
+        {% for tool in tools %}
+        <li class="collection-item" role="listitem">
+            <a href="{{ url_for('tool', tool_id=tool.id) }}" aria-label="View details for {{ tool.tool_name }}">
+                <h5>{{ tool.tool_name }}</h5>
+            </a>
+            <p><strong>Description:</strong> {{ tool.tool_description }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p class="white center-align" role="status" aria-live="polite">No tools found for this subcategory.</p>
+    {% endif %}
+</div>
 {% endblock %}

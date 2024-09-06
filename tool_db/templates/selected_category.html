@@ -1,26 +1,36 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h3 class="white-text center-align">{{ main_category.main_category_name }}</h3>
+<header class="header-div white-text center">
+    <h3 class="white-text center-align" id="main-category-title">{{ main_category.main_category_name }}</h3>
+    <p aria-labelledby="main-category-title">(Main Category)</p>
+</header>
 
-{% if tools %}
-<ul class="collection">
-    {% for tool in tools %}
-    <li class="collection-item">
-        <a href="{{ url_for('tool', tool_id=tool.id) }}">
-            <h5>{{ tool.tool_name }}</h5>
-        </a>
+<div class="content-wrapper">
+    <h5 class="white-text">Tools in {{ main_category.main_category_name }}</h5>
+    {% if tools %}
+    <ul class="collection styled-links" role="list" aria-labelledby="tools-list">
+        <h4 id="tools-list" class="sr-only">Tools List</h4>
+        {% for tool in tools %}
+        <li class="collection-item" role="listitem">
+            <a href="{{ url_for('tool', tool_id=tool.id) }}" aria-label="View details for {{ tool.tool_name }}">
+                <h5>{{ tool.tool_name }}</h5>
+            </a>
             <p>Subcategory: 
-                <a href="{{ url_for('selected_subcategory', subcategory_id=tool.sub_category_id) }}">
+                <a href="{{ url_for('selected_subcategory', subcategory_id=tool.sub_category_id) }}" aria-label="View more tools in {{ tool.sub_category.sub_category_name }}">
                     <strong>{{ tool.sub_category.sub_category_name }}</strong>
                 </a>
-            <p>
-        <p><strong>Description:</strong> {{ tool.tool_description }}</p>
-    </li>
-    {% endfor %}
-</ul>
-{% else %}
-<p class="white center-align">No tools found for this subcategory.</p>
-{% endif %}
+            </p>
+            <details aria-labelledby="description-summary-{{ tool.id }}">
+                <summary id="description-summary-{{ tool.id }}" aria-expanded="false">Description</summary>
+                <p>{{ tool.tool_description }}</p>
+            </details>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p class="white center-align" role="status" aria-live="polite">No tools found for this subcategory.</p>
+    {% endif %}
+</div>
 
 {% endblock %}

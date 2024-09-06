@@ -1,28 +1,27 @@
 {% extends "base.html" %}
 {% block content %}
 
-<!-- 
-    Step 2 of adding tool requires user to select a main category.
-    Categories are dynamically generated using the _dropdown_main template
--->
+<h3 class="white-text center-align" role="heading" aria-level="3">Choose Main Category</h3>
 
-<h3 class="white-text center-align">Choose Main Category</h3>
-
-<div class="row card-panel teal lighten-3">
-    <form class="col s12 add-tool-form" method="POST" action="{{ url_for('add_tool') }}">
+<div class="row card-panel teal lighten-3 content-wrapper">
+    <form class="col s12 add-tool-form" method="POST" action="{{ url_for('add_tool') }}" aria-labelledby="form-title">
         <input type="hidden" name="step" value="2">
-        <!-- main category id -->
+        
+        <!-- main category dropdown -->
         <div class="row">
             <div class="input-field col s10 offset-s1 grey lighten-4">
                 {% include '_dropdown_main.html' %}
+                <span id="main-category-description" class="sr-only">Select a main category from the dropdown menu to categorize your tool.</span>
             </div>
         </div>
+        
         <!-- submit button -->
         <div class="row">
             <div class="col s10 offset-s1 center-align">
-                <button type="submit" class="btn-large grey lighten-4 black-text form-btn">
-                    Next <i class="fa-solid fa-arrow-right right"></i>
+                <button type="submit" class="btn-large edit-button white-text form-btn" aria-label="Proceed to the next step">
+                    Next <i class="fa-solid fa-arrow-right right" aria-hidden="true"></i>
                 </button>
+                <a href="{{ url_for('home') }}" class="delete-small" aria-label="Cancel and return to home">Cancel</a>
             </div>
         </div>
     </form>

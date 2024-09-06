@@ -1,65 +1,73 @@
 {% extends "base.html" %}
 {% block content %}
 
-<!-- 
-    I decided to split the adding of a tool into 3 steps:
-    Step 1 of adding a tool requires a tool name and tool description.
-    Product links and videos are optional.
--->
+<h3 class="white-text center-align" role="heading" aria-level="3">Add Tool</h3>
 
-<h3 class="white-text center-align">Add Tool</h3>
-
-<div class="row card-panel teal lighten-3">
-    <form class="col s12 add-tool-form" method="POST" action="{{ url_for('add_tool') }}">
+<div class="row card-panel teal lighten-3 content-wrapper">
+    <form class="col s12 add-tool-form" method="POST" action="{{ url_for('add_tool') }}" aria-labelledby="form-title">
         <input type="hidden" name="step" value="1">
-        <!-- tool name -->
+        
+        <!-- tool name input -->
         <div class="row">
             <div class="input-field col s10 offset-s1 grey lighten-4 center-align">
-                <i class="fa-solid fa-pencil prefix"></i>
-                <input id="tool_name" name="tool_name" minlength="5" maxlength="50" pattern="^(?!\s*$)[a-zA-Z0-9\s]+$"
-                    type="text" class="validate" required>
+                <i class="fa-solid fa-pencil prefix" aria-hidden="true"></i>
+                <input id="tool_name" name="tool_name" minlength="5" maxlength="50"
+                    pattern="^(?!\s*$)[a-zA-Z0-9\s]+$" type="text" class="validate" aria-required="true" required
+                    aria-describedby="tool-name-description">
                 <label for="tool_name">Tool Name</label>
+                <span id="tool-name-description" class="sr-only">Tool name should be between 5 and 50 characters long and can contain letters, numbers, and spaces.</span>
             </div>
         </div>
-        <!-- tool description -->
+        
+        <!-- tool description textarea -->
         <div class="row">
             <div class="input-field col s10 offset-s1 grey lighten-4">
-                <i class="fa-solid fa-align-left prefix"></i>
+                <i class="fa-solid fa-align-left prefix" aria-hidden="true"></i>
                 <textarea id="tool_description" name="tool_description" minlength="5" maxlength="1500"
-                    pattern="^(?!\s*$)[a-zA-Z0-9\s]+$" type="text" class="materialize-textarea validate black-text"
-                    required>
-                </textarea>
+                    pattern="^(?!\s*$)[a-zA-Z0-9\s]+$" class="materialize-textarea validate black-text"
+                    aria-required="true" required aria-describedby="tool-description-description"></textarea>
                 <label for="tool_description"><span>Tool Description</span></label>
+                <span id="tool-description-description" class="sr-only">
+                    Tool description should be between 5 and 1500 characters long and can contain letters, numbers, and spaces.
+                </span>
             </div>
         </div>
-        <!-- tool videos -->
+        
+        <!-- tool videos input -->
         <div class="row">
             <div class="input-field col s10 offset-s1 grey lighten-4">
-                <i class="fa-solid fa-video prefix"></i>
+                <i class="fa-solid fa-video prefix" aria-hidden="true"></i>
                 <input id="tool_videos" name="tool_videos" minlength="5" maxlength="5000" type="text"
-                    pattern="https?://.*(,https?://.*){0,2}">
+                    pattern="https?://.*(,https?://.*){0,2}" aria-describedby="tool-videos-description">
                 <label for="tool_videos">Video URLs (up to 3, separated by commas)</label>
-                <span class="helper-text"
-                data-error="Please enter valid URLs, separated by commas (e.g., http://example.com, http://example2.com)"></span>
+                <span id="tool-videos-description" class="helper-text" aria-live="polite"
+                data-error="Please enter valid URLs, separated by commas (e.g., http://example.com, http://example2.com)">
+                    Example: http://example.com, http://example2.com
+                </span>
             </div>
         </div>
-        <!-- tool product links -->
+        
+        <!-- tool product links input -->
         <div class="row">
             <div class="input-field col s10 offset-s1 grey lighten-4">
-                <i class="fa-solid fa-link prefix"></i>
+                <i class="fa-solid fa-link prefix" aria-hidden="true"></i>
                 <input id="product_links" name="product_links" minlength="5" maxlength="5000" type="text"
-                    pattern="https?://.*(,https?://.*){0,2}">
+                    pattern="https?://.*(,https?://.*){0,2}" aria-describedby="product-links-description">
                 <label for="product_links">Product Links (up to 3, separated by commas)</label>
-                <span class="helper-text"
-                    data-error="Please enter valid URLs, separated by commas (e.g., http://example.com, http://example2.com)"></span>
+                <span id="product-links-description" class="helper-text" aria-live="polite"
+                    data-error="Please enter valid URLs, separated by commas (e.g., http://example.com, http://example2.com)">
+                    Example: http://example.com, http://example2.com
+                </span>
             </div>
         </div>
+        
         <!-- Next button -->
         <div class="row">
             <div class="col s10 offset-s1 center-align">
-                <button type="submit" class="btn-large grey lighten-4 black-text form-btn">
-                    Next <i class="fa-solid fa-arrow-right right"></i>
+                <button type="submit" class="btn-large edit-button form-btn" aria-label="Proceed to the next step">
+                    Next <i class="fa-solid fa-arrow-right right" aria-hidden="true"></i>
                 </button>
+                <a href="{{ url_for('home') }}" class="delete-small" aria-label="Cancel and return to home">Cancel</a>
             </div>
         </div>
     </form>

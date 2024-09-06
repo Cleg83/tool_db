@@ -3,35 +3,35 @@
 
 <!-- page to show all tool info for the selected tool -->
 <div class="row">
-    <div id="tool-content" class="col s8 offset-s2 white center-align">
-        <h3 class="black-text center-align">{{ tool.tool_name }}</h3>
+    <div id="tool-content" class="col s12 m8 offset-m2 white center-align" role="main">
+        <h3 class="black-text center-align" id="tool-name">{{ tool.tool_name }}</h3>
 
         <div class="tool-details">
-            <p>{{ tool.tool_description }}</p>
+            <p id="tool-description">{{ tool.tool_description }}</p>
 
             <!-- checks if the tool has videos and displays them if it does -->
             {% if tool.tool_videos %}
-            <h5>Videos</h5>
-            <div>
+            <h5 class="tool-content-heading" id="videos-heading">Videos</h5>
+            <div aria-labelledby="videos-heading">
                 {% for video in tool.tool_videos %}
                 {% set embed_url = video | replace("watch?v=", "embed/") %}
-                <iframe width="426" height="240" src="{{ embed_url }}" frameborder="0" allowfullscreen></iframe>
+                <iframe width="426" height="240" src="{{ embed_url }}" frameborder="0" allowfullscreen aria-label="Video player for {{ tool.tool_name }}" loading="lazy"></iframe>
                 {% endfor %}
             </div>
             {% endif %}
 
             {% if tool.tool_links %}
-            <h5>Product Links</h5>
-            <ul>
+            <h5 class="tool-content-heading" id="links-heading">Product Links</h5>
+            <ul class="styled-links" aria-labelledby="links-heading">
                 {% for link in tool.tool_links %}
-                <li><a href="{{ link }}" target="_blank">Buy here</a></li>
+                <li><a href="{{ link }}" target="_blank" aria-label="Buy here for {{ tool.tool_name }}">Buy here</a></li>
                 {% endfor %}
             </ul>
             {% endif %}
-            {% if "username" in session and session.get("role") != "admin" %}
+            {% if "username" in session %}
             <form action="{{ url_for('add_to_my_toolbox', tool_id=tool.id) }}" method="post">
-                <button type="submit" class="edit-small">
-                    <i class="fa-solid fa-toolbox"></i>
+                <button type="submit" class="edit-small borderless-btn" aria-label="Add {{ tool.tool_name }} to My Toolbox">
+                    <i class="fa-solid fa-toolbox" aria-hidden="true"></i>
                     <small class="small-icon-text">Add to My Toolbox</small>
                 </button>
             </form>

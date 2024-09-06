@@ -5,12 +5,13 @@
 
 {% if tools %}
 <div class="container content-wrapper white">
-    <table class="responsive-table">
+    <table class="highlight responsive-table" aria-label="Toolbox Table">
         <thead>
             <tr>
-                <th>Tool Name</th>
-                <th>Tool Videos</th>
-                <th>Tool Links</th>
+                <th scope="col">Tool Name</th>
+                <th scope="col">Tool Videos</th>
+                <th scope="col">Tool Links</th>
+                <th scope="col">Remove From Toolbox</th>
             </tr>
         </thead>
         <tbody>
@@ -20,20 +21,27 @@
                 <td>
                     {% if tool.tool_videos %}
                         {% for video in tool.tool_videos %}
-                            <a href="{{ video }}" target="_blank">Video {{ loop.index }}</a><br>
+                            <a href="{{ video }}" target="_blank" aria-label="Video {{ loop.index }} for {{ tool.tool_name }}">Video {{ loop.index }}</a><br>
                         {% endfor %}
                     {% else %}
-                        No videos available
+                        <span>No videos available</span>
                     {% endif %}
                 </td>
                 <td>
                     {% if tool.tool_links %}
                         {% for link in tool.tool_links %}
-                            <a href="{{ link }}" target="_blank">Buy Here</a><br>
+                            <a href="{{ link }}" target="_blank" aria-label="Buy {{ tool.tool_name }} here">Buy Here</a><br>
                         {% endfor %}
                     {% else %}
-                        No links available
+                        <span>No links available</span>
                     {% endif %}
+                </td>
+                <td>
+                    <form action="{{ url_for('delete_from_my_toolbox', tool_id=tool.id) }}" method="post" aria-label="Remove {{ tool.tool_name }} from toolbox">
+                        <button type="submit" class="remove-btn form-btn">
+                            <span>Remove</span>
+                        </button>
+                    </form>
                 </td>
             </tr>
             {% endfor %}
