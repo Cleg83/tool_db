@@ -44,7 +44,7 @@ def categories():
         "Hand Tools": "fa-solid fa-hammer",
         "Power Tools": "fa-solid fa-plug-circle-bolt",
         "Machines": "fa-solid fa-gears",
-        "Measuring & Marking": "fa-solid fa-ruler-horizontal",
+        "Measuring and Marking": "fa-solid fa-ruler-horizontal",
         "Sharpening": "fa-solid fa-arrow-rotate-right",
         "Dust Extraction": "fa-solid fa-broom"
     }
