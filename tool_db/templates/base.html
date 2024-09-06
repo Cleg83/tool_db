@@ -20,7 +20,7 @@
             <a href="{{ url_for('home') }}" id="page-logo" class="brand-logo" 
                 style="{% if session.get('role') == 'admin' %}display: none;{% endif %}">
              The Woodworker's Tool Database
-         </a>
+            </a>
             <a href="#" data-target="nav-collapse" class="sidenav-trigger left" aria-label="Open Navigation Menu"><i class="fa-solid fa-bars"></i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down" role="menubar">
                 <li><a href="{{ url_for('home') }}" role="menuitem">Home</a></li>
