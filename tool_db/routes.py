@@ -2,6 +2,7 @@ from flask import render_template, request, redirect, url_for, session, flash, a
 from tool_db import app, db
 from tool_db.models import MainCategory, SubCategory, Tool, User, MyToolbox
 from werkzeug.security import generate_password_hash, check_password_hash
+from itertools import groupby
 import random
 
 
@@ -204,7 +205,7 @@ def selected_category(category_name):
 
     # Check if main category exists in db
     if main_category:
-        tools = Tool.query.filter_by(main_category_id=main_category.id).all()
+        tools = Tool.query.filter_by(main_category_id=main_category.id).order_by(Tool.tool_name).all()
         subcategories = Tool.query.filter_by(sub_category_id=Tool.sub_category_id).all()
         return render_template("selected_category.html", main_category=main_category, tools=tools, sub_categories=subcategories)
     else:
@@ -215,9 +216,22 @@ def selected_category(category_name):
 
 @app.route("/selected_subcategory/<int:subcategory_id>.html")
 def selected_subcategory(subcategory_id):
+    # Fetch the subcategory
     subcategory = SubCategory.query.get_or_404(subcategory_id)
-    tools = Tool.query.filter_by(sub_category_id=subcategory.id).all()
-    return render_template("selected_subcategory.html", subcategory=subcategory, tools=tools)
+
+    # Fetch the associated main category for the subcategory
+    main_category = subcategory.main_category
+
+    # Fetch the tools for this subcategory
+    tools = Tool.query.filter_by(sub_category_id=subcategory.id).order_by(Tool.tool_name).all()
+
+    # Pass the subcategory, tools, and main_category to the template
+    return render_template(
+        "selected_subcategory.html", 
+        subcategory=subcategory, 
+        tools=tools,
+        main_category=main_category  # Passing the main category to the template
+    )
 
 
 @app.route("/add_tool", methods=["GET", "POST"])
@@ -406,7 +420,11 @@ def delete_user(user_id):
 @app.route("/glossary")
 def glossary():
     tools = Tool.query.order_by(Tool.tool_name).all()
-    return render_template("glossary.html", tools=tools)
+
+    # Group tools by the first letter of their name
+    grouped_tools = groupby(tools, key=lambda x: x.tool_name[0].upper())
+
+    return render_template("glossary.html", grouped_tools=grouped_tools)
 
 
 @app.route("/tool/<int:tool_id>")
@@ -592,7 +610,7 @@ def delete_profile():
 
 @app.route("/add_to_my_toolbox/<int:tool_id>", methods=["POST"])
 def add_to_my_toolbox(tool_id):
-    if "username" not in session or session.get("role") == "admin":
+    if "username" not in session:
         flash("You need to be logged in to add tools to your toolbox.", "error")
         return redirect(url_for("login"))
 
@@ -612,24 +630,6 @@ def add_to_my_toolbox(tool_id):
 
     return redirect(url_for("tool", tool_id=tool_id))
     
-
-# @app.route("/my_toolbox")
-# def my_toolbox():
-
-#     user_id = session.get("user_id")
-
-#     # Check if the user is logged in
-#     if user_id is None:
-#         flash("You need to be logged in to access that page!", "danger")
-#         return redirect(url_for("home"))  # Redirect to home page
-    
-#     user = User.query.get_or_404(user_id)
-
-#     # Ensure the user is the one logged in
-#     if user_id != user.id:
-#         abort(403)
-    
-#     return render_template("my_toolbox.html")
 
 @app.route("/my_toolbox")
 def my_toolbox():
@@ -651,3 +651,25 @@ def my_toolbox():
     tools = [entry.tool for entry in toolbox_entries]
 
     return render_template("my_toolbox.html", tools=tools)
+
+
+@app.route("/delete_from_my_toolbox/<int:tool_id>", methods=["POST"])
+def delete_from_my_toolbox(tool_id):
+    if "username" not in session:
+        flash("You need to be logged in to remove tools from your toolbox.", "error")
+        return redirect(url_for("login"))
+
+    user_id = session["user_id"]
+    
+    # Find the entry in the user's toolbox
+    toolbox_entry = MyToolbox.query.filter_by(user_id=user_id, tool_id=tool_id).first()
+    
+    if toolbox_entry:
+        # Remove the tool from the user's toolbox
+        db.session.delete(toolbox_entry)
+        db.session.commit()
+        flash("Tool removed from your toolbox!", "success")
+    else:
+        flash("Tool not found in your toolbox!", "info")
+
+    return redirect(url_for("my_toolbox"))
