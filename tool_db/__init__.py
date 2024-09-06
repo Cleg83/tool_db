@@ -9,8 +9,6 @@ if os.path.exists("env.py"):
 
 app = Flask(__name__)
 
-# Config Vars
-app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 
 # Config Vars
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
