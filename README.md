@@ -78,7 +78,7 @@ Visit the deployed site [here](https://#)
   * [Manual Testing](#manual-testing)
   * [Automated Testing](#automated-testing)
     * [W3C](#W3C)
-    * [Lighthouse](#Lighthouse)
+    * [Lighthouse](#lighthouse)
     * [JS-Hint](#js-hint)
   * [Bugs](#Bugs)
   
@@ -188,3 +188,26 @@ And if the user chooses to delete the category, they are redirected to the categ
 Adding a subcategory is also straightforward; the user is given two input fields to complete, 1 for the subcategory name and a dropdown to select a main category. 
 
 ![add subcategory](tool_db/static/images/add-subcategory.png)
+
+# Testing
+
+
+## Automated Testing
+
+### Lighthouse 
+
+Lighthouse scares for each of the many pages are generally in the 90's.
+
+Performance is sometimes in the high 80's but that's on the pages with most dynamically generated content (the Home page being the worst offender due to its Javascript reliance).
+
+![lighthouse add tool](tool_db/static/images/lighthouse-add-tool.png)
+![lighthouse add tool](tool_db/static/images/lighthouse-categories.png)
+![lighthouse add tool](tool_db/static/images/lighthouse-glossary.png)
+![lighthouse add tool](tool_db/static/images/lighthouse-home.png)
+![lighthouse add tool](tool_db/static/images/lighthouse-home2.png)
+![lighthouse add tool](tool_db/static/images/lighthouse-home3.png)
+![lighthouse add tool](tool_db/static/images/lighthouse-manage-users.png)
+![lighthouse add tool](tool_db/static/images/lighthouse-my-toolbox.png)
+![lighthouse add tool](tool_db/static/images/lighthouse-profile.png)
+![lighthouse add tool](tool_db/static/images/lighthouse-selected-category.png)
+![lighthouse add tool](tool_db/static/images/lighthouse-selected-subcategory.png)
