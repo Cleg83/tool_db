@@ -35,6 +35,13 @@
         </div>
         <!-- tool list -->
         <h5 class="center">Tools</h5>
+        <div class="row">
+            <div class="col s10 offset-s1 m6 l4 grey lighten-4 tiny-tool-card">
+                <a href="{{ url_for('add_tool') }}" class="btn edit-button form-btn">
+                    Add Tool <i class="fa-solid fa-square-plus right" aria-label="Link to add a new tool"></i>
+                </a>
+            </div>
+        </div>
         <div class="row tool-card-container">
             {% for tool in tools %}
             <div class="col s10 offset-s1 m6 l4 grey lighten-4 tiny-tool-card">
@@ -47,11 +54,6 @@
                 </div>
             </div>
             {% endfor %}
-            <div class="col s10 offset-s1 m6 l4 grey lighten-4 tiny-tool-card">
-                <a href="{{ url_for('add_tool') }}" class="btn edit-button form-btn">
-                    Add Tool <i class="fa-solid fa-square-plus right" aria-label="Link to add a new tool"></i>
-                </a>
-            </div>
         </div>
         <!-- submit button -->
         <div class="row">
