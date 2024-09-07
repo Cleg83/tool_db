@@ -170,6 +170,10 @@ iframe:hover {
     margin-top: 15px;
 }
 
+.tool-card-container {
+    margin-bottom: 15px;
+}
+
 .tiny-tool-card {
     margin-top: 10px;
     border: 1px solid grey;

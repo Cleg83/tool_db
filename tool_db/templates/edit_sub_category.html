@@ -42,7 +42,7 @@
                 </a>
             </div>
         </div>
-        <div class="row">
+        <div class="row tool-card-container">
             {% for tool in tools %}
             <div class="col s10 offset-s1 m6 l4 grey lighten-4 tiny-tool-card">
                 <a class="center black-text" href="{{ url_for('tool', tool_id=tool.id) }}" aria-label="View details for {{ tool.tool_name }}">
