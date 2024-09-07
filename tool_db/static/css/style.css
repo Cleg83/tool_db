@@ -78,6 +78,10 @@ body {
     margin-left: 5px;
 }
 
+.pre-heading {
+    font-size: 1rem;
+}
+
 .header-div {
     margin-top: 25px;
 }
