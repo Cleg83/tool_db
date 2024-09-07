@@ -36,6 +36,12 @@
         <!-- tool list -->
         <h5 class="center">Tools</h5>
         <div class="row">
+            <div class="col s10 offset-s1 center-align">
+                <a href="{{ url_for('add_tool') }}" class="btn edit-button form-btn">
+                    Add Tool <i class="fa-solid fa-square-plus right" aria-label="Link to add a new tool"></i>
+                </a>
+            </div>
+        <div class="row">
             {% for tool in tools %}
             <div class="col s10 offset-s1 m6 l4 grey lighten-4 tiny-tool-card">
                 <a class="center black-text" href="{{ url_for('tool', tool_id=tool.id) }}" aria-label="View details for {{ tool.tool_name }}">

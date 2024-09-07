@@ -253,6 +253,12 @@ def add_tool():
             session["tool_description"] = request.form.get("tool_description")
             session["tool_videos"] = request.form.get("tool_videos")
             session["product_links"] = request.form.get("product_links")
+
+            existing_tool = Tool.query.filter_by(tool_name=session["tool_name"]).first()
+            if existing_tool:
+                flash("Tool already exists!", "error")
+                return render_template("add_tool_step1.html")  # Check if tool exists and clear form
+
             return render_template("add_tool_step2.html", main_categories=main_categories)
         
         elif step == "2":
