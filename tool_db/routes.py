@@ -74,6 +74,15 @@ def add_main_category():
     
     if request.method =="POST":
         main_category = MainCategory(main_category_name=request.form.get("main_category_name"))
+
+
+        # Check if the main category already exists
+        existing_main_category = MainCategory.query.filter_by(main_category_name=main_category).first()
+
+        if existing_main_category:
+            flash(f"Main category '{main_category}' already exists.", "error")
+            return redirect(url_for("add_main_category"))
+        
         db.session.add(main_category)
         db.session.commit()
         flash(f"New main category added: { main_category.main_category_name }", "success")
@@ -135,6 +144,16 @@ def add_sub_category():
             main_category_id = int(main_category)
         except ValueError:
             flash("Invalid main category selected.", "error")
+            return redirect(url_for("add_sub_category"))
+        
+        # Check if the subcategory already exists for the given main category
+        existing_sub_category = SubCategory.query.filter_by(
+            sub_category_name=sub_category_name, 
+            main_category_id=main_category_id
+        ).first()
+
+        if existing_sub_category:
+            flash(f"Subcategory '{sub_category_name}' already exists in this main category.", "error")
             return redirect(url_for("add_sub_category"))
 
         # Calls SubCategory method passing variables declared above
