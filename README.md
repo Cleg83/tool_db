@@ -228,6 +228,21 @@ From here, users can navigate to the selected main category page:
  ![selected subcategory page](tool_db/static/images/default-selected-subcategory-page.png)
 
 
+### Tools
+
+Each tool has a page containing the name and description, as well as product links and videos (if present):
+
+ ![selected tool page](tool_db/static/images/default-selected-tool-page.png)
+
+
+
+### Glossary
+
+The glossary page is an A-Z of all tools in the database (shown here in a rather bare state) and is the same for registered and non-registered users:
+
+![glossary page](tool_db/static/images/default-glossary-page.png)
+
+The tool name is a link to that tool's page and the description summary can be clicked to expand the tool description.
 
 
 # Admin User
