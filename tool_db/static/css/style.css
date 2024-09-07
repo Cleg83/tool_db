@@ -157,6 +157,11 @@ iframe:hover {
     background-color: #c62828;
 }
 
+.button-margin {
+    margin-top: 10px;
+    margin-bottom: 10px;;
+}
+
 #tool-content {
     margin-top: 3rem;
 }
