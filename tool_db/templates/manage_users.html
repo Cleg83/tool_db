@@ -8,7 +8,7 @@
             <div class="row" role="list" aria-labelledby="user-list-heading">
                 {% for user in users %}
                 <div class="container col s10 offset-s1 m6 l4 grey lighten-4 tiny-tool-card" role="listitem" aria-labelledby="user-username-{{ user.id }}">
-                    <p id="user-username-{{ user.id }}" class="center">{{ user.username }}</p>
+                    <p id="user-username-{{ user.id }}" class="center teal-text darken-3">{{ user.username }}</p>
                     <div id="tiny-btn-container" class="col s12 center">
                         <a href="#delete-user-modal-{{ user.id }}" 
                             class="delete-small center modal-trigger" aria-label="Delete user {{ user.username }}">
