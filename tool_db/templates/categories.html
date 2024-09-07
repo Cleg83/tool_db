@@ -40,7 +40,7 @@
                     {% if session.get("role") == "admin" %}
                     <span class="right">
                         <a href="{{ url_for('edit_sub_category', subcategory_id=subcategory.id)}}" class="edit-small subcat-button">Edit</a>
-                        <a href="#modal-subcat-{{ subcategory.id }}" class="subcat-button delete-small modal-trigger">Delete</a>
+                        <a href="#modal-subcat-{{ subcategory.id }}" class="subcat-button delete-small modal-trigger fivepx-left">Delete</a>
                     </span>
                     {% endif %}
                 </p>
@@ -91,8 +91,8 @@
         <p>All associated subcategories and tools will be deleted!</p>
     </div>
     <div class="modal-footer">
-        <a href="{{ url_for('delete_main_category', category_id=category.id) }}" class="btn delete-button fivepx-left">Delete</a>
-        <a href="#!" class="modal-close btn edit-button fivepx-left">Cancel</a>
+        <a href="{{ url_for('delete_main_category', category_id=category.id) }}" class="btn delete-button">Delete</a>
+        <a href="#!" class="modal-close btn edit-button">Cancel</a>
     </div>
 </div>
 {% endfor %}

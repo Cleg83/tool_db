@@ -4,10 +4,10 @@
 <h3 class="white-text center-align">Edit subcategory: {{ subcategory.sub_category_name }}</h3>
 
 <div class="row content-wrapper">
-    <form class="col s12 m8 offset-m2 teal lighten-3 padding-top" method="POST"
+    <form class="col s12 m8 offset-m2 teal lighten-3" method="POST"
         action="{{ url_for('edit_sub_category', subcategory_id=subcategory.id) }}">
         <!-- subcategory name input -->
-        <div class="row">
+        <div class="row padding-top">
             <div class="input-field col s10 offset-s1 grey lighten-4">
                 <i class="fa-solid fa-folder-tree prefix"></i>
                 <input id="subcategory_name" name="subcategory_name" value="{{ subcategory.sub_category_name }}"
