@@ -291,6 +291,10 @@ iframe:hover {
     margin-bottom: 1rem;
 }
 
+.add-category-icon {
+    margin-bottom: 10px;
+}
+
 @media screen and (max-width: 420px) {
     .add-button {
         margin-top: 10px;
