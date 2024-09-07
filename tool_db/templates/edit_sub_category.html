@@ -38,7 +38,7 @@
         <div class="row tool-card-container">
             {% for tool in tools %}
             <div class="col s10 offset-s1 m6 l4 grey lighten-4 tiny-tool-card">
-                <a class="center teal-text darken-3" href="{{ url_for('tool', tool_id=tool.id) }}" aria-label="View details for {{ tool.tool_name }}">
+                <a class="center teal-text text-darken-3" href="{{ url_for('tool', tool_id=tool.id) }}" aria-label="View details for {{ tool.tool_name }}">
                     <p>{{ tool.tool_name }}</p>
                 </a>
                 <div id="tiny-btn-container" class="col s12 center">
