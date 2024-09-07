@@ -33,7 +33,7 @@
                     <li class="{{'active' if active_page == 'add_tool' }}"><a href="{{ url_for('add_tool') }}" role="menuitem">Add Tool</a></li>
                     <li class="{{'active' if active_page == 'manage_users' }}"><a href="{{ url_for('manage_users')}}" role="menuitem">Manage Users</a></li>
                     {% endif %}
-                <li class="{{'active' if active_page == 'logout' }}"><a href="{{ url_for('logout') }}" role="menuitem">Log Out</a></li>
+                <li><a href="{{ url_for('logout') }}" role="menuitem">Log Out</a></li>
                 {% else %}
                 <li class="{{'active' if active_page == 'login' }}"><a href="{{ url_for('login') }}" role="menuitem">Log In</a></li>
                 {% endif %}
@@ -55,7 +55,7 @@
             <li class="{{'active' if active_page == 'add_tool' }}"><a href="{{ url_for('add_tool') }}" role="menuitem">Add Tool</a></li>
             <li class="{{'active' if active_page == 'manage_users' }}"><a href="{{ url_for('manage_users')}}" role="menuitem">Manage Users</a></li>
             {% endif %}
-        <li class="{{'active' if active_page == 'logout' }}"><a href="{{ url_for('logout') }}" role="menuitem">Log Out</a></li>
+        <li><a href="{{ url_for('logout') }}" role="menuitem">Log Out</a></li>
         {% else %}
         <li class="{{'active' if active_page == 'login' }}"><a href="{{ url_for('login') }}" role="menuitem">Log In</a></li>
         {% endif %}
