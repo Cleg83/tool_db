@@ -176,6 +176,19 @@ The Woodworking Tool Database is designed to simplify the process of discovering
 
 With its focus on user convenience and enhanced learning, the application aims to become a valuable resource for all woodworking enthusiasts.
 
+# Design
+
+## Color Scheme
+
+![color scheme](tool_db/static/images/tool-db-color-scheme.png)
+
+I wanted an elegant teal for the navbar and footer. White text in the navbar, black text in the footer. A darker teal makes an appearance in headings and the home page tool names. 
+
+Salmon pink was chosen as it complements the teal pleasantly and is less abrasive for flash messages than a harsh red. This was also used as the hover color for most buttons.
+
+Other than that: Dark grey for certain borders and all form buttons.
+
+
 
 # Features
 
@@ -315,9 +328,7 @@ Adding a subcategory is also straightforward; the user is given two input fields
 
 ### Lighthouse 
 
-Lighthouse scares for each of the many pages are generally in the 90's.
-
-Performance is sometimes in the high 80's but that's on the pages with most dynamically generated content (the Home page being the worst offender due to its Javascript reliance).
+Lighthouse scares for each of the many pages are all in the 90s
 
 ![lighthouse add tool](tool_db/static/images/lighthouse-add-tool.png)
 ![lighthouse add tool](tool_db/static/images/lighthouse-categories.png)
