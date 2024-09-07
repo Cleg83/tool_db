@@ -39,18 +39,18 @@ Visit the deployed site [here](https://tool-db-72501f8e2b40.herokuapp.com/)
 
 * [Features](#features)
   * [Favicon](#favicon)
-  * [Non Registered Users](#non-registered-users)
-    * [Navbar](#navbar)
-    * [Home Page](#home-page)
-    * [Categories](#categories)
-    * [Tools](#tools)
-    * [Glossary](#glossary) 
-  * [Registered Users](#registered-users)
-    * [My Toolbox](#my-toolbox)
-    * [Profile](#profile)
-      * [Edit Profile](#edit-profile)
-      * [Delete Profile](#delete-profile)
-  * [Admin User](#admin-user)
+  * [Navbar](#navbar)
+  * [Footer](#footer)
+  * [Home Page](#home-page)
+  * [Categories](#categories)
+  * [Tools](#tools)
+  * [Glossary](#glossary) 
+* [Registered User Features](#registered-user-features)
+  * [My Toolbox](#my-toolbox)
+  * [Profile](#profile)
+    * [Edit Profile](#edit-profile)
+    * [Delete Profile](#delete-profile)
+  * [Admin Features](#admin-user)
     * [Admin Navbar](#admin-navbar)
     * [Admin Categories](#admin-categories)
     * [Add Main Category](#add-main-category)
@@ -62,6 +62,7 @@ Visit the deployed site [here](https://tool-db-72501f8e2b40.herokuapp.com/)
     * [Add Tool](#add-tool)
     * [Edit Tool](#edit-tool)
     * [Delete Tool](#delete-tool)
+    * [Delete User](#delete-user)
 
 * [Accessibility](#accessibility)
 
@@ -85,6 +86,10 @@ Visit the deployed site [here](https://tool-db-72501f8e2b40.herokuapp.com/)
   * [Bugs](#Bugs)
   
 * [Credits](#credits)
+
+- - 
+
+<br>
 
 # Rationale
 
@@ -176,6 +181,8 @@ The Woodworking Tool Database is designed to simplify the process of discovering
 
 With its focus on user convenience and enhanced learning, the application aims to become a valuable resource for all woodworking enthusiasts.
 
+<br>
+
 # Design
 
 ## Color Scheme
@@ -188,7 +195,7 @@ Salmon pink was chosen as it complements the teal pleasantly and is less abrasiv
 
 Other than that: Dark grey for certain borders and all form buttons.
 
-
+<br>
 
 # Features
 
@@ -200,13 +207,9 @@ The favicon is a very simple, shortened version of the app name in the same teal
 
 ![favicon large](tool_db/static/images/favicon.png)
 
-- - - 
+<br>
 
-## Non Registered Users
-
-### Navbar
-
-![default navbar](tool_db/static/images/default-navbar.png)
+## Navbar
 
 When a visitor to the site first lands on the page, the only four items in the navbar are: 
 
@@ -215,33 +218,52 @@ When a visitor to the site first lands on the page, the only four items in the n
 * Glossary
 * Log In
 
-### Home Page
+![default navbar](tool_db/static/images/default-navbar.png)
 
-The Home Page for non-registered users displays a tool card that contains the tool name and the tool description.
+If a user logs in, the navbar and sidenav also display the features only available to registered users:
+
+* My Toolbox
+* Profile
+
+![user navbar](tool_db/static/images/user-navbar.png)
+
+![user sidenav](tool_db/static/images/user-sidenav.png)
+
+<br>
+
+## Home Page
+
+The Home Page for displays a random tool card that changes every ten seconds. The card contains the tool name (which is a clickable link to the tool's page) and the tool description.
 
 ![default home page](tool_db/static/images/default-home.png)
 
-By clicking on the tool name link, the user is redirected to that tool's page which contains the name, description, product_links and videos for that tool.
+By clicking on the tool name link, the user is redirected to that tool's page which contains the name, description, product links and videos for that tool.
 
+For users who log in, they have the additional option of adding the tool to their toolbox (more on that shortly):
 
-### Categories
+![ home page](tool_db/static/images/user-home-page.png)
+
+<br>
+
+## Categories
 
 ![default category page](tool_db/static/images/default-categories-page.png)
 
-The categories page for non-registered users is the same as it is for registered users in that the card shows all main categories and when expanded, it shows the subcategories for that main category. 
+The categories page for contains Materialize's handy cards for each main category and when the user clicks "show subcategories", there is a card reveal that displays the subcategories for that main category. 
 
 ![default category page, expanded card](tool_db/static/images/default-categories-expanded.png)
 
 From here, users can navigate to the selected main category page:
 
-![selected main category page](tool_db/static/images/default-selected-category-page.png)
+![selected main category page](tool_db/static/images/selected-category.png)
 
  or each individual subcategory page:
 
- ![selected subcategory page](tool_db/static/images/default-selected-subcategory-page.png)
+ ![selected subcategory page](tool_db/static/images/selected-subcategory.png)
 
+<br>
 
-### Tools
+## Tools
 
 Each tool has a page containing the name and description, as well as product links and videos (if present):
 
@@ -264,7 +286,11 @@ The tool name is a link to that tool's page and the description summary can be c
 
 ![admin navbar](tool_db/static/images/admin-navbar.png)
 
-The navbar for the admin user allows for easy adding of categories and tools. N.B. This functionality can be found in various places for the admin user but it seemed logical to include a direct route to these functions from the navbar.
+The navbar for the admin user allows for easy adding of categories and tools. N.B. This functionality can be found in various places for the admin user but it seemed logical to include a direct route to these functions from the navbar (and the sidenav on smaller screens):
+
+![admin navbar](tool_db/static/images/admin-sidenav.png)
+
+The admin navbar does not contain the logo as it was too cluttered, the home link is still available in the navbar and footer so no functionality is lost as a result of this (and one would hope that the admin user knows how to navigate the site).
 
 ## Admin Categories
 
