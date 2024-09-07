@@ -14,7 +14,7 @@
                 <ul class="collection" role="list">
                     {% for tool in tools %}
                         <li class="collection-item" role="listitem">
-                            <a href="{{ url_for('tool', tool_id=tool.id) }}" class="dark-green-link" aria-label="View details for {{ tool.tool_name }}">
+                            <a href="{{ url_for('tool', tool_id=tool.id) }}" class="glossary-tool" aria-label="View details for {{ tool.tool_name }}">
                                 <p>{{ tool.tool_name }}</p>
                             </a>
                             <details>
