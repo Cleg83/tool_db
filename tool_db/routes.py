@@ -84,7 +84,7 @@ def add_main_category():
         existing_main_category = MainCategory.query.filter_by(main_category_name=main_category_name).first()
 
         if existing_main_category:
-            flash(f"Main category '{main_category_name}' already exists.", "error")
+            flash(f"Main category: {main_category_name}, already exists!", "error")
             return redirect(url_for("add_main_category"))
 
         # Create and save the new main category
@@ -160,7 +160,7 @@ def add_sub_category():
         ).first()
 
         if existing_sub_category:
-            flash(f"Subcategory '{sub_category_name}' already exists in this main category.", "error")
+            flash(f"Subcategory: {sub_category_name}, already exists in this main category!", "error")
             return redirect(url_for("add_sub_category"))
 
         # Calls SubCategory method passing variables declared above
