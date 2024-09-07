@@ -21,7 +21,13 @@
                 <button type="submit" class="btn-large edit-button white-text form-btn" aria-label="Add the tool to the selected subcategory">
                     Add Tool <i class="fa-solid fa-square-plus right" aria-hidden="true"></i>
                 </button>
-                <a href="{{ url_for('home') }}" class="delete-small" aria-label="Cancel and return to home">Cancel</a>
+                <p>Subcategory not found?
+                    <br>
+                    <a href="{{ url_for('add_sub_category') }}" class="delete-small"
+                        aria-label="Cancel and redirect to add subcategory page">
+                        Cancel
+                    </a> and add Subcategory.
+                </p>
             </div>
         </div>
     </form>
