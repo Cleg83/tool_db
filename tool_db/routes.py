@@ -141,7 +141,7 @@ def add_sub_category():
         sub_category = SubCategory(sub_category_name=sub_category_name, main_category_id=main_category_id)
         db.session.add(sub_category)
         db.session.commit()
-        flash(f"New subcategory ({ sub_category_name }) added to: { main_category.main_category_name }.", "success")
+        flash(f"New subcategory added: { sub_category_name }", "success")
         return redirect(url_for("categories"))
 
     main_categories = MainCategory.query.all()
