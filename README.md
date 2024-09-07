@@ -181,6 +181,14 @@ With its focus on user convenience and enhanced learning, the application aims t
 
 ## Favicon
 
+![favicon in browser](tool_db/static/images/favicon2.png)
+
+The favicon is a very simple, shortened version of the app name in the same teal colour that proliferates the app.
+
+![favicon large](tool_db/static/images/favicon.png)
+
+- - - 
+
 ## Non Registered Users
 
 ### Navbar
@@ -196,24 +204,30 @@ When a visitor to the site first lands on the page, the only four items in the n
 
 ### Home Page
 
-The Home Page for non-registered users shows 4 random tool cards that change after a set period of time. 
+The Home Page for non-registered users displays a tool card that contains the tool name and the tool description.
 
-By expanding the card, the non-registered user can see the tool description.
+![default home page](tool_db/static/images/default-home.png)
 
-By clicking on the video, they can watch the video.
-
-And by clicking on the tool name link, they are redirected to that tool's page which contains the name, description, product_links and videos for that tool.
+By clicking on the tool name link, the user is redirected to that tool's page which contains the name, description, product_links and videos for that tool.
 
 
 ### Categories
 
-The category view for non-registered users is the same as it is for registered users in that the card shows all main categories and when expanded, it shows the subcategories for that main category. 
+![default category page](tool_db/static/images/default-categories-page.png)
 
-![non-admin categories](tool_db/static/images/non-admin-categories.png)
+The categories page for non-registered users is the same as it is for registered users in that the card shows all main categories and when expanded, it shows the subcategories for that main category. 
 
-From here, users can navigate to the main category page or each individual subcategory page.
+![default category page, expanded card](tool_db/static/images/default-categories-expanded.png)
 
-![non-admin categories expanded](tool_db/static/images/non-admin-categories-expanded.png)
+From here, users can navigate to the selected main category page:
+
+![selected main category page](tool_db/static/images/default-selected-category-page.png)
+
+ or each individual subcategory page:
+
+ ![selected subcategory page](tool_db/static/images/default-selected-subcategory-page.png)
+
+
 
 
 # Admin User
