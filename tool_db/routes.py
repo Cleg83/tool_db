@@ -63,7 +63,7 @@ def add_category():
     return render_template("add_category.html")
 
 
-# Simple method for adding a main category
+# Add main category
 @app.route("/add_main_category", methods=["GET", "POST"])
 def add_main_category():
 
@@ -72,21 +72,28 @@ def add_main_category():
         flash("Wind your neck in, you don't have permission to do that!", "error")
         return redirect(url_for("home"))
     
-    if request.method =="POST":
-        main_category = MainCategory(main_category_name=request.form.get("main_category_name"))
+    if request.method == "POST":
 
+        main_category_name = request.form.get("main_category_name")
+
+        if not main_category_name:
+            flash("Main category name cannot be empty.", "error")
+            return redirect(url_for("add_main_category"))
 
         # Check if the main category already exists
-        existing_main_category = MainCategory.query.filter_by(main_category_name=main_category).first()
+        existing_main_category = MainCategory.query.filter_by(main_category_name=main_category_name).first()
 
         if existing_main_category:
-            flash(f"Main category '{main_category}' already exists.", "error")
+            flash(f"Main category '{main_category_name}' already exists.", "error")
             return redirect(url_for("add_main_category"))
-        
+
+        # Create and save the new main category
+        main_category = MainCategory(main_category_name=main_category_name)
         db.session.add(main_category)
         db.session.commit()
-        flash(f"New main category added: { main_category.main_category_name }", "success")
+        flash(f"New main category added: {main_category.main_category_name}", "success")
         return redirect(url_for("categories"))
+        
     return render_template("add_main_category.html")
 
 
