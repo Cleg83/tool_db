@@ -137,11 +137,11 @@ def add_sub_category():
             flash("Invalid main category selected.", "error")
             return redirect(url_for("add_sub_category"))
 
-        # Calls SubCategory method passing variables delcared above
+        # Calls SubCategory method passing variables declared above
         sub_category = SubCategory(sub_category_name=sub_category_name, main_category_id=main_category_id)
         db.session.add(sub_category)
         db.session.commit()
-        flash(f"New subcategory added: { sub_category_name }", "success")
+        flash(f"New subcategory ({ sub_category_name }) added to: { sub_category.main_category_name }.", "success")
         return redirect(url_for("categories"))
 
     main_categories = MainCategory.query.all()
