@@ -10,11 +10,11 @@
     <div class="col s8 offset-s2 white">
         {% if grouped_tools %}
             {% for letter, tools in grouped_tools %}
-                <h4 class="black-text" aria-level="2">{{ letter }}</h4>
+                <h4 class="teal-text darken-3" aria-level="2">{{ letter }}</h4>
                 <ul class="collection" role="list">
                     {% for tool in tools %}
                         <li class="collection-item" role="listitem">
-                            <a href="{{ url_for('tool', tool_id=tool.id) }}" class="glossary-tool" aria-label="View details for {{ tool.tool_name }}">
+                            <a href="{{ url_for('tool', tool_id=tool.id) }}" class="dark-green-link" aria-label="View details for {{ tool.tool_name }}">
                                 <p>{{ tool.tool_name }}</p>
                             </a>
                             <details>
