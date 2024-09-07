@@ -21,7 +21,10 @@
                 <button type="submit" class="btn-large edit-button white-text form-btn" aria-label="Proceed to the next step">
                     Next <i class="fa-solid fa-arrow-right right" aria-hidden="true"></i>
                 </button>
-                <a href="{{ url_for('home') }}" class="delete-small" aria-label="Cancel and return to home">Cancel</a>
+                <span>Main category not found? <a href="{{ url_for('add_main_category') }}" 
+                    class="delete-small" aria-label="Cancel and redirect add main category page">
+                    Cancel</a> and add Main Category</span>
+                </a>
             </div>
         </div>
     </form>
