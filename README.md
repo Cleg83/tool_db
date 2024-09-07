@@ -1,6 +1,6 @@
 ### The Woodworker's Tool Database is an incredible new resource for woodworkers featuring a comprehensive tool glossary the ability for registered users to save their favourite tools and videos!
 
-Visit the deployed site [here](https://#)
+Visit the deployed site [here](https://tool-db-72501f8e2b40.herokuapp.com/)
 
 - - -
 
@@ -11,6 +11,8 @@ Visit the deployed site [here](https://#)
   * [Motivation and Inspiration](#motivation-and-inspiration)
   * [Background Information](#background-information)
   * [Project Scope and Limitations](#project-scope-and-limitations)
+    * [Scope](#scope)
+    * [Limitations](#limitations)
   * [Problem Statement](#problem-statement)
   * [Proposed Solution](#proposed-solution)
   * [Benefits and Advantages](#benefits-and-advantages)
@@ -84,7 +86,95 @@ Visit the deployed site [here](https://#)
   
 * [Credits](#credits)
 
+# Rationale
 
+## Project Introduction
+
+The Woodworking Tool Database is a comprehensive web application designed to serve woodworking enthusiasts and hobbyists by providing a centralised platform for discovering, learning about, and purchasing woodworking tools. 
+
+The application features an extensive tool database, product videos, product links, and user-specific tool management, creating a one-stop resource for both novice and experienced woodworkers alike.
+
+## Motivation and Inspiration
+
+As a passionate hobbyist woodworker, the motivation behind this project stems from a desire to streamline the process of researching and purchasing woodworking tools. Previously, finding detailed information, instructional videos, and purchasing options for tools required navigating multiple sources, which was both time-consuming and inefficient. 
+
+The inspiration for this project was to create a single, integrated resource that simplifies and enhances the tool acquisition process, thereby saving time and improving the overall woodworking experience.
+
+## Background Information
+
+To build anything out of wood, from the smallest bandsaw box to a monolithic cabinet; tools are essential. However, the process of selecting and purchasing the right tool often involves extensive research across multiple platforms. Users typically need to search for tool specifications, watch instructional videos, and find reliable purchase links; all of which are scattered across different websites. This fragmentation can lead to frustration and also creates a disjointed experience for users.
+
+## Project Scope and Limitations
+
+### Scope:
+
+* Tool Database: A comprehensive collection of woodworking tools, each with detailed descriptions, instructional videos, and purchase links.
+
+* User Management: Allows users to add tools to their personal toolbox and manage their profile / log in details.
+
+* Integration: Seamlessly integrates video content and purchase options within the tool profiles.
+
+### Limitations:
+
+* Tool Information: The accuracy and comprehensiveness of tool data are dependent on available sources and user contributions.
+
+* Video and Link Sources: Limited to available resources and may not cover all tools or have the latest product links.
+
+* User Authentication: Currently supports basic authentication and may not include advanced user management features.
+
+* Search functionality: Currently there is no way for a site user to search for tools. 
+
+### Problem Statement
+
+Woodworking enthusiasts face challenges in efficiently finding comprehensive information about tools, including their usage, instructional content, and purchase options. The existing fragmented resources often require users to navigate multiple websites, leading to a cumbersome and time-consuming experience. There is a need for a centralised platform that integrates tool information, instructional videos, and purchase links into a single, accessible resource.
+
+## Proposed Solution
+
+The Woodworking Tool Database addresses these challenges by providing an integrated web application where users can:
+
+* Access detailed information about a wide range of woodworking tools.
+
+* Watch instructional videos directly linked to each tool.
+
+* Find and compare purchase options from various online retailers.
+
+* Manage personal tool collections through a user-friendly interface.
+
+* By consolidating these resources into one platform, the project enhances the user experience, simplifies the tool research process, and supports informed decision-making.
+
+## Benefits and Advantages
+
+* Centralized Resource: Combines tool information, videos, and purchase links into a single platform, saving time and effort.
+
+* Enhanced Learning: Provides educational videos for each tool, helping users understand and utilize them more effectively.
+
+* Convenience: Offers direct purchase links, allowing users to easily compare options and make purchases without navigating multiple websites.
+
+* Personalization: Enables users to manage their own toolbox, keeping track of their favorite tools and preferences.
+
+
+## Future Versions
+
+Future versions of the project may include:
+
+* Advanced User Management: Enhanced features for user profiles, tool recommendations, community interactions, password management. 
+
+* Search and Navigation: Incorporate a search bar to search for tools by name.
+
+* Tool Reviews and Ratings: User-generated reviews and ratings for tools to provide additional insights and feedback.
+
+* Mobile Optimization: Improved user experience on mobile devices, including a dedicated mobile app.
+
+* Expanded Database: Regular updates to the tool database with new tools, videos, and purchase links.
+
+* Email integration.
+
+
+## Summary
+
+The Woodworking Tool Database is designed to simplify the process of discovering, learning about, and acquiring woodworking tools. By integrating detailed tool information, instructional videos, and purchase options into a single platform, the application addresses the fragmentation and inefficiencies in the current process. 
+
+With its focus on user convenience and enhanced learning, the application aims to become a valuable resource for all woodworking enthusiasts.
 
 
 # Features
