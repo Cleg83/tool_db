@@ -17,7 +17,8 @@
         <tbody>
             {% for tool in tools %}
             <tr>
-                <td><a href="{{ url_for('tool', tool=tool) }}" aria-label="Page for {{ tool.tool_name }}">
+                <td>
+                    <a href="{{ url_for('tool', tool_id=tool.id) }}" aria-label="Page for {{ tool.tool_name }}">
                         {{ tool.tool_name }} 
                     </a>
                 </td>
