@@ -37,10 +37,11 @@
         <h5 class="center">Tools</h5>
         <div class="row">
             <div class="col s10 offset-s1 center-align">
-                <a href="{{ url_for('add_tool') }}" class="btn edit-button form-btn">
+                <a href="{{ url_for('add_tool') }}" class="btn edit-button form-btn btn-margin">
                     Add Tool <i class="fa-solid fa-square-plus right" aria-label="Link to add a new tool"></i>
                 </a>
             </div>
+        </div>
         <div class="row">
             {% for tool in tools %}
             <div class="col s10 offset-s1 m6 l4 grey lighten-4 tiny-tool-card">
