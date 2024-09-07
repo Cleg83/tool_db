@@ -14,7 +14,7 @@
                 <input id="tool_name" name="tool_name" minlength="5" maxlength="50"
                     pattern="^(?!\s*$)[a-zA-Z0-9\s]+$" type="text" class="validate" aria-required="true" required
                     aria-describedby="tool-name-description">
-                <label for="tool_name">Tool Name</label>
+                <label for="tool_name" class="black-text">Tool Name</label>
                 <span id="tool-name-description" class="sr-only">Tool name should be between 5 and 50 characters long and can contain letters, numbers, and spaces.</span>
             </div>
         </div>
@@ -26,7 +26,7 @@
                 <textarea id="tool_description" name="tool_description" minlength="5" maxlength="1500"
                     pattern="^(?!\s*$)[a-zA-Z0-9\s]+$" class="materialize-textarea validate black-text"
                     aria-required="true" required aria-describedby="tool-description-description"></textarea>
-                <label for="tool_description"><span>Tool Description</span></label>
+                <label for="tool_description" class="black-text"><span>Tool Description</span></label>
                 <span id="tool-description-description" class="sr-only">
                     Tool description should be between 5 and 1500 characters long and can contain letters, numbers, and spaces.
                 </span>
@@ -39,7 +39,7 @@
                 <i class="fa-solid fa-video prefix" aria-hidden="true"></i>
                 <input id="tool_videos" name="tool_videos" minlength="5" maxlength="5000" type="text"
                     pattern="https?://.*(,https?://.*){0,2}" aria-describedby="tool-videos-description">
-                <label for="tool_videos">Video URLs (up to 3, separated by commas)</label>
+                <label for="tool_videos" class="black-text">Video URLs (up to 3, separated by commas)</label>
                 <span id="tool-videos-description" class="helper-text" aria-live="polite"
                 data-error="Please enter valid URLs, separated by commas (e.g., http://example.com, http://example2.com)">
                     Example: http://example.com, http://example2.com
@@ -53,7 +53,7 @@
                 <i class="fa-solid fa-link prefix" aria-hidden="true"></i>
                 <input id="product_links" name="product_links" minlength="5" maxlength="5000" type="text"
                     pattern="https?://.*(,https?://.*){0,2}" aria-describedby="product-links-description">
-                <label for="product_links">Product Links (up to 3, separated by commas)</label>
+                <label for="product_links" class="black-text">Product Links (up to 3, separated by commas)</label>
                 <span id="product-links-description" class="helper-text" aria-live="polite"
                     data-error="Please enter valid URLs, separated by commas (e.g., http://example.com, http://example2.com)">
                     Example: http://example.com, http://example2.com
