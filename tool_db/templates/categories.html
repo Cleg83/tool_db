@@ -33,7 +33,7 @@
                 {% for subcategory in category.sub_cats %}
                 <p>
                     <!-- Link to view the selected subcategory -->
-                    <a class="glossary-tool" href="{{ url_for('selected_subcategory', subcategory_id=subcategory.id) }}">
+                    <a class="dark-green-link" href="{{ url_for('selected_subcategory', subcategory_id=subcategory.id) }}">
                         {{ subcategory.sub_category_name }}
                     </a>
                     <!-- Only available if logged in as "admin" -->

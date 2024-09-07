@@ -236,6 +236,11 @@ footer li a:hover {
     color: #ffffff;
 }
 
+.dark-green-link {
+    color: #00695c;
+}
+
+
 .home-card-link {
     color: #00695c;
     font-weight: bold;
@@ -263,6 +268,7 @@ summary,
     color: #00695c;
 }
 
+.dark-green-link:hover,
 .home-card-link:hover,
 .styled-links a:hover,
 .glossary-tool:hover,
