@@ -628,7 +628,7 @@ def add_to_my_toolbox(tool_id):
         db.session.commit()
         flash("Tool added to your toolbox!", "success")
 
-    return redirect(url_for("tool", tool_id=tool_id))
+    return redirect(url_for("my_toolbox"))
     
 
 @app.route("/my_toolbox")
