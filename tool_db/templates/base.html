@@ -13,8 +13,6 @@
 
 <body class="{% block body_class %}base{% endblock %}">
 
-    {% set active_page = "home" %}
-
     <!-- simple navbar - will add mobile collapse elements -->
     <nav aria-label="Main Navigation">
         <div class="nav-wrapper teal lighten-3 nav-font">
@@ -24,8 +22,8 @@
             </a>
             <a href="#" data-target="nav-collapse" class="sidenav-trigger left" aria-label="Open Navigation Menu"><i class="fa-solid fa-bars"></i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down" role="menubar">
-                <li class="other-styles {{'active' if active_page == 'the page' }}"><a href="{{ url_for('home') }}" role="menuitem">Home</a></li>
-                <li class="other-styles {{'active' if active_page == 'the page' }}"><a href="{{ url_for('categories') }}" role="menuitem">Categories</a></li>
+                <li class="{{'active' if active_page == 'home' }}"><a href="{{ url_for('home') }}" role="menuitem">Home</a></li>
+                <li class="{{'active' if active_page == 'categories' }}"><a href="{{ url_for('categories') }}" role="menuitem">Categories</a></li>
                 <li><a href="{{ url_for('glossary') }}" role="menuitem">Glossary</a></li>
                 {% if "username" in session %}
                 <li><a href="{{ url_for('my_toolbox') }}" role="menuitem">My Toolbox</a></li>
