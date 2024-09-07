@@ -7,7 +7,7 @@
     <form class="col s12 m8 offset-m2 teal lighten-3" method="POST"
         action="{{ url_for('edit_sub_category', subcategory_id=subcategory.id) }}">
         <!-- subcategory name input -->
-        <div class="row content-wrapper">
+        <div class="row">
             <div class="input-field col s10 offset-s1 grey lighten-4">
                 <i class="fa-solid fa-folder-tree prefix"></i>
                 <input id="subcategory_name" name="subcategory_name" value="{{ subcategory.sub_category_name }}"
