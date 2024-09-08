@@ -14,7 +14,7 @@
                 <h4 class="teal-text darken-3" aria-level="2">{{ letter }}</h4>
                 <ul class="collection">
                     {% for tool in tools %}
-                        <li class="collection-item" aria-describedby="{{ tool.tool_name }}'s entry in glossary">
+                        <li class="collection-item">
                             <a href="{{ url_for('tool', tool_id=tool.id) }}" class="glossary-tool" aria-label="View details for {{ tool.tool_name }}">
                                 <p>{{ tool.tool_name }}</p>
                             </a>
