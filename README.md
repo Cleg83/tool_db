@@ -1,3 +1,5 @@
+![Screenshot of The Woodworker's Tool DB on several screen sizes](tool_db/static/images/am-i-res.png)
+
 ### The Woodworker's Tool Database is an incredible new resource for woodworkers featuring a comprehensive tool glossary the ability for registered users to save their favourite tools and videos!
 
 Visit the deployed site [here](https://tool-db-72501f8e2b40.herokuapp.com/)
@@ -367,7 +369,6 @@ The database for this project is designed to manage the relationships between us
 * Columns:
 
   * id: Integer, primary key, auto-increment.
-
   * main_category_name: String (100), unique, not null. Stores the name of the main category (e.g., "Power Tools", "Hand Tools").
 
 * Relationships:

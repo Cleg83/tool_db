@@ -1,3 +1,5 @@
+![Screenshot of The Woodworker's Tool DB on several screen sizes](tool_db/static/images/am-i-res.png)
+
 # Detailed Manual Testing for the Woodworker's Tool Database
 
 # Front End
