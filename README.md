@@ -164,13 +164,13 @@ The Woodworker's Tool Database addresses these challenges by providing an integr
 
 ## Benefits and Advantages
 
-* Centralized Resource: Combines tool information, videos, and purchase links into a single platform, saving time and effort.
+* Centralised Resource: Combines tool information, videos, and purchase links into a single platform, saving time and effort.
 
-* Enhanced Learning: Provides educational videos for each tool, helping users understand and utilize them more effectively.
+* Enhanced Learning: Provides educational videos for each tool, helping users understand and utilise them more effectively.
 
 * Convenience: Offers direct purchase links, allowing users to easily compare options and make purchases without navigating multiple websites.
 
-* Personalization: Enables users to manage their own toolbox, keeping track of their favorite tools and preferences.
+* Personalisation: Enables users to manage their own toolbox, keeping track of their favorite tools and preferences.
 
 
 ## Future Versions
@@ -183,7 +183,7 @@ Future versions of the project may include:
 
 * Tool Reviews and Ratings: User-generated reviews and ratings for tools to provide additional insights and feedback.
 
-* Mobile Optimization: Improved user experience on mobile devices, including a dedicated mobile app.
+* Mobile Optimisation: Improved user experience on mobile devices, including a dedicated mobile app.
 
 * Expanded Database: Regular updates to the tool database with new tools, videos, and purchase links.
 
@@ -233,7 +233,7 @@ User Story 2: Register for an Account
 User Story 3: View and Manage My Toolbox
 
 * As a logged-in user, I want to view the tools I have added to my toolbox and remove any tools I no longer want.
-* So that I can keep my toolbox organized and relevant to my needs.
+* So that I can keep my toolbox organised and relevant to my needs.
 
   * Acceptance Criteria:
 
@@ -288,7 +288,7 @@ User Story 6: Add New Tool
 User Story 7: Add New Category
 
 * As an admin user, I want to add new categories to the tool database.
-* So that I can organize tools into relevant and up-to-date categories.
+* So that I can organise tools into relevant and up-to-date categories.
 
   * Acceptance Criteria:
 
@@ -952,35 +952,35 @@ This application was deployed to Heroku using the following steps:
 
 2. Create a new Heroku app through the Heroku Dashboard:
 
-  * In the Heroku dashboard, click New > Create New App.
-  * Choose a unique name for your app and select a region.
+    * In the Heroku dashboard, click New > Create New App.
+    * Choose a unique name for your app and select a region.
 
 3. Add PostgreSQL:
 
-  * In the app dashboard, go to the Resources tab.
-  * In the "Add-ons" section, search for Heroku Postgres and select the Hobby Dev - Free plan.
+    * In the app dashboard, go to the Resources tab.
+    * In the "Add-ons" section, search for Heroku Postgres and select the Hobby Dev - Free plan.
 
 4. Set up environment variables:
 
-  * In the Settings tab, click Reveal Config Vars under Config Vars.
-  * Add the following keys and values:
-    * SECRET_KEY: Your secret key for the Flask app.
-    * DEBUG: Set this to False for production.
-    * DATABASE_URL: Automatically created when PostgreSQL is added.
-    * PORT: Set this to 5000 (or leave as default).
-    * IP: Set this to 0.0.0.0.
+    * In the Settings tab, click Reveal Config Vars under Config Vars.
+    * Add the following keys and values:
+      * SECRET_KEY: Your secret key for the Flask app.
+      * DEBUG: Set this to False for production.
+      * DATABASE_URL: Automatically created when PostgreSQL is added.
+      * PORT: Set this to 5000 (or leave as default).
+      * IP: Set this to 0.0.0.0.
 
 5. Connect your GitHub repository:
 
-  * In the Deploy tab, scroll down to Deployment Method and select GitHub.
-  * Search for your repository and connect it.
-  * Enable Automatic Deploys (optional) or manually deploy the branch.
+    * In the Deploy tab, scroll down to Deployment Method and select GitHub.
+    * Search for your repository and connect it.
+    * Enable Automatic Deploys (optional) or manually deploy the branch.
 
 6. Run migrations:
 
-  * In the More dropdown at the top-right corner of your app dashboard, select Run Console.
-  * Type the following to apply database migrations:
-    * flask db upgrade
+    * In the More dropdown at the top-right corner of your app dashboard, select Run Console.
+    * Type the following to apply database migrations:
+      * flask db upgrade
 
 7. Open the app: Once the deployment is successful, you can view your live app by clicking Open App at the top-right corner of the dashboard.
 
@@ -997,7 +997,6 @@ This application was deployed to Heroku using the following steps:
 * Werkzeug
 * SQLAlchemy
 
-<br> 
 
 ### How to Fork
 
@@ -1007,7 +1006,6 @@ If you want to contribute to this project or create a personal version, you can 
 2. Click the Fork button on the upper-right corner of the repository page.
 3. The project will be copied to your GitHub account, and you can freely experiment with the code.
 
-<br>
 
 ### How to Clone
 
@@ -1034,16 +1032,50 @@ You now have a local copy of the project and can follow the Local Development st
 
 ### Lighthouse 
 
-Lighthouse scores for each of the many pages are all in the 90s
+Lighthouse scores for all of the many pages are all in the 90s.
 
 ![lighthouse add tool](tool_db/static/images/lighthouse-add-tool.png)
-![lighthouse add tool](tool_db/static/images/lighthouse-categories.png)
-![lighthouse add tool](tool_db/static/images/lighthouse-glossary.png)
-![lighthouse add tool](tool_db/static/images/lighthouse-home.png)
-![lighthouse add tool](tool_db/static/images/lighthouse-home2.png)
-![lighthouse add tool](tool_db/static/images/lighthouse-home3.png)
-![lighthouse add tool](tool_db/static/images/lighthouse-manage-users.png)
-![lighthouse add tool](tool_db/static/images/lighthouse-my-toolbox.png)
-![lighthouse add tool](tool_db/static/images/lighthouse-profile.png)
-![lighthouse add tool](tool_db/static/images/lighthouse-selected-category.png)
-![lighthouse add tool](tool_db/static/images/lighthouse-selected-subcategory.png)
+
+<br>
+
+![lighthouse categories](tool_db/static/images/lighthouse-categories.png)
+
+<br>
+
+![lighthouse add category](tool_db/static/images/lighthouse-add-category.png)
+
+<br>
+
+![lighthouse add main category](tool_db/static/images/lighthouse-add-main-category.png)
+
+<br>
+
+![lighthouse add subcategory](tool_db/static/images/lighthouse-add-subcategory.png)
+
+<br>
+
+![lighthouse manage users](tool_db/static/images/lighthouse-manage-users.png)
+
+<br>
+
+![lighthouse my toolbox](tool_db/static/images/lighthouse-my-toolbox.png)
+
+<br>
+
+![lighthouse profile](tool_db/static/images/lighthouse-profile.png)
+
+<br>
+
+![lighthouse selected category](tool_db/static/images/lighthouse-selected-category.png)
+
+<br>
+
+![lighthouse selected subcategory](tool_db/static/images/lighthouse-selected-subcategory.png)
+
+<br>
+
+![lighthouse selected tool](tool_db/static/images/lighthouse-selected-tool.png)
+
+<br>
+
+![lighthouse selected tool, no iframe](tool_db/static/images/lighthouse-selected-tool-no-iframe.png)
