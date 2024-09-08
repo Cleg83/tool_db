@@ -67,11 +67,18 @@ Visit the deployed site [here](https://tool-db-72501f8e2b40.herokuapp.com/)
     * [Edit Sub Category](#edit-sub-category)
     * [Delete Sub Category](#delete-sub-category)
     * [Add Tool](#add-tool)
+      * [Step 1](#step-1)
+      * [Step 2](#step-2)
+      * [Step 3](#step-3)
     * [Edit Tool](#edit-tool)
     * [Delete Tool](#delete-tool)
     * [Delete User](#delete-user)
+  * [Error Handling](#error-handling)
 
 * [Accessibility](#accessibility)
+  * [Accessibility Overview](#accessibility-overview)
+  * [Accessibility Standards](#accessibility-standards)
+  * [Key Accessibility Features](#key-accessibility-features)
 
 * [Technologies](#technologies)
   * [Languages](#languages)
@@ -102,7 +109,7 @@ Visit the deployed site [here](https://tool-db-72501f8e2b40.herokuapp.com/)
 
 ## Project Introduction
 
-The Woodworking Tool Database is a comprehensive web application designed to serve woodworking enthusiasts and hobbyists by providing a centralised platform for discovering, learning about, and purchasing woodworking tools. 
+The Woodworker's Tool Database is a comprehensive web application designed to serve woodworking enthusiasts and hobbyists by providing a centralised platform for discovering, learning about, and purchasing woodworking tools. 
 
 The application features an extensive tool database, product videos, product links, and user-specific tool management, creating a one-stop resource for both novice and experienced woodworkers alike.
 
@@ -142,7 +149,7 @@ Woodworking enthusiasts face challenges in efficiently finding comprehensive inf
 
 ## Proposed Solution
 
-The Woodworking Tool Database addresses these challenges by providing an integrated web application where users can:
+The Woodworker's Tool Database addresses these challenges by providing an integrated web application where users can:
 
 * Access detailed information about a wide range of woodworking tools.
 
@@ -184,7 +191,7 @@ Future versions of the project may include:
 
 ## Summary
 
-The Woodworking Tool Database is designed to simplify the process of discovering, learning about, and acquiring woodworking tools. By integrating detailed tool information, instructional videos, and purchase options into a single platform, the application addresses the fragmentation and inefficiencies in the current process. 
+The Woodworker's Tool Database is designed to simplify the process of discovering, learning about, and acquiring woodworking tools. By integrating detailed tool information, instructional videos, and purchase options into a single platform, the application addresses the fragmentation and inefficiencies in the current process. 
 
 With its focus on user convenience and enhanced learning, the application aims to become a valuable resource for all woodworking enthusiasts.
 
@@ -503,6 +510,23 @@ If a user logs in, the navbar and sidenav also display the features only availab
 
 <br>
 
+## Footer
+
+The footer also aids in site navigation with the same links as the navbar (which will change depending on whether the user is logged in or not).
+
+Not logged in:
+
+![default footer](tool_db/static/images/default-footer.png)
+
+Logged in: 
+
+![user footer](tool_db/static/images/user-footer.png)
+
+The footer links move to inline style on smaller screens and the footer also contains a contact email address for the site admin and also copyright information.
+
+![user footer small](tool_db/static/images/user-footer-small.png)
+<br>
+
 ## Home Page
 
 The Home Page for displays a random tool card that changes every ten seconds (implemented using some Javascript; the home page is the only page that has custom JS).
@@ -543,6 +567,10 @@ Each tool has a page containing the name and description, as well as product lin
 
  ![selected tool page](tool_db/static/images/default-selected-tool-page.png)
 
+ For users who are logged in, the option to add the tool to My Toolbox is also present under the product links:
+
+ ![user tool page](tool_db/static/images/user-selected-tool.png)
+
 
 
 ### Glossary
@@ -553,6 +581,9 @@ The glossary page is an A-Z of all tools in the database (shown here in a rather
 
 The tool name is a link to that tool's page and the description summary can be clicked to expand the tool description.
 
+Similarly to the tool page, a logged in user has the option to add the tool to My Toolbox from the glossary page:
+
+![logged in glossary page](tool_db/static/images/user-glossary.png)
 
 # Admin User
 
@@ -570,6 +601,8 @@ The admin navbar does not contain the logo as it was too cluttered, the home lin
 
 The category view for the admin user is similar to the view for non-admin users but also incorporates the functionality to edit and delete the main category.
 
+I wanted the admin user to be able to manage main categories and subcategories from this page. 
+
 ![admin categories](tool_db/static/images/admin-categories.png)
 
 There is also an additional card that shows after all category cards that will redirect to the add main category page when clicked (it is quite obvious as it is a smaller car with a folder-plus icon):
@@ -580,19 +613,33 @@ When expanded, the admin user has the ability to edit and delete subcategories a
 
 ![admin categories expanded](tool_db/static/images/admin-categories-expanded.png)
 
+<br>
+
 ### Add Main Category
 
-Adding a main category is pretty straightforward and only requires the user to type a category name. 
+Adding a main category can be accessed through the Add Category page:
+
+![add category page](tool_db/static/images/add-categories.png)
+
+Or by the clicking the add tool card on the categories page: 
+
+![add main category card small ](tool_db/static/images/add-main-category-card-small.png)
+
+Once on the add main category page, the form is very simple and clearly labelled.
+
+All the user needs to do is input a category name and click "add category"
 
 ![add main category](tool_db/static/images/add-main-category.png)
 
-No other functionality or input fields were required as subcategories can be moved to different main categories when editing subcategories so this page is kept very simple indeed.
+<br>
 
 ### Edit Main Category
 
 This is pretty much identical to adding a main category with the exception of the input field being pre-populated with the current main category name.
 
 ![edit main category](tool_db/static/images/edit-main-category.png)
+
+<br>
 
 ### Delete Main Category
 
@@ -604,22 +651,127 @@ And if the user chooses to delete the category, they are redirected to the categ
 
 ![delete main category confirmation](tool_db/static/images/delete-main-category-confirmation.png)
 
-
-
-
-
-
-
-
-
-
-
+<br>
 
 ### Add Subcategory
+
+Adding a subcategory can be done via the add category page or by clicking the button on each expanded main category card:
+
+![add subcategory button on categories page](tool_db/static/images/add-subcat-button.png)
 
 Adding a subcategory is also straightforward; the user is given two input fields to complete, 1 for the subcategory name and a dropdown to select a main category. 
 
 ![add subcategory](tool_db/static/images/add-subcategory.png)
+
+<br>
+
+### Edit Subcategory
+
+The admin user can edit all aspects of the subcategory from this page:
+
+![edit subcategory](tool_db/static/images/edit-subcategory.png)
+
+Individual tools can be edited and deleted from this page. There is also a handy link to add a new tool. 
+
+![edit subcategory 2](tool_db/static/images/edit-subcategory2.png)
+
+<br>
+
+### Delete Subcategory
+
+I only wanted this functionality in one place so I opted to place it only in the expanded main category card on the categories page:
+
+![delete subcategory](tool_db/static/images/delete-subcategory.png)
+
+<br>
+
+### Add Tool
+
+For session management and to ensure that the correct subcategories populate in step 3, the add tool function is split into 3 steps:
+
+#### Step 1
+
+The admin user needs to add a name and description and can also add product links and videos (though these are not required fields).
+
+![add tool step 1](tool_db/static/images/add-tool-step1.png)
+
+#### Step 2
+
+Next, the admin user needs to select a main category from the dropdown.
+
+![add tool step 2](tool_db/static/images/add-tool-step2.png)
+
+#### Step 3
+
+The final step involves them choosing a subcategory from the dropdown (only the subcategories in the main category selected in step 2 will populate)
+
+![add tool step 3](tool_db/static/images/add-tool-step3.png)
+
+<br>
+
+### Edit Tool
+
+The form to edit a tool is in the same 3 step format as adding a tool but the tool details are pre-populated in every step:
+
+![edit tool step 1](tool_db/static/images/edit-tool-step1.png)
+<br>
+
+![edit tool step 2](tool_db/static/images/edit-tool-step2.png)
+
+<br>
+
+![edit tool step 3](tool_db/static/images/edit-tool-step3.png)
+
+<br>
+
+# Accessibility
+
+## Accessibility Overview
+
+The Woodworker's Tool Database is designed with accessibility in mind to ensure that all users, including those with disabilities, can navigate and use the features effectively. This section outlines my commitment to accessibility, the standards I follow, and how to use accessibility features within the app.
+
+## Accessibility Standards
+
+The Woodworker's Tool Database strives to adhere to the Web Content Accessibility Guidelines (WCAG) 2.1 at the AA level. Our goal is to provide a user-friendly experience for everyone, including people with visual, auditory, physical, and cognitive disabilities.
+
+## Key Accessibility Features
+
+* Semantic HTML:
+
+  * I have used semantic HTML elements such as header, footer, main, nav, and section to provide clear structure and improve navigation for screen readers.
+
+* Aria Roles and Labels:
+
+  * Aria roles and labels are used to enhance screen reader support and provide additional context where necessary. For example:
+
+    * a tags are labeled with aria-label where needed to clarify their purpose.
+    * Role attributes are replaced with appropriate aria-labels to describe the function of elements, such as menu items and navigation links.
+
+* Keyboard Navigation:
+
+  * All interactive elements, including forms, buttons, and links, are accessible using keyboard navigation.
+
+  * The site ensures that users can navigate through the application using the Tab key and other standard keyboard shortcuts.
+
+* Form Accessibility:
+
+  * Forms include labels associated with input fields using the for attribute to provide clear instructions and improve usability.
+
+  * Error messages and validation cues are communicated clearly to users (more on this in the Error  Handling section above).
+
+* Contrast and Readability:
+
+  * High-contrast color schemes and readable fonts have been used throughout to ensure that text is easily distinguishable against the background.
+
+* Responsive Design:
+
+  * The application is designed to be responsive, ensuring that it remains accessible and usable across various devices and screen sizes.
+
+* Focus Management:
+
+  * Focus is managed to ensure that users are directed to relevant content and interactive elements appropriately. For example, focus is moved to modals or dynamic content when it is opened.
+
+<br>
 
 # Testing
 
