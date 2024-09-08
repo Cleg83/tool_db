@@ -11,7 +11,8 @@
         <!-- Cards to display each category -->
         <div class="card z-depth-3 teal lighten-3">
             <div class="card-content black-text">
-                <a id="category-link-{{ category.id }}" href="{{ url_for('selected_category', tool_id=tool_id, subcategory_id=category.sub_cats.id, category_name=category.main_category_name|lower|replace(' ', '_')) }}">
+                <a id="category-link-{{ category.id }}" class="category-link"
+                    href="{{ url_for('selected_category', tool_id=tool_id, subcategory_id=category.sub_cats.id, category_name=category.main_category_name|lower|replace(' ', '_')) }}">
                     <span class="card-title">{{ category.main_category_name }}
                         <!-- Icons are dynamically rendered based on category name -->
                         <i class="{{ category_icons.get(category.main_category_name, 'fa-solid fa-folder-open') }} right" aria-hidden="true"></i>
