@@ -175,6 +175,10 @@ iframe:hover {
 }
 
 .cancel-link {
+    color: #505050;
+}
+
+.cancel-link:hover {
     color: #ef9a9a;
 }
 
