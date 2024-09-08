@@ -1027,12 +1027,59 @@ You now have a local copy of the project and can follow the Local Development st
 
 # Testing
 
+## Manual Testing
+
+For detailed manual testing, see [testing.md](/testing.md)
 
 ## Automated Testing
 
+### W3C
+
+All pages passed the html validation check:
+
+![w3c add category](tool_db/static/images/w3c-add_category.png)
+
+![w3c add main category](tool_db/static/images/w3c-add-main-category.png)
+
+![w3c add subcategory](tool_db/static/images/w3c-add-subcategory.png)
+
+![w3c add tool](tool_db/static/images/w3c-add-subcategory.png)
+
+![w3c categories](tool_db/static/images/w3c-categories.png)
+
+![w3c edit main category](tool_db/static/images/w3c-edit-main-category.png)
+
+![w3c edit password](tool_db/static/images/w3c-edit-password.png)
+
+![w3c edit subcategory](tool_db/static/images/w3c-edit-subcategory.png)
+
+![w3c edit tool](tool_db/static/images/w3c-edit-tool.png)
+
+![w3c edit username](tool_db/static/images/w3c-edit-username.png)
+
+![w3c glossary](tool_db/static/images/w3c-glossary.png)
+
+![w3c home](tool_db/static/images/w3c-home.png)
+
+![w3c login](tool_db/static/images/w3c-login.png)
+
+![w3c manage users](tool_db/static/images/w3c-manage-users.png)
+
+![w3c my toolbox](tool_db/static/images/w3c-my-toolbox.png)
+
+![w3c profile](tool_db/static/images/w3c-profile.png)
+
+![w3c register](tool_db/static/images/w3c-register.png)
+
+<br>
+
 ### Lighthouse 
 
-Lighthouse scores for all of the many pages are all in the 90s.
+Lighthouse scores for all of the many pages are all in the 90s. 
+
+  * Anomaly - Best practices score of 79 on the selected tool page due to Google's third party cookie policy. This is the only page with embedded iframes. If a tool is added without video links then the scores are all in he 90s.
+
+<br>
 
 ![lighthouse add tool](tool_db/static/images/lighthouse-add-tool.png)
 
