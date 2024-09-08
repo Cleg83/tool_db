@@ -440,8 +440,8 @@ The database for this project is designed to manage the relationships between us
 
 * Methods:
 
-  * set_password(password): Hashes and sets the password for a user.
-  * check_password(password): Checks the provided password against the stored hash.
+  * generate_password_hash(password, method="pbkdf2:sha256"): Hashes and sets the password for a user.
+  * check_password_hash(user.password_hash, password): Checks the provided password against the stored hash.
 
 * Relationships:
 
@@ -939,7 +939,8 @@ The Woodworker's Tool Database strives to adhere to the Web Content Accessibilit
 * Git: Version control used to manage the project codebase.
 * GitHub: The repository hosting service used for version control and will be used for future collaboration.
 * Heroku: The cloud platform where the app is deployed (more on deployment below).
-* Lucidchart: Used to create the Entity Relationship Diagram (ERD) to visualize the database structure.
+* Lucidchart: Used to create the Entity Relationship Diagram (ERD) to visualise the database structure.
+* Justinmid: USed to create the wireframes to help visualise this application. 
 
 # Deployment and Development
 
@@ -983,16 +984,20 @@ This application was deployed to Heroku using the following steps:
 
 7. Open the app: Once the deployment is successful, you can view your live app by clicking Open App at the top-right corner of the dashboard.
 
-### Local Development
+<br>
 
-
+## Local Development
 
 ### Extensions required
 
 * Flask
 * Flask-SQLAlchemy
 * Flask-Migrate
-* psycopg2-binary
+* psycopg2
+* Werkzeug
+* SQLAlchemy
+
+<br> 
 
 ### How to Fork
 
@@ -1002,9 +1007,25 @@ If you want to contribute to this project or create a personal version, you can 
 2. Click the Fork button on the upper-right corner of the repository page.
 3. The project will be copied to your GitHub account, and you can freely experiment with the code.
 
+<br>
+
 ### How to Clone
 
+To make a local copy of this repository:
 
+1. In the GitHub repository, click on the Code button.
+2. Copy the HTTPS URL provided.
+3. Open your terminal and run the following command:
+
+    * git clone https://github.com/your-username/your-repo-name.git
+
+4. Navigate into the cloned directory and run the following command:
+
+    * cd your-repo-name
+
+You now have a local copy of the project and can follow the Local Development steps to get started.
+
+<br>
 
 # Testing
 
@@ -1013,7 +1034,7 @@ If you want to contribute to this project or create a personal version, you can 
 
 ### Lighthouse 
 
-Lighthouse scares for each of the many pages are all in the 90s
+Lighthouse scores for each of the many pages are all in the 90s
 
 ![lighthouse add tool](tool_db/static/images/lighthouse-add-tool.png)
 ![lighthouse add tool](tool_db/static/images/lighthouse-categories.png)

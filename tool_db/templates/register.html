@@ -2,7 +2,7 @@
 {% set active_page = "login" %}
 {% block content %}
 
-<h3 class="white-text center-align" id="register-title">Register</h3>
+<h3 class="white-text center-align" id="register-title" aria-label="heading" aria-level="3">Register</h3>
 
 <div class="row card-panel teal lighten-3">
     <form id="register_form" class="col s12 add-tool-form" method="POST" action="{{ url_for('register') }}" aria-labelledby="register-title">
