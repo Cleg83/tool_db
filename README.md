@@ -20,6 +20,9 @@ Visit the deployed site [here](https://tool-db-72501f8e2b40.herokuapp.com/)
   * [Summary](#summary)
 
 * [User Stories](#user-stories)
+  * [New Users](#new-users)
+  * [Logged In Users](#logged-in-users)
+  * [Admin Users](#admin-users)
 
 * [Design](#design)
   * [Colour Scheme](#colour-scheme)
@@ -29,13 +32,15 @@ Visit the deployed site [here](https://tool-db-72501f8e2b40.herokuapp.com/)
     * [Tablet](#tablet)
     * [Mobile](#mobile)
 
-* [Database Schema](#database-schema)
-  * [ERD Diagram](#erd-diagram)
-  * [Models](#models)
-    * [MainCategory](#maincategory)
-    * [SubCategory](#subcategory)
-    * [Tool](#tool)
-    * [MyToolbox](#mytoolbox)
+* [Database](#database)
+  * [Database Technologies](#database-technologies)
+  * [Database Schema](#database-schema)
+    * [MainCategory Table](#maincategory-table)
+    * [Subcategory Table](#subcategory-table)
+    * [Tool Table](#tool-table)
+    * [User Table](#user-table)
+    * [MyToolbox Table](#mytoolbox-table)
+    * [ERD Diagram](#erd-diagram)
 
 * [Features](#features)
   * [Favicon](#favicon)
@@ -183,6 +188,133 @@ With its focus on user convenience and enhanced learning, the application aims t
 
 <br>
 
+# User Stories
+
+## New Users
+
+User Story 1: Explore Categories and Tools
+
+* As a new user, I want to browse through various tool categories and view tools within each category.
+* So that I can discover the types of tools available and their descriptions before deciding to register.
+
+  * Acceptance Criteria:
+
+    * The user can navigate to the "Categories" page from the main menu.
+    * The user can view a list of categories and select one to see a list of tools within that category.
+    * Each tool should have a name and a description.
+
+<br>
+
+User Story 2: Register for an Account
+
+* As a new user, I want to be able to register for a new account.
+* So that I can log in and access additional features like saving tools to a personal toolbox.
+
+  * Acceptance Criteria:
+
+    * The user can access the "Register" page from the login page or main menu.
+    * The user can enter a username, password, and confirm the password.
+    * The user receives a confirmation message upon successful registration and is redirected to the login page.
+
+<br>
+
+## Logged In Users
+
+User Story 3: View and Manage My Toolbox
+
+* As a logged-in user, I want to view the tools I have added to my toolbox and remove any tools I no longer want.
+* So that I can keep my toolbox organized and relevant to my needs.
+
+  * Acceptance Criteria:
+
+    * The user can access the "My Toolbox" page from the main menu.
+    * The user can see a list of tools they have added, including names, videos, and links.
+    * The user can remove tools from their toolbox with a "Remove" button.
+
+<br>
+
+User Story 4: Update My Profile
+
+* As a logged-in user, I want to update my username and password.
+* So that I can keep my account information current and secure.
+
+  * Acceptance Criteria:
+
+    * The user can access the "Profile" page from the main menu.
+    * The user can update their username by navigating to the "Change Username" section.
+    * The user can update their password by navigating to the "Change Password" section.
+    * The user receives a confirmation message upon successful updates.
+
+<br>
+
+## Admin Users
+
+User Story 5: Manage Users
+
+* As an admin user, I want to view a list of all users and delete users if necessary.
+* So that I can manage user accounts and ensure the integrity of the user base.
+
+  * Acceptance Criteria:
+
+    * The admin can access the "Manage Users" page from the main menu.
+    * The admin can see a list of all users, with options to delete each user.
+    * The admin receives a confirmation prompt before deleting a user to prevent accidental deletions.
+
+<br>
+
+User Story 6: Add New Tool
+
+* As an admin user, I want to add new tools to the database.
+* So that I can keep the tool catalog up to date with the latest tools available.
+
+  * Acceptance Criteria:
+
+    * The admin can access the "Add Tool" page from the main menu.
+    * The admin can fill out a form with tool details, including name, description, videos, and links.
+    * The admin receives a confirmation message upon successful addition of a new tool and the tool  appears in the relevant categories.
+
+<br>
+
+User Story 7: Add New Category
+
+* As an admin user, I want to add new categories to the tool database.
+* So that I can organize tools into relevant and up-to-date categories.
+
+  * Acceptance Criteria:
+
+    * The admin can access the "Add Category" page from the main menu.
+    * The admin can enter the name and description for the new category.
+    * The admin receives a confirmation message upon successful addition of the new category.
+    * The new category appears in the list of available categories on the relevant pages.
+
+<br>
+
+User Story 8: Edit Existing Tool
+
+  * As an admin user, I want to edit details of an existing tool. 
+  * So that I can correct information, update descriptions, or modify tool links and videos.
+
+  * Acceptance Criteria:
+
+    * The admin can access the "Edit Tool" page by selecting a tool from the list of tools.
+    * The admin can update the tool’s name, description, videos, and links.
+    * The admin receives a confirmation message upon successful update of the tool details.
+    * The updated information is reflected in the tool's details on the relevant pages.
+
+<br>
+
+User Story 9: Edit Existing Category
+
+* As an admin user, I want to edit details of an existing category.
+* So that I can keep category names and descriptions current and accurate.
+
+  * Acceptance Criteria:
+
+    * The admin can access the "Edit Category" page by selecting a category from the list of categories.
+    * The admin can update the category’s name and description.
+    * The admin receives a confirmation message upon successful update of the category details.
+    * The updated category information is reflected in the category listings and relevant pages.
+
 # Design
 
 ## Color Scheme
@@ -194,6 +326,145 @@ I wanted an elegant teal for the navbar and footer. White text in the navbar, bl
 Salmon pink was chosen as it complements the teal pleasantly and is less abrasive for flash messages than a harsh red. This was also used as the hover color for most buttons.
 
 Other than that: Dark grey for certain borders and all form buttons.
+
+<br>
+
+## Typography
+
+I opted to use a two sympathetic Google Fonts throughout the site.
+
+[Josefin Sans](https://fonts.google.com/specimen/Josefin+Sans?query=josef) for the logo, navbar and footer text. 
+
+![footer font example](tool_db/static/images/font2.png)
+
+![header font example](tool_db/static/images/font1.png)
+
+
+[Lato](https://fonts.google.com/specimen/Lato?query=lato) for the site content:
+
+![main font example](tool_db/static/images/font3.png)
+
+<br>
+
+# Database
+
+## Database Technologies
+
+The database for this project is powered by PostgreSQL, a powerful, open-source relational database management system (RDBMS). PostgreSQL was chosen due to its robustness, scalability, and ability to handle complex queries and relationships between tables. 
+
+In the development environment, the project uses a local PostgreSQL database, and in the production environment, it is deployed on Heroku Postgres, ensuring seamless integration with the web application.
+
+<br> 
+
+## Database Schema
+
+The database for this project is designed to manage the relationships between users, woodworking tools, tool categories, and a user's toolbox (where users can save their favorite tools). The following describes the structure and relationships between the tables in the database.
+
+### MainCategory Table
+
+* Purpose: Stores the primary categories for tools.
+
+* Columns:
+
+  * id: Integer, primary key, auto-increment.
+
+  * main_category_name: String (100), unique, not null. Stores the name of the main category (e.g., "Power Tools", "Hand Tools").
+
+* Relationships:
+
+  * One-to-many relationship with the SubCategory table. Each main category can have multiple subcategories.
+
+### SubCategory Table
+
+* Purpose: Stores subcategories within each main category.
+
+* Columns:
+  * id: Integer, primary key, auto-increment.
+  * sub_category_name: String (100), unique, not null. Stores the name of the subcategory (e.g., "Saws", "Drills").
+  * main_category_id: Foreign key, references id in the MainCategory table. This links each subcategory to its main category.
+
+* Relationships:
+  * Many-to-one relationship with the MainCategory table.
+  * One-to-many relationship with the Tool table. Each subcategory can have multiple tools.
+
+### Tool Table
+
+* Purpose: Stores information about the individual woodworking tools.
+
+* Columns:
+  * id: Integer, primary key, auto-increment.
+  * tool_name: String (50), unique, not null. Stores the name of the tool.
+  * tool_description: Text, not null. Contains a detailed description of the tool.
+  * tool_videos: JSON. Stores links to relevant videos for the tool (optional).
+  * tool_links: JSON. Stores purchase links or external references for the tool (optional).
+  * main_category_id: Foreign key, references id in the MainCategory table. This links the tool to its main category.
+  * sub_category_id: Foreign key, references id in the SubCategory table. This links the tool to its subcategory.
+
+* Relationships:
+
+  * Many-to-one relationship with both MainCategory and SubCategory tables.
+  * One-to-many relationship with the MyToolbox table. A tool can be saved in multiple user toolboxes.
+
+### User Table
+
+* Purpose: Stores user credentials for authentication and managing their toolbox.
+
+* Columns:
+  
+  * id: Integer, primary key, auto-increment.
+  * username: String (50), unique, not null. Stores the username for each user.
+  * password_hash: String (128), not null. Stores the hashed password for user authentication.
+
+* Methods:
+
+  * set_password(password): Hashes and sets the password for a user.
+  * check_password(password): Checks the provided password against the stored hash.
+
+* Relationships:
+
+  * One-to-many relationship with the MyToolbox table. Each user can save multiple tools in their toolbox.
+
+### MyToolbox Table
+
+* Purpose: Stores the tools that a user has saved to their toolbox.
+
+* Columns:
+
+  * id: Integer, primary key, auto-increment.
+  * user_id: Foreign key, references id in the User table. Links the toolbox entry to a specific user.
+  * tool_id: Foreign key, references id in the Tool table. Links the toolbox entry to a specific tool.
+
+* Relationships:
+
+  * Many-to-one relationship with both User and Tool tables. Each entry in this table links a user to a tool they have saved.
+
+### Relationships Summary:
+
+* MainCategory ↔ SubCategory: One-to-many relationship. Each main category has multiple subcategories.
+
+* SubCategory ↔ Tool: One-to-many relationship. Each subcategory can contain multiple tools.
+
+* User ↔ MyToolbox: One-to-many relationship. Each user can save multiple tools to their toolbox.
+
+* Tool ↔ MyToolbox: One-to-many relationship. Each tool can appear in multiple toolboxes.
+
+This structure ensures that users can explore tools based on their categories and save their favorite tools to their toolbox for easy reference.
+
+### Benefits of the Schema:
+
+* Scalability: The schema is designed to handle many users, tools, categories, and subcategories efficiently.
+
+* Normalisation: The separation of categories, subcategories, and tools avoids data redundancy.
+
+* Flexibility: The use of JSON columns allows easy addition of tool videos and purchase links without requiring additional tables.
+
+<br>
+
+### ERD Diagram
+
+The below ERD diagram further illustrates the relationships between the tables.
+
+![erd diagram](tool_db/static/images/erd.png)
 
 <br>
 
@@ -233,7 +504,9 @@ If a user logs in, the navbar and sidenav also display the features only availab
 
 ## Home Page
 
-The Home Page for displays a random tool card that changes every ten seconds. The card contains the tool name (which is a clickable link to the tool's page) and the tool description.
+The Home Page for displays a random tool card that changes every ten seconds (implemented using some Javascript; the home page is the only page that has custom JS).
+
+The card contains the tool name (which is a clickable link to the tool's page) and the tool description.
 
 ![default home page](tool_db/static/images/default-home.png)
 
