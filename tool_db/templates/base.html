@@ -93,7 +93,7 @@
                 <div class="col l4 offset-l2 s12">
                     <h5 class="black-text">Links</h5>
                     <ul>
-                        <li><a href="{{ url_for('home') }}" aria-label="Go to Home page">Home</a></li>
+                        <li class="{{'active' if active_page == 'home' }}"><a href="{{ url_for('home') }}" aria-label="Go to Home page">Home</a></li>
                         <li><a href="{{ url_for('categories') }}" aria-label="View Categories">Categories</a></li>
                         <li><a href="{{ url_for('glossary') }}" aria-label="Access Glossary">Glossary</a></li>
                         {% if "username" in session %}
