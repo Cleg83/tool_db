@@ -74,8 +74,8 @@ Visit the deployed site [here](https://tool-db-72501f8e2b40.herokuapp.com/)
       * [Step 3](#step-3)
     * [Edit Tool](#edit-tool)
     * [Delete Tool](#delete-tool)
-    * [Delete User](#delete-user)
-  * [Error Handling](#error-handling)
+    * [Manage Users](#manage-users)
+  * [Defense Defense Defense](#defense-defense-defense)
 
 * [Accessibility](#accessibility)
   * [Accessibility Overview](#accessibility-overview)
@@ -501,14 +501,14 @@ When a visitor to the site first lands on the page, the only four items in the n
 
 ![default navbar](tool_db/static/images/default-navbar.png)
 
-If a user logs in, the navbar and sidenav also display the features only available to registered users:
+If a user logs in, the navbar and sidenav also display the features only available to registered users (the navbar and sidebar also clearly show the active page):
 
 * My Toolbox
 * Profile
 
-![user navbar](tool_db/static/images/user-navbar.png)
+![user navbar](tool_db/static/images/navbar-active.png)
 
-![user sidenav](tool_db/static/images/user-sidenav.png)
+![user sidenav](tool_db/static/images/sidenav-active.png)
 
 <br>
 
@@ -573,7 +573,7 @@ Each tool has a page containing the name and description, as well as product lin
 
  ![user tool page](tool_db/static/images/user-selected-tool.png)
 
-
+ <br>
 
 ### Glossary
 
@@ -586,6 +586,8 @@ The tool name is a link to that tool's page and the description summary can be c
 Similarly to the tool page, a logged in user has the option to add the tool to My Toolbox from the glossary page:
 
 ![logged in glossary page](tool_db/static/images/user-glossary.png)
+
+<br>
 
 # Admin User
 
@@ -723,6 +725,48 @@ The form to edit a tool is in the same 3 step format as adding a tool, but the t
 <br>
 
 ![edit tool step 3](tool_db/static/images/edit-tool-step3.png)
+
+<br>
+
+### Delete Tool
+
+The delete tool button can only be found on the edit subcategory page:
+
+![delete tool location](tool_db/static/images/delete-tool-location.png)
+
+When the admin user clicks the button, this modal appears:
+
+![delete tool modal](tool_db/static/images/delete-tool.png)
+
+And if the tool is deleted, it is confirmed and the admin user is redirected to the categories page:
+
+![delete tool confirmation](tool_db/static/images/delete-tool-confirmation.png)
+
+<br>
+
+### Manage Users
+
+This is straightforward as I haven't yet incorporated the ability to reset the user's password, for now all the admin user can do is delete the user from the database:
+
+![manage users](tool_db/static/images/manage-users.png)
+
+Like deleting categories & tools, a modal is displayed confirming if the admin wishes to delete the user or not. If they delete the user, they are redirected back to the manage users page:
+
+![delete user confirmation](tool_db/static/images/delete-user-confirmation.png)
+
+<br>
+
+## Defense Defense Defense
+
+As there is user data and database integrity at stake, I have ensured ensured that a user who isn't logged in has no access to any part of the site reserved for logged in or admin users.
+
+I have specified that the role needs to be admin in order for a user to access that page. If a crafty user decides to manually enter the url for any of these pages (adding tools, categories, managing users etc.), this message is displayed:
+
+![no permission message](tool_db/static/images/no-permission-message.png)
+
+There is a more polite message displayed if the user manually types a url where the stakes would not be so high if they were to gain access:
+
+![no permission message but more polite](tool_db/static/images/no-permission-polite.png)
 
 <br>
 
