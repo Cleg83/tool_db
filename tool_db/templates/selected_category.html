@@ -10,10 +10,10 @@
 <div class="content-wrapper">
     <h5 class="white-text">Tools in {{ main_category.main_category_name }}</h5>
     {% if tools %}
-    <ul class="collection styled-links" role="list" aria-labelledby="tools-list">
+    <ul class="collection styled-links" aria-labelledby="tools-list">
         <h4 id="tools-list" class="sr-only">Tools List</h4>
         {% for tool in tools %}
-        <li class="collection-item" role="listitem">
+        <li class="collection-item" aria-label="tool entry">
             <a href="{{ url_for('tool', tool_id=tool.id) }}" aria-label="View details for {{ tool.tool_name }}">
                 <h5>{{ tool.tool_name }}</h5>
             </a>
@@ -30,7 +30,7 @@
         {% endfor %}
     </ul>
     {% else %}
-    <p class="white center-align" role="status" aria-live="polite">No tools found for this subcategory.</p>
+    <p class="white center-align" aria-label="No tools found in this category message" aria-live="polite">No tools found for this subcategory.</p>
     {% endif %}
 </div>
 
