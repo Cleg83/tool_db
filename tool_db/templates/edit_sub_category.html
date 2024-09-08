@@ -32,7 +32,7 @@
                     </option>
                     {% endfor %}
                 </select>
-                <label id="main_category_label" for="main_category"><span class="sr-only">Choose Main Category</span></label>
+                <label id="main_category_label" for="main_category" class="black-text"><span>Choose Main Category</span></label>
             </div>
         </div>
         <!-- tool list -->
@@ -63,7 +63,7 @@
                 <button type="submit" class="btn-large edit-button white-text form-btn" aria-label="Save changes">
                     Save changes <i class="fa-solid fa-folder-plus right"></i>
                 </button>
-                <p>Changed your mind?
+                <p class="white-text">Changed your mind?
                     <br>
                     <a href="{{ url_for('categories') }}" class="delete-small"
                         aria-label="Cancel and redirect to categories page">

@@ -1079,3 +1079,15 @@ Lighthouse scores for all of the many pages are all in the 90s.
 <br>
 
 ![lighthouse selected tool, no iframe](tool_db/static/images/lighthouse-selected-tool-no-iframe.png)
+<br> 
+
+![lighthouse login ](tool_db/static/images/lighthouse-login.png)
+
+<br>
+
+![lighthouse register ](tool_db/static/images/lighthouse-register.png)
+
+![lighthouse edit main category ](tool_db/static/images/lighthouse-edit-main-category.png)
+
+![lighthouse edit subcategory ](tool_db/static/images/lighthouse-edit-subcategory.png)
+
