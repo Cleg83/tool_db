@@ -27,12 +27,9 @@ Visit the deployed site [here](https://tool-db-72501f8e2b40.herokuapp.com/)
   * [Admin Users](#admin-users)
 
 * [Design](#design)
-  * [Colour Scheme](#colour-scheme)
+  * [Color Scheme](#color-scheme)
   * [Typography](#typography)
   * [Wireframes](#wireframes)
-    * [Desktop](#desktop)
-    * [Tablet](#tablet)
-    * [Mobile](#mobile)
 
 * [Database](#database)
   * [Database Technologies](#database-technologies)
@@ -58,7 +55,8 @@ Visit the deployed site [here](https://tool-db-72501f8e2b40.herokuapp.com/)
 * [Logged In User Features](#logged-in-user-features)
   * [My Toolbox](#my-toolbox)
   * [Profile](#profile)
-    * [Edit Profile](#edit-profile)
+    * [Edit Username](#edit-username)
+    * [Edit Password](#edit-password)
     * [Delete Profile](#delete-profile)
   * [Admin Features](#admin-user)
     * [Admin Navbar](#admin-navbar)
@@ -66,9 +64,9 @@ Visit the deployed site [here](https://tool-db-72501f8e2b40.herokuapp.com/)
     * [Add Main Category](#add-main-category)
     * [Edit Main Category](#edit-main-category)
     * [Delete Main Category](#delete-main-category)
-    * [Add Sub Category](#add-sub-category)
-    * [Edit Sub Category](#edit-sub-category)
-    * [Delete Sub Category](#delete-sub-category)
+    * [Add Subcategory](#add-subcategory)
+    * [Edit Subcategory](#edit-subcategory)
+    * [Delete Subcategory](#delete-subcategory)
     * [Add Tool](#add-tool)
       * [Step 1](#step-1)
       * [Step 2](#step-2)
@@ -358,6 +356,20 @@ I opted to use a two sympathetic Google Fonts throughout the site.
 
 <br>
 
+## Wireframes
+
+Wireframes were created using Justinmind:
+
+![home wireframe](tool_db/static/images/home-wireframe.png)
+
+<br>
+
+![mobile sidenav wireframe](tool_db/static/images/mobile-sidenav-wireframe.png)
+
+<br>
+
+![form example wireframe](tool_db/static/images/form-example-wireframe.png)
+
 # Database
 
 ## Database Technologies
@@ -471,7 +483,7 @@ This structure ensures that users can explore tools based on their categories an
 
 <br>
 
-### ERD Diagram
+### ERD 
 
 The below Entity Relationship Diagram further illustrates the relationships between the tables.
 
@@ -619,6 +631,60 @@ The register page / form requires the user to confirm their password and validat
 <br>
 
 # Logged In User Features
+
+## My Toolbox
+
+The My Toolbox is a unique feature that allows the user to store their favourite tools in a handy table:
+
+![my toolbox](tool_db/static/images/my-toolbox.png)
+
+The table includes a link to the tool's page (by clicking the name), product links to purchase the tool, links to the videos and the ability to remove the tool from the toolbox.
+
+If the user attempts to add a tool that is already in the toolbox, the following message is displayed:
+
+![tool already in toolbox](tool_db/static/images/tool-in-toolbox.png)
+
+<br>
+
+## Profile
+
+The profile page allows the user to update their username and / or password as well as giving them the option of deleting the profile:
+
+![profile page](tool_db/static/images/profile.png)
+
+
+### Edit Username
+
+From here the user can change their username via the below form:
+
+![edit username](tool_db/static/images/edit-username.png)
+
+<br>
+
+### Edit Password
+
+No prizes for guessing what the user can do here:
+
+![edit password](tool_db/static/images/edit-password.png)
+
+Once a user has updated either their username or password, a confirmation message is displayed and they are redirected back to the profile page (password update confirmation shown below):
+
+![profile update confirmation](tool_db/static/images/profile-update-confirmation.png)
+
+<br>
+
+### Delete Profile
+
+This will delete the user's profile. Like all other delete functions, a modal is displayed asking the user to confirm deletion:
+
+![delete profile modal](tool_db/static/images/delete-profile-modal.png)
+
+
+If they delete the profile, the below message is displayed and they are redirected to the default home page:
+
+![profile update confirmation](tool_db/static/images/delete-profile-confirmation.png)
+
+<br>
 
 # Admin User
 
@@ -849,6 +915,96 @@ The Woodworker's Tool Database strives to adhere to the Web Content Accessibilit
   * Focus is managed to ensure that users are directed to relevant content and interactive elements appropriately. For example, focus is moved to modals or dynamic content when it is opened.
 
 <br>
+
+# Technologies
+
+## Languages
+
+* Python
+* HTML
+* JavaScript
+* CSS
+
+### Frameworks, Libraries and Programs
+
+* Flask: A popular web application framework in Python, used to build the backend of the app.
+* Flask-SQLAlchemy: An extension for Flask that adds support for SQLAlchemy (the Python SQL toolkit), which is used to interact with the PostgreSQL database.
+* PostgreSQL: The relational database used to store information about tools, categories, users, and user toolboxes.
+* Flask-Migrate: An extension that handles SQLAlchemy database migrations for Flask applications using Alembic.
+* Werkzeug: A comprehensive WSGI web application library used here for security utilities like password hashing and checking (generate_password_hash and check_password_hash).
+* SQLAlchemy: The ORM for Python that allows for efficient database queries and interactions with the PostgreSQL database.
+* Jinja2: A templating engine for Python, integrated with Flask to render HTML templates dynamically.
+* Random Module: A built-in Python module used to implement randomness in the application.
+* Itertools Module: A built-in Python module used for efficient looping and grouping operations (groupby).
+* Git: Version control used to manage the project codebase.
+* GitHub: The repository hosting service used for version control and will be used for future collaboration.
+* Heroku: The cloud platform where the app is deployed (more on deployment below).
+* Lucidchart: Used to create the Entity Relationship Diagram (ERD) to visualize the database structure.
+
+# Deployment and Development
+
+## Deployment
+
+This application was deployed to Heroku using the following steps:
+
+1. Set up a Heroku account: Log in to Heroku or create a new account.
+
+2. Create a new Heroku app through the Heroku Dashboard:
+
+  * In the Heroku dashboard, click New > Create New App.
+  * Choose a unique name for your app and select a region.
+
+3. Add PostgreSQL:
+
+  * In the app dashboard, go to the Resources tab.
+  * In the "Add-ons" section, search for Heroku Postgres and select the Hobby Dev - Free plan.
+
+4. Set up environment variables:
+
+  * In the Settings tab, click Reveal Config Vars under Config Vars.
+  * Add the following keys and values:
+    * SECRET_KEY: Your secret key for the Flask app.
+    * DEBUG: Set this to False for production.
+    * DATABASE_URL: Automatically created when PostgreSQL is added.
+    * PORT: Set this to 5000 (or leave as default).
+    * IP: Set this to 0.0.0.0.
+
+5. Connect your GitHub repository:
+
+  * In the Deploy tab, scroll down to Deployment Method and select GitHub.
+  * Search for your repository and connect it.
+  * Enable Automatic Deploys (optional) or manually deploy the branch.
+
+6. Run migrations:
+
+  * In the More dropdown at the top-right corner of your app dashboard, select Run Console.
+  * Type the following to apply database migrations:
+    * flask db upgrade
+
+7. Open the app: Once the deployment is successful, you can view your live app by clicking Open App at the top-right corner of the dashboard.
+
+### Local Development
+
+
+
+### Extensions required
+
+* Flask
+* Flask-SQLAlchemy
+* Flask-Migrate
+* psycopg2-binary
+
+### How to Fork
+
+If you want to contribute to this project or create a personal version, you can fork the repository on GitHub (I will welcome any feedback, improvements or help in general really).
+
+1. Navigate to the repository on GitHub.
+2. Click the Fork button on the upper-right corner of the repository page.
+3. The project will be copied to your GitHub account, and you can freely experiment with the code.
+
+### How to Clone
+
+
 
 # Testing
 
