@@ -392,7 +392,7 @@ def edit_tool(tool_id):
     return render_template("edit_tool_step1.html", tool=tool, main_categories=main_categories, tool_videos=tool_videos, product_links=product_links)
 
 
-@app.route("/delete_tool/<int:tool_id>")
+@app.route("/delete_tool/<int:tool_id>", methods=["GET", "POST"])
 def delete_tool(tool_id):
 
     # Check if current user is admin
