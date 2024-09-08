@@ -1087,7 +1087,16 @@ Lighthouse scores for all of the many pages are all in the 90s.
 
 ![lighthouse register ](tool_db/static/images/lighthouse-register.png)
 
+<br>
+
 ![lighthouse edit main category ](tool_db/static/images/lighthouse-edit-main-category.png)
 
+<br>
+
 ![lighthouse edit subcategory ](tool_db/static/images/lighthouse-edit-subcategory.png)
+
+<br>
+
+![lighthouse edit password ](tool_db/static/images/lighthouse-edit-password.png)
+
 
