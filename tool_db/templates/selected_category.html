@@ -2,8 +2,8 @@
 {% set active_page = "categories" %}
 {% block content %}
 
-<header class="header-div white-text center" aria-label="heading" aria-level="3">
-    <h3 class="white-text center-align" id="main-category-title">{{ main_category.main_category_name }}</h3>
+<header class="header-div white-text center">
+    <h3 class="white-text center-align" id="main-category-title" aria-label="heading" aria-level="3">{{ main_category.main_category_name }}</h3>
     <p aria-labelledby="main-category-title">(Main Category)</p>
 </header>
 
@@ -11,7 +11,6 @@
     <h5 class="white-text">Tools in {{ main_category.main_category_name }}</h5>
     {% if tools %}
     <ul class="collection styled-links" aria-labelledby="tools-list">
-        <h4 id="tools-list" class="sr-only">Tools List</h4>
         {% for tool in tools %}
         <li class="collection-item" aria-label="tool entry">
             <a href="{{ url_for('tool', tool_id=tool.id) }}" aria-label="View details for {{ tool.tool_name }}">
