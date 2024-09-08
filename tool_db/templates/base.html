@@ -22,20 +22,21 @@
             </a>
             <a href="#" data-target="nav-collapse" class="sidenav-trigger left" aria-label="Open Navigation Menu"><i class="fa-solid fa-bars"></i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down" role="menubar">
-                <li class="{{'active' if active_page == 'home' }}"><a href="{{ url_for('home') }}" role="menuitem">Home</a></li>
-                <li class="{{'active' if active_page == 'categories' }}"><a href="{{ url_for('categories') }}" role="menuitem">Categories</a></li>
-                <li class="{{'active' if active_page == 'glossary' }}"><a href="{{ url_for('glossary') }}" role="menuitem">Glossary</a></li>
+                <li class="center-align">The Woodworker's Tool Database</li>
+                <li class="{{'active' if active_page == 'home' }}"><a href="{{ url_for('home') }}" aria-label="Go to Home page">Home</a></li>
+                <li class="{{'active' if active_page == 'categories' }}"><a href="{{ url_for('categories') }}"  aria-label="View Categories">Categories</a></li>
+                <li class="{{'active' if active_page == 'glossary' }}"><a href="{{ url_for('glossary') }}" aria-label="Access Glossary">Glossary</a></li>
                 {% if "username" in session %}
-                <li class="{{'active' if active_page == 'my_toolbox' }}"><a href="{{ url_for('my_toolbox') }}" role="menuitem">My Toolbox</a></li>
-                <li class="{{'active' if active_page == 'profile' }}"><a href="{{ url_for('profile') }}" role="menuitem">Profile</a></li>
+                <li class="{{'active' if active_page == 'my_toolbox' }}"><a href="{{ url_for('my_toolbox') }}" aria-label="Go to My Toolbox">My Toolbox</a></li>
+                <li class="{{'active' if active_page == 'profile' }}"><a href="{{ url_for('profile') }}" aria-label="View Profile">Profile</a></li>
                     {% if session.get("role") == "admin" %}
-                    <li class="{{'active' if active_page == 'add_category' }}"><a href="{{ url_for('add_category') }}" role="menuitem">Add Category</a></li>
-                    <li class="{{'active' if active_page == 'add_tool' }}"><a href="{{ url_for('add_tool') }}" role="menuitem">Add Tool</a></li>
-                    <li class="{{'active' if active_page == 'manage_users' }}"><a href="{{ url_for('manage_users')}}" role="menuitem">Manage Users</a></li>
+                    <li class="{{'active' if active_page == 'add_category' }}"><a href="{{ url_for('add_category') }}" aria-label="Add a New Category">Add Category</a></li>
+                    <li class="{{'active' if active_page == 'add_tool' }}"><a href="{{ url_for('add_tool') }}"  aria-label="Add a New Tool">Add Tool</a></li>
+                    <li class="{{'active' if active_page == 'manage_users' }}"><a href="{{ url_for('manage_users')}}"  aria-label="Manage Users">Manage Users</a></li>
                     {% endif %}
-                <li><a href="{{ url_for('logout') }}" role="menuitem">Log Out</a></li>
+                <li><a href="{{ url_for('logout') }}" aria-label="Log Out">Log Out</a></li>
                 {% else %}
-                <li class="{{'active' if active_page == 'login' }}"><a href="{{ url_for('login') }}" role="menuitem">Log In</a></li>
+                <li class="{{'active' if active_page == 'login' }}"><a href="{{ url_for('login') }}" aria-label="Log In">Log In</a></li>
                 {% endif %}
             </ul>
         </div>
@@ -44,20 +45,20 @@
     <!-- mobile collapsible sidenav -->
     <ul class="sidenav" id="nav-collapse">
         <li class="center-align">The Woodworker's Tool Database</li>
-        <li class="{{'active' if active_page == 'home' }}"><a href="{{ url_for('home') }}" role="menuitem">Home</a></li>
-        <li class="{{'active' if active_page == 'categories' }}"><a href="{{ url_for('categories') }}" role="menuitem">Categories</a></li>
-        <li class="{{'active' if active_page == 'glossary' }}"><a href="{{ url_for('glossary') }}" role="menuitem">Glossary</a></li>
+        <li class="{{'active' if active_page == 'home' }}"><a href="{{ url_for('home') }}" aria-label="Go to Home page">Home</a></li>
+        <li class="{{'active' if active_page == 'categories' }}"><a href="{{ url_for('categories') }}"  aria-label="View Categories">Categories</a></li>
+        <li class="{{'active' if active_page == 'glossary' }}"><a href="{{ url_for('glossary') }}" aria-label="Access Glossary">Glossary</a></li>
         {% if "username" in session %}
-        <li class="{{'active' if active_page == 'my_toolbox' }}"><a href="{{ url_for('my_toolbox') }}" role="menuitem">My Toolbox</a></li>
-        <li class="{{'active' if active_page == 'profile' }}"><a href="{{ url_for('profile') }}" role="menuitem">Profile</a></li>
+        <li class="{{'active' if active_page == 'my_toolbox' }}"><a href="{{ url_for('my_toolbox') }}" aria-label="Go to My Toolbox">My Toolbox</a></li>
+        <li class="{{'active' if active_page == 'profile' }}"><a href="{{ url_for('profile') }}" aria-label="View Profile">Profile</a></li>
             {% if session.get("role") == "admin" %}
-            <li class="{{'active' if active_page == 'add_category' }}"><a href="{{ url_for('add_category') }}" role="menuitem">Add Category</a></li>
-            <li class="{{'active' if active_page == 'add_tool' }}"><a href="{{ url_for('add_tool') }}" role="menuitem">Add Tool</a></li>
-            <li class="{{'active' if active_page == 'manage_users' }}"><a href="{{ url_for('manage_users')}}" role="menuitem">Manage Users</a></li>
+            <li class="{{'active' if active_page == 'add_category' }}"><a href="{{ url_for('add_category') }}" aria-label="Add a New Category">Add Category</a></li>
+            <li class="{{'active' if active_page == 'add_tool' }}"><a href="{{ url_for('add_tool') }}"  aria-label="Add a New Tool">Add Tool</a></li>
+            <li class="{{'active' if active_page == 'manage_users' }}"><a href="{{ url_for('manage_users')}}"  aria-label="Manage Users">Manage Users</a></li>
             {% endif %}
-        <li><a href="{{ url_for('logout') }}" role="menuitem">Log Out</a></li>
+        <li><a href="{{ url_for('logout') }}" aria-label="Log Out">Log Out</a></li>
         {% else %}
-        <li class="{{'active' if active_page == 'login' }}"><a href="{{ url_for('login') }}" role="menuitem">Log In</a></li>
+        <li class="{{'active' if active_page == 'login' }}"><a href="{{ url_for('login') }}" aria-label="Log In">Log In</a></li>
         {% endif %}
     </ul>
 
