@@ -52,9 +52,10 @@ Visit the deployed site [here](https://tool-db-72501f8e2b40.herokuapp.com/)
   * [Categories](#categories)
   * [Tools](#tools)
   * [Glossary](#glossary) 
-* [Registered User Features](#registered-user-features)
-  * [Register](#register)
   * [Login](#login)
+  * [Register](#register)
+
+* [Logged In User Features](#logged-in-user-features)
   * [My Toolbox](#my-toolbox)
   * [Profile](#profile)
     * [Edit Profile](#edit-profile)
@@ -588,6 +589,36 @@ Similarly to the tool page, a logged in user has the option to add the tool to M
 ![logged in glossary page](tool_db/static/images/user-glossary.png)
 
 <br>
+
+### Login
+
+If the user clicks the login link from the navbar or footer, they are redirected to this page: 
+
+![log in page](tool_db/static/images/login.png)
+
+On successful login, the user is redirected to the home page and a message is shown confirming that they are logged in:
+
+![log in confirmation and redirect](tool_db/static/images/login-confirmation.png)
+
+Validation is built into the form, both through Materialize's built in validation class and also by specifying the pattern required:
+
+![log in form validation](tool_db/static/images/login-validation.png)
+
+If the user has not yet registered a profile, there is handy redirect underneath the form. Please note the cancel link under the login button: This link is on all form pages and will intuitively redirect the user to the most appropriate page.
+
+![register page redirect link](tool_db/static/images/register-redirect.png)
+
+<br>
+
+### Register
+
+The register page / form requires the user to confirm their password and validation is built in to ensure they match:
+
+![register form validation](tool_db/static/images/register-validation.png)
+
+<br>
+
+# Logged In User Features
 
 # Admin User
 
