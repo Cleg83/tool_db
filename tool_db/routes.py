@@ -404,10 +404,9 @@ def delete_tool(tool_id):
     tool = Tool.query.get_or_404(tool_id)
     db.session.delete(tool)
     db.session.commit()
-    # Fetch all tools to ensure glossary displays correctly when redirected
-    tools = Tool.query.order_by(Tool.tool_name).all()
+
     flash(f"Tool deleted: { tool.tool_name }", "success")
-    return render_template("home.html", tools=tools)
+    return redirect(url_for("categories"))
 
 
 @app.route("/manage_users")

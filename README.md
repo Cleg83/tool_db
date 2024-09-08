@@ -42,7 +42,7 @@ Visit the deployed site [here](https://tool-db-72501f8e2b40.herokuapp.com/)
     * [Tool Table](#tool-table)
     * [User Table](#user-table)
     * [MyToolbox Table](#mytoolbox-table)
-    * [ERD Diagram](#erd-diagram)
+    * [ERD](#erd)
 
 * [Features](#features)
   * [Favicon](#favicon)
@@ -53,6 +53,8 @@ Visit the deployed site [here](https://tool-db-72501f8e2b40.herokuapp.com/)
   * [Tools](#tools)
   * [Glossary](#glossary) 
 * [Registered User Features](#registered-user-features)
+  * [Register](#register)
+  * [Login](#login)
   * [My Toolbox](#my-toolbox)
   * [Profile](#profile)
     * [Edit Profile](#edit-profile)
@@ -470,9 +472,9 @@ This structure ensures that users can explore tools based on their categories an
 
 ### ERD Diagram
 
-The below ERD diagram further illustrates the relationships between the tables.
+The below Entity Relationship Diagram further illustrates the relationships between the tables.
 
-![erd diagram](tool_db/static/images/erd.png)
+![erd](tool_db/static/images/erd.png)
 
 <br>
 
@@ -711,7 +713,7 @@ The final step involves them choosing a subcategory from the dropdown (only the 
 
 ### Edit Tool
 
-The form to edit a tool is in the same 3 step format as adding a tool but the tool details are pre-populated in every step:
+The form to edit a tool is in the same 3 step format as adding a tool, but the tool details are pre-populated in every step:
 
 ![edit tool step 1](tool_db/static/images/edit-tool-step1.png)
 <br>
