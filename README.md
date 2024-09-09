@@ -2,7 +2,7 @@
 
 ### The Woodworker's Tool Database is an incredible new resource for woodworkers featuring a comprehensive tool glossary the ability for registered users to save their favourite tools for easy reference!
 
-Visit the deployed site <a href="https://tool-db-72501f8e2b40.herokuapp.com/" target=_blank>here</a>
+Visit the deployed site <a href="https://tool-db-72501f8e2b40.herokuapp.com/" target="_blank">here</a>
 
 <br>
 
