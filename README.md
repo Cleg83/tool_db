@@ -95,9 +95,9 @@ Visit the deployed site [here](https://tool-db-72501f8e2b40.herokuapp.com/)
 * [Testing](#testing)
   * [Manual Testing](#manual-testing)
   * [Automated Testing](#automated-testing)
-    * [W3C](#W3C)
+    * [W3C](#w3c)
     * [Lighthouse](#lighthouse)
-    * [JS-Hint](#js-hint)
+    * [JSHint](#jshint)
   * [Bugs](#Bugs)
   
 * [Credits](#credits)
@@ -1047,6 +1047,8 @@ All pages passed the html validation check:
 
 ![w3c categories](tool_db/static/images/w3c-categories.png)
 
+![w3c css](tool_db/static/images/w3c-css.png)
+
 ![w3c edit main category](tool_db/static/images/w3c-edit-main-category.png)
 
 ![w3c edit password](tool_db/static/images/w3c-edit-password.png)
@@ -1145,5 +1147,13 @@ Lighthouse scores for all of the many pages are all in the 90s.
 <br>
 
 ![lighthouse edit password ](tool_db/static/images/lighthouse-edit-password.png)
+
+<br>
+
+## JSHint
+
+![jshint 1 ](tool_db/static/images/jshint1.png)
+
+![jshint 2 ](tool_db/static/images/jshint2.png)
 
 
