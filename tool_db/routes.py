@@ -256,7 +256,7 @@ def selected_subcategory(subcategory_id):
         "selected_subcategory.html", 
         subcategory=subcategory, 
         tools=tools,
-        main_category=main_category  # Passing the main category to the template
+        main_category=main_category 
     )
 
 

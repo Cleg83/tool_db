@@ -1,10 +1,10 @@
 ![Screenshot of The Woodworker's Tool DB on several screen sizes](tool_db/static/images/am-i-res.png)
 
-### The Woodworker's Tool Database is an incredible new resource for woodworkers featuring a comprehensive tool glossary the ability for registered users to save their favourite tools and videos!
+### The Woodworker's Tool Database is an incredible new resource for woodworkers featuring a comprehensive tool glossary the ability for registered users to save their favourite tools for easy reference!
 
-Visit the deployed site [here](https://tool-db-72501f8e2b40.herokuapp.com/)
+Visit the deployed site <a href="https://tool-db-72501f8e2b40.herokuapp.com/" target=_blank>here</a>
 
-- - -
+<br>
 
 ## CONTENTS
 
@@ -98,11 +98,9 @@ Visit the deployed site [here](https://tool-db-72501f8e2b40.herokuapp.com/)
     * [W3C](#w3c)
     * [Lighthouse](#lighthouse)
     * [JSHint](#jshint)
-  * [Bugs](#Bugs)
+  * [Bugs](#bugs)
   
 * [Credits](#credits)
-
-- - 
 
 <br>
 
@@ -360,13 +358,19 @@ I opted to use a two sympathetic Google Fonts throughout the site.
 
 Wireframes were created using Justinmind:
 
+Home page wireframe
+
 ![home wireframe](tool_db/static/images/home-wireframe.png)
 
 <br>
 
+Mobile sidenav wireframe
+
 ![mobile sidenav wireframe](tool_db/static/images/mobile-sidenav-wireframe.png)
 
 <br>
+
+Form example wireframe
 
 ![form example wireframe](tool_db/static/images/form-example-wireframe.png)
 
@@ -1029,7 +1033,7 @@ You now have a local copy of the project and can follow the Local Development st
 
 ## Manual Testing
 
-For detailed manual testing, see [testing.md](/testing.md)
+For detailed manual testing, see <a href="https://github.com/Cleg83/tool_db/blob/main/testing.md" target="_blank">testing.md</a>
 
 ## Automated Testing
 
@@ -1037,7 +1041,7 @@ For detailed manual testing, see [testing.md](/testing.md)
 
 All pages passed the html validation check:
 
-![w3c add category](tool_db/static/images/w3c-add_category.png)
+![w3c add category](tool_db/static/images/w3c-add-category.png)
 
 ![w3c add main category](tool_db/static/images/w3c-add-main-category.png)
 
@@ -1156,4 +1160,31 @@ Lighthouse scores for all of the many pages are all in the 90s.
 
 ![jshint 2 ](tool_db/static/images/jshint2.png)
 
+<br>
 
+## Bugs
+
+The only slight annoyance is that when a category tool card is expanded, the screen snaps to the top of the tool card. Not a major issue but one that will be fixed in future versions.
+
+<br>
+
+# Credits
+
+Below is a list of resources I found enormously helpful when building this project:
+
+  * <a href="https://www.w3schools.com/python/" target="_blank">W3Schools Python</a>
+  * <a href="https://flask.palletsprojects.com/en/3.0.x/" target="_blank">Flask Docs</a>
+  * <a href="https://www.youtube.com/watch?v=yBDHkveJUf4" target="_blank">This</a> lengthy flask tutorial has lots of useful advice.
+  * <a href="https://freecodecamp.org">Free Code Camp</a> for lots of amazing free resources.
+  * <a href="https://materializecss.com/">Materialize</a> invaluable for this site's design.
+  * 
+  *
+  *
+  *
+  *
+  *
+  *
+  *
+  *
+  *
+  * 
