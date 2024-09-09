@@ -1019,11 +1019,11 @@ To make a local copy of this repository:
 2. Copy the HTTPS URL provided.
 3. Open your terminal and run the following command:
 
-    * git clone https://github.com/your-username/your-repo-name.git
+    * `git clone https://github.com/your-username/your-repo-name.git`
 
 4. Navigate into the cloned directory and run the following command:
 
-    * cd your-repo-name
+    * `cd your-repo-name`
 
 You now have a local copy of the project and can follow the Local Development steps to get started.
 
