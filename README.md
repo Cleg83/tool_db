@@ -1175,16 +1175,7 @@ Below is a list of resources I found enormously helpful when building this proje
   * <a href="https://www.w3schools.com/python/" target="_blank">W3Schools Python</a>
   * <a href="https://flask.palletsprojects.com/en/3.0.x/" target="_blank">Flask Docs</a>
   * <a href="https://www.youtube.com/watch?v=yBDHkveJUf4" target="_blank">This</a> lengthy flask tutorial has lots of useful advice.
-  * <a href="https://freecodecamp.org">Free Code Camp</a> for lots of amazing free resources.
-  * <a href="https://materializecss.com/">Materialize</a> invaluable for this site's design.
-  * 
-  *
-  *
-  *
-  *
-  *
-  *
-  *
-  *
-  *
-  * 
+  * <a href="https://freecodecamp.org" target="_blank">Free Code Camp</a> for lots of amazing free resources.
+  * <a href="https://materializecss.com/" target="_blank">Materialize</a> invaluable for this site's design.
+  * <a href="https://www.postgresql.org/docs/" target="_blank">Postgres docs</a>
+  * Both the relational and non-relational walkthrough projects from the <a href="https://codeinstitute.net/" target="_blank">Code Institute</a> course I am currently studying on.
