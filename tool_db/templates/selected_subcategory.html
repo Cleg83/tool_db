@@ -5,13 +5,12 @@
 
 {% block content %}
 <header class="header-div white-text center">
-    <h3 class="white-text center-align" id="subcategory-title" aria-label="heading" aria-level="3">{{ subcategory.sub_category_name }} (Subcategory)</h3>
+    <h3 class="white-text center-align" id="subcategory-title" aria-label="heading" aria-level="3">{{ subcategory.sub_category_name }}</h3>
     <br>
-    <span id="main-category-label">Main Category: {{ main_category.main_category_name }}</span>
 </header>
 
 <div class="content-wrapper">
-    <h5 class="white-text">Tools in subcategory: {{ subcategory.sub_category_name }}</h5>
+    <h5 class="white-text">Tools in {{ main_category.main_category_name }} > {{ subcategory.sub_category_name }}</h5>
     {% if tools %}
     <ul class="collection styled-links" aria-labelledby="tools-list">
         {% for tool in tools %}
