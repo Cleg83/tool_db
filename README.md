@@ -1170,12 +1170,6 @@ The only slight annoyance is that when a category tool card is expanded, the scr
 
 # Credits
 
-Tool definitions are courtesy of the below:
-
-* <a href="https://en.wikipedia.org/wiki/Main_Page" target="_blank">Wikipedia</a>
-* <a href="https://www.finewoodworking.com/" target="_blank">Fine Woodworking</a>
-* <a href="https://www.google.com/" target="_blank">Google AI Overview</a>
-
 Below is a list of resources I found enormously helpful when building this project:
 
   * <a href="https://www.w3schools.com/python/" target="_blank">W3Schools Python</a>
