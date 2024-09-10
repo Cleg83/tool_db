@@ -552,7 +552,11 @@ The footer links move to inline style on smaller screens and the footer also con
 
 The credits for the tool descriptions are all listed on the credits page which can be accessed via the credits link in the footer:
 
+![credits-page](tool_db/static/images/credits-page.png)
 
+As the credits page opens in a separate browser tab, I have simplified the footer by removing the links but keeping the contact section:
+
+![credits-page](tool_db/static/images/credits-page-footer.png)
 
 <br>
 
