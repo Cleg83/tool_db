@@ -95,10 +95,6 @@ body {
     margin-bottom: 0;
 }
 
-.home-card-title {
-    margin-bottom: 0px;
-}
-
 iframe {
     border-radius: 4px;
     border: 3px solid #00695c;
@@ -261,6 +257,7 @@ footer li a:hover {
 .home-card-link {
     color: #00695c;
     font-weight: bold;
+    margin-bottom: 10px;
 }
 
 .summary-small {
