@@ -45,6 +45,7 @@ Visit the deployed site <a href="https://tool-db-72501f8e2b40.herokuapp.com/" ta
   * [Favicon](#favicon)
   * [Navbar](#navbar)
   * [Footer](#footer)
+  * [Credits Page](#credits-page)
   * [Home Page](#home-page)
   * [Categories](#categories)
   * [Tools](#tools)
@@ -544,6 +545,15 @@ Logged in:
 The footer links move to inline style on smaller screens and the footer also contains a contact email address for the site admin and also copyright information.
 
 ![user footer small](tool_db/static/images/user-footer-small.png)
+
+<br>
+
+## Credits Page
+
+The credits for the tool descriptions are all listed on the credits page which can be accessed via the credits link in the footer:
+
+
+
 <br>
 
 ## Home Page
