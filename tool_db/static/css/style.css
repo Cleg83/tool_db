@@ -95,6 +95,10 @@ body {
     margin-bottom: 0;
 }
 
+.home-card-title {
+    margin-bottom: 10px;
+}
+
 iframe {
     border-radius: 4px;
     border: 3px solid #00695c;
