@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/6cbc018174.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>The Woodworker's Tool DB</title>
+</head>
+
+<body class="{% block body_class %}base{% endblock %}">
+    <footer class="page-footer teal lighten-3 nav-font" aria-label="Footer">
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <h5 class="black-text">Contact</h5>
+                    <p class="black-text">
+                        If you have any suggestions, improvements, corrections, feedback or want to contribute, 
+                        please contact: tooldb.admin@proton.me
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright center">
+            <div class="container black-text">
+                <p>© 2024 Tool DB | <a href="{{ url_for('credits') }}" target="_blank" aria-label="View credits and sources">Credits</a></p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="{{ url_for('static', filename='scripts/script.js') }}"></script>
+</body>
+    
+</html>

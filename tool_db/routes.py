@@ -696,3 +696,8 @@ def delete_from_my_toolbox(tool_id):
         flash("Tool not found in your toolbox!", "info")
 
     return redirect(url_for("my_toolbox"))
+
+
+@app.route("/credits")
+def credits():
+    return render_template("credits.html")
