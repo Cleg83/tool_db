@@ -1,4 +1,6 @@
-from flask import render_template, request, redirect, url_for, session, flash, abort, jsonify
+from flask import abort, flash, jsonfiy, redirect
+from flask import render_template, request, session, url_for
+
 from tool_db import app, db
 from tool_db.models import MainCategory, SubCategory, Tool, User, MyToolbox
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -14,7 +16,7 @@ def home():
 @app.route('/random_tool')
 def random_tool():
     tool_ids = [tool.id for tool in Tool.query.all()]
-    
+
     if not tool_ids:
         return jsonify({'error': 'No tools available'}), 404
 
@@ -37,9 +39,10 @@ def random_tool():
 @app.route("/categories")
 def categories():
     # Fetch main categories and sort them alphabetically
-    main_categories = MainCategory.query.order_by(MainCategory.main_category_name).all()
+    main_categories = MainCategory.query.order_by
+    (MainCategory.main_category_name).all()
 
-    # Icon dictionary (may be removed and replaced with icon field added to MainCategory model)
+    # Icon dictionary
     category_icons = {
         "Hand Tools": "fa-solid fa-hammer",
         "Power Tools": "fa-solid fa-plug-circle-bolt",
@@ -49,7 +52,8 @@ def categories():
         "Dust Extraction": "fa-solid fa-broom"
     }
     # Pass variables to template
-    return render_template("categories.html", main_categories=main_categories, category_icons=category_icons)
+    return render_template("categories.html", main_categories=main_categories,
+                           category_icons=category_icons)
 
 
 @app.route("/add_category")
@@ -57,9 +61,10 @@ def add_category():
 
     # Check if current user is admin
     if not session.get("role") == "admin":
-        flash("Wind your neck in, you don't have permission to do that!", "error")
+        flash("Wind your neck in, you don't have permission to do that!",
+              "error")
         return redirect(url_for("home"))
-    
+
     return render_template("add_category.html")
 
 
@@ -69,9 +74,10 @@ def add_main_category():
 
     # Check if current user is admin
     if not session.get("role") == "admin":
-        flash("Wind your neck in, you don't have permission to do that!", "error")
+        flash("Wind your neck in, you don't have permission to do that!",
+              "error")
         return redirect(url_for("home"))
-    
+
     if request.method == "POST":
 
         main_category_name = request.form.get("main_category_name")
@@ -81,19 +87,22 @@ def add_main_category():
             return redirect(url_for("add_main_category"))
 
         # Check if the main category already exists
-        existing_main_category = MainCategory.query.filter_by(main_category_name=main_category_name).first()
+        existing_main_category = MainCategory.query.filter_by(
+            main_category_name=main_category_name).first()
 
         if existing_main_category:
-            flash(f"Main category: {main_category_name}, already exists!", "error")
+            flash(f"Main category: {main_category_name}, already exists!",
+                  "error")
             return redirect(url_for("add_main_category"))
 
         # Create and save the new main category
         main_category = MainCategory(main_category_name=main_category_name)
         db.session.add(main_category)
         db.session.commit()
-        flash(f"New main category added: {main_category.main_category_name}", "success")
+        flash(f"New main category added: {main_category.main_category_name}",
+              "success")
         return redirect(url_for("categories"))
-        
+
     return render_template("add_main_category.html")
 
 
@@ -102,14 +111,16 @@ def edit_main_category(category_id):
 
     # Check if current user is admin
     if not session.get("role") == "admin":
-        flash("Wind your neck in, you don't have permission to do that!", "error")
+        flash("Wind your neck in, you don't have permission to do that!",
+              "error")
         return redirect(url_for("home"))
-    
+
     category = MainCategory.query.get_or_404(category_id)
     if request.method == "POST":
         category.main_category_name = request.form.get("main_category_name")
         db.session.commit()
-        flash(f"Main category updated: { category.main_category_name }", "success")
+        flash(f"Main category updated: { category.main_category_name }",
+              "success")
         return redirect(url_for("categories"))
     return render_template("edit_main_category.html", category=category)
 
@@ -119,9 +130,10 @@ def delete_main_category(category_id):
 
     # Check if current user is admin
     if not session.get("role") == "admin":
-        flash("Wind your neck in, you don't have permission to do that!", "error")
+        flash("Wind your neck in, you don't have permission to do that!",
+              "error")
         return redirect(url_for("home"))
-    
+
     category = MainCategory.query.get_or_404(category_id)
     db.session.delete(category)
     db.session.commit()
@@ -134,9 +146,10 @@ def add_sub_category():
 
     # Check if current user is admin
     if not session.get("role") == "admin":
-        flash("Wind your neck in, you don't have permission to do that!", "error")
+        flash("Wind your neck in, you don't have permission to do that!",
+              "error")
         return redirect(url_for("home"))
-    
+
     if request.method == "POST":
         sub_category_name = request.form.get("sub_category_name")
         main_category = request.form.get("main_category")
@@ -152,26 +165,30 @@ def add_sub_category():
         except ValueError:
             flash("Invalid main category selected.", "error")
             return redirect(url_for("add_sub_category"))
-        
+
         # Check if the subcategory already exists for the given main category
         existing_sub_category = SubCategory.query.filter_by(
-            sub_category_name=sub_category_name, 
+            sub_category_name=sub_category_name,
             main_category_id=main_category_id
         ).first()
 
         if existing_sub_category:
-            flash(f"Subcategory: {sub_category_name}, already exists in this main category!", "error")
+            flash(f"{sub_category_name}, already exists in main category!",
+                  "error")
             return redirect(url_for("add_sub_category"))
 
         # Calls SubCategory method passing variables declared above
-        sub_category = SubCategory(sub_category_name=sub_category_name, main_category_id=main_category_id)
+        sub_category = SubCategory(
+            sub_category_name=sub_category_name,
+            main_category_id=main_category_id)
         db.session.add(sub_category)
         db.session.commit()
         flash(f"New subcategory added: { sub_category_name }", "success")
         return redirect(url_for("categories"))
 
     main_categories = MainCategory.query.all()
-    return render_template("add_sub_category.html", main_categories=main_categories)
+    return render_template("add_sub_category.html",
+                           main_categories=main_categories)
 
 
 @app.route("/edit_sub_category/<int:subcategory_id>", methods=["GET", "POST"])
@@ -179,11 +196,13 @@ def edit_sub_category(subcategory_id):
 
     # Check if current user is admin
     if not session.get("role") == "admin":
-        flash("Wind your neck in, you don't have permission to do that!", "error")
+        flash("Wind your neck in, you don't have permission to do that!",
+              "error")
         return redirect(url_for("home"))
-    
+
     subcategory = SubCategory.query.get_or_404(subcategory_id)
-    main_categories = MainCategory.query.order_by(MainCategory.main_category_name).all()
+    main_categories = MainCategory.query.order_by(
+        MainCategory.main_category_name).all()
     # Fetches tool belonging to subcategory using sub_category_id
     tools = Tool.query.filter_by(sub_category_id=subcategory_id).all()
 
@@ -193,7 +212,7 @@ def edit_sub_category(subcategory_id):
 
         # Retrieve the selected main category ID from the form
         main_category_id = request.form.get("main_category")
-        
+
         # Find the corresponding MainCategory instance
         main_category = MainCategory.query.get(main_category_id)
 
@@ -202,11 +221,14 @@ def edit_sub_category(subcategory_id):
             subcategory.main_category = main_category
 
         db.session.commit()
-        flash(f"Subcategory updated: { subcategory.sub_category_name }", "success")
+        flash(f"Subcategory updated: { subcategory.sub_category_name }",
+              "success")
         return redirect(url_for("categories"))
 
-    return render_template("edit_sub_category.html", subcategory=subcategory, tools=tools, main_categories=main_categories)
-
+    return render_template("edit_sub_category.html",
+                           subcategory=subcategory,
+                           tools=tools,
+                           main_categories=main_categories)
 
 
 @app.route("/delete_sub_category/<int:subcategory_id>")
@@ -214,9 +236,10 @@ def delete_sub_category(subcategory_id):
 
     # Check if current user is admin
     if not session.get("role") == "admin":
-        flash("Wind your neck in, you don't have permission to do that!", "error")
+        flash("Wind your neck in, you don't have permission to do that!",
+              "error")
         return redirect(url_for("home"))
-    
+
     subcategory = SubCategory.query.get_or_404(subcategory_id)
     db.session.delete(subcategory)
     db.session.commit()
@@ -227,18 +250,26 @@ def delete_sub_category(subcategory_id):
 @app.route("/selected_category/<category_name>.html")
 def selected_category(category_name):
     main_category_name = category_name.replace("_", " ").title()
-    main_category = MainCategory.query.filter_by(main_category_name=main_category_name).first()
+    main_category = MainCategory.query.filter_by(
+        main_category_name=main_category_name).first()
 
     # Check if main category exists in db
     if main_category:
-        tools = Tool.query.filter_by(main_category_id=main_category.id).order_by(Tool.tool_name).all()
-        subcategories = Tool.query.filter_by(sub_category_id=Tool.sub_category_id).all()
-        return render_template("selected_category.html", main_category=main_category, tools=tools, sub_categories=subcategories)
+        tools = Tool.query.filter_by(
+            main_category_id=main_category.id).order_by(Tool.tool_name).all()
+
+        subcategories = Tool.query.filter_by(
+            sub_category_id=Tool.sub_category_id).all()
+
+        return render_template("selected_category.html",
+                               main_category=main_category,
+                               tools=tools,
+                               sub_categories=subcategories)
     else:
         # Handle case where main category doesn't exist
         flash("Category doesn't exist!", "error")
         return render_template("categories.html")
-    
+
 
 @app.route("/selected_subcategory/<int:subcategory_id>.html")
 def selected_subcategory(subcategory_id):
@@ -249,14 +280,16 @@ def selected_subcategory(subcategory_id):
     main_category = subcategory.main_category
 
     # Fetch the tools for this subcategory
-    tools = Tool.query.filter_by(sub_category_id=subcategory.id).order_by(Tool.tool_name).all()
+    tools = Tool.query.filter_by(
+        sub_category_id=subcategory.id).order_by(
+            Tool.tool_name).all()
 
     # Pass the subcategory, tools, and main_category to the template
     return render_template(
-        "selected_subcategory.html", 
-        subcategory=subcategory, 
+        "selected_subcategory.html",
+        subcategory=subcategory,
         tools=tools,
-        main_category=main_category 
+        main_category=main_category
     )
 
 
@@ -265,9 +298,10 @@ def add_tool():
 
     # Check if current user is admin
     if not session.get("role") == "admin":
-        flash("Wind your neck in, you don't have permission to do that!", "error")
+        flash("Wind your neck in, you don't have permission to do that!",
+              "error")
         return redirect(url_for("home"))
-    
+
     main_categories = MainCategory.query.all()
 
     if request.method == "POST":
@@ -280,27 +314,39 @@ def add_tool():
             session["tool_videos"] = request.form.get("tool_videos")
             session["product_links"] = request.form.get("product_links")
 
-            existing_tool = Tool.query.filter_by(tool_name=session["tool_name"]).first()
+            # Check if tool exists and clear form if it does
+            existing_tool = Tool.query.filter_by(
+                tool_name=session["tool_name"]).first()
             if existing_tool:
                 flash("Tool already exists!", "error")
-                return render_template("add_tool_step1.html")  # Check if tool exists and clear form
+                return render_template("add_tool_step1.html")
 
-            return render_template("add_tool_step2.html", main_categories=main_categories)
-        
+            return render_template("add_tool_step2.html",
+                                   main_categories=main_categories)
+
         elif step == "2":
             # Store main category selection in session
             session["main_category_id"] = request.form.get("main_category")
+
             # Filter subcategories by main category
-            subcategories = SubCategory.query.filter_by(main_category_id=session["main_category_id"]).all()
-            return render_template("add_tool_step3.html", subcategories=subcategories)
-        
+            subcategories = SubCategory.query.filter_by(
+                main_category_id=session["main_category_id"]).all()
+
+            return render_template("add_tool_step3.html",
+                                   subcategories=subcategories)
+
         elif step == "3":
             # Store subcategory selection in session
             sub_category_id = request.form.get("sub_category")
 
             # Convert comma-separated strings to lists
-            tool_videos = [video.strip() for video in session.get("tool_videos", "").split(',') if video.strip()]
-            product_links = [link.strip() for link in session.get("product_links", "").split(',') if link.strip()]
+            tool_videos = [video.strip() for video in
+                           session.get("tool_videos", "")
+                           .split(',') if video.strip()]
+
+            product_links = [link.strip() for link in
+                             session.get("product_links", "")
+                             .split(',') if link.strip()]
 
             # Create and save the new tool
             new_tool = Tool(
@@ -322,9 +368,9 @@ def add_tool():
             session.pop("tool_videos", None)
             session.pop("product_links", None)
             session.pop("main_category_id", None)
-     
+
             return redirect(url_for("categories"))
-    
+
     return render_template("add_tool_step1.html")
 
 
@@ -333,9 +379,10 @@ def edit_tool(tool_id):
 
     # Check if current user is admin
     if not session.get("role") == "admin":
-        flash("Wind your neck in, you don't have permission to do that!", "error")
+        flash("Wind your neck in, you don't have permission to do that!",
+              "error")
         return redirect(url_for("home"))
-    
+
     tool = Tool.query.get_or_404(tool_id)
     main_categories = MainCategory.query.all()
 
@@ -346,20 +393,30 @@ def edit_tool(tool_id):
             # Get and update session variables for the tool details
             session["tool_name"] = request.form.get('tool_name')
             session["tool_description"] = request.form.get("tool_description")
-            
-            # Convert comma-separated strings to lists and store in session
-            session["tool_videos"] = [video.strip() for video in request.form.get("tool_videos", "").split(',') if video.strip()]
-            session["product_links"] = [link.strip() for link in request.form.get("product_links", "").split(',') if link.strip()]
 
-            return render_template("edit_tool_step2.html", tool=tool, main_categories=main_categories)
-        
+            # Convert comma-separated strings to lists and store in session
+            session["tool_videos"] = [video.strip() for video in
+                                      request.form.get("tool_videos", "")
+                                      .split(',') if video.strip()]
+
+            session["product_links"] = [link.strip() for link in
+                                        request.form.get("product_links", "")
+                                        .split(',') if link.strip()]
+
+            return render_template("edit_tool_step2.html",
+                                   tool=tool,
+                                   main_categories=main_categories)
+
         elif step == "2":
             # Update the main category in session
             session["main_category_id"] = request.form.get("main_category")
             # Filter subcategories by main category
-            subcategories = SubCategory.query.filter_by(main_category_id=session["main_category_id"]).all()
-            return render_template("edit_tool_step3.html", tool=tool, subcategories=subcategories)
-        
+            subcategories = SubCategory.query.filter_by(
+                main_category_id=session["main_category_id"]).all()
+            return render_template("edit_tool_step3.html",
+                                   tool=tool,
+                                   subcategories=subcategories)
+
         elif step == "3":
             # Update the subcategory
             sub_category_id = request.form.get("sub_category")
@@ -383,13 +440,18 @@ def edit_tool(tool_id):
             session.pop("product_links", None)
             session.pop("main_category_id", None)
 
-            return redirect(url_for("edit_sub_category", subcategory_id=sub_category_id))
-        
+            return redirect(url_for("edit_sub_category",
+                            subcategory_id=sub_category_id))
+
     # Displays links and videos as comma separated lists
     tool_videos = ",".join(tool.tool_videos or [])
     product_links = ",".join(tool.tool_links or [])
 
-    return render_template("edit_tool_step1.html", tool=tool, main_categories=main_categories, tool_videos=tool_videos, product_links=product_links)
+    return render_template("edit_tool_step1.html",
+                           tool=tool,
+                           main_categories=main_categories,
+                           tool_videos=tool_videos,
+                           product_links=product_links)
 
 
 @app.route("/delete_tool/<int:tool_id>", methods=["GET", "POST"])
@@ -397,9 +459,10 @@ def delete_tool(tool_id):
 
     # Check if current user is admin
     if not session.get("role") == "admin":
-        flash("Wind your neck in, you don't have permission to do that!", "error")
+        flash("Wind your neck in, you don't have permission to do that!",
+              "error")
         return redirect(url_for("home"))
-    
+
     # Fetch tool to delete
     tool = Tool.query.get_or_404(tool_id)
     db.session.delete(tool)
@@ -414,9 +477,10 @@ def manage_users():
 
     # Check if current user is admin
     if not session.get("role") == "admin":
-        flash("Wind your neck in, you don't have permission to do that!", "error")
+        flash("Wind your neck in, you don't have permission to do that!",
+              "error")
         return redirect(url_for("home"))
-    
+
     users = User.query.order_by(User.username).all()
     return render_template("manage_users.html", users=users)
 
@@ -426,7 +490,8 @@ def delete_user(user_id):
 
     # Check if current user is admin
     if not session.get("role") == "admin":
-        flash("Wind your neck in, you don't have permission to do that!", "error")
+        flash("Wind your neck in, you don't have permission to do that!",
+              "error")
         return redirect(url_for("home"))
 
     # Fetch the user by ID
@@ -474,7 +539,8 @@ def register():
             return render_template("register.html")
 
         # Hash the password
-        hashed_password = generate_password_hash(password, method="pbkdf2:sha256")
+        hashed_password = generate_password_hash(
+            password, method="pbkdf2:sha256")
 
         # Create a new user
         new_user = User(username=username, password_hash=hashed_password)
@@ -503,9 +569,10 @@ def login():
             if session.get("role") == "admin":
                 return redirect(url_for('categories'))
             else:
-                return redirect(url_for('home'))  # Redirect to home page (will change to profile page in future)
+                return redirect(url_for('home'))  # Redirect to home page
         else:
-            flash("Login failed. Check your username and/or password.", "error")
+            flash("Login failed. Check your username and/or password.",
+                  "error")
 
     return render_template("login.html")
 
@@ -514,19 +581,19 @@ def login():
 def logout():
     session.clear()
     flash("You have been logged out.", "info")
-    return redirect(url_for("login"))  # Redirect to login 
+    return redirect(url_for("login"))  # Redirect to login
 
 
 @app.route("/profile", methods=["GET"])
 def profile():
-    
+
     user_id = session.get("user_id")
 
     # Check if the user is logged in
     if user_id is None:
         flash("You need to be logged in to access that page!", "danger")
         return redirect(url_for("home"))  # Redirect to home page
-    
+
     user = User.query.get_or_404(user_id)
 
     # Ensure the user is the one logged in
@@ -538,7 +605,7 @@ def profile():
 
 @app.route("/edit_username", methods=["GET", "POST"])
 def edit_username():
-    
+
     # Retrieves session user info
     user_id = session.get("user_id")
 
@@ -546,7 +613,7 @@ def edit_username():
     if user_id is None:
         flash("You need to be logged in to access that page!", "danger")
         return redirect(url_for("home"))  # Redirect to home page
-    
+
     user = User.query.get_or_404(user_id)
 
     # Ensure the user is the one logged in
@@ -555,7 +622,7 @@ def edit_username():
 
     if request.method == "POST":
         new_username = request.form.get("edit_username")
-        
+
         # Updates username
         if new_username:
             user.username = new_username
@@ -563,7 +630,7 @@ def edit_username():
             flash("Your username has been updated!", "success")
         else:
             flash("Username cannot be empty.", "danger")
-        
+
         return redirect(url_for("profile"))
 
     return render_template("edit_username.html", user=user)
@@ -577,7 +644,7 @@ def edit_password():
     if user_id is None:
         flash("You need to be logged in to access that page!", "danger")
         return redirect(url_for("home"))  # Redirect to home page
-    
+
     user = User.query.get_or_404(user_id)
 
     # Ensure the user is the one logged in
@@ -594,7 +661,8 @@ def edit_password():
             return render_template("edit_password.html")
 
         # Hash the password
-        hashed_password = generate_password_hash(password, method="pbkdf2:sha256")
+        hashed_password = generate_password_hash(
+            password, method="pbkdf2:sha256")
 
         # Update the user's password in the database
         user.password_hash = hashed_password
@@ -615,7 +683,7 @@ def delete_profile():
     if user_id is None:
         flash("You need to be logged in to access that page!", "danger")
         return redirect(url_for("home"))  # Redirect to home page
-    
+
     user = User.query.get_or_404(user_id)
 
     # Ensure the user is the one logged in
@@ -625,7 +693,7 @@ def delete_profile():
     db.session.delete(user)
     db.session.commit()
 
-    session.clear() # Clears session
+    session.clear()  # Clears session
 
     flash("Your profile has been deleted", "info")
     return redirect(url_for("home"))
@@ -634,14 +702,16 @@ def delete_profile():
 @app.route("/add_to_my_toolbox/<int:tool_id>", methods=["POST"])
 def add_to_my_toolbox(tool_id):
     if "username" not in session:
-        flash("You need to be logged in to add tools to your toolbox.", "error")
+        flash("You need to be logged in to add tools to your toolbox.",
+              "error")
         return redirect(url_for("login"))
 
     user_id = session["user_id"]
-    
+
     # Check if the tool is already in the user's toolbox
-    existing_entry = MyToolbox.query.filter_by(user_id=user_id, tool_id=tool_id).first()
-    
+    existing_entry = MyToolbox.query.filter_by(
+        user_id=user_id, tool_id=tool_id).first()
+
     if existing_entry:
         flash("Tool is already in your toolbox!", "info")
     else:
@@ -652,7 +722,7 @@ def add_to_my_toolbox(tool_id):
         flash("Tool added to your toolbox!", "success")
 
     return redirect(url_for("my_toolbox"))
-    
+
 
 @app.route("/my_toolbox")
 def my_toolbox():
@@ -662,7 +732,7 @@ def my_toolbox():
     if user_id is None:
         flash("You need to be logged in to access that page!", "danger")
         return redirect(url_for("home"))  # Redirect to home page
-    
+
     user = User.query.get_or_404(user_id)
 
     # Ensure the user is the one logged in
@@ -679,14 +749,16 @@ def my_toolbox():
 @app.route("/delete_from_my_toolbox/<int:tool_id>", methods=["POST"])
 def delete_from_my_toolbox(tool_id):
     if "username" not in session:
-        flash("You need to be logged in to remove tools from your toolbox.", "error")
+        flash("You need to be logged in to remove tools from your toolbox.",
+              "error")
         return redirect(url_for("login"))
 
     user_id = session["user_id"]
-    
+
     # Find the entry in the user's toolbox
-    toolbox_entry = MyToolbox.query.filter_by(user_id=user_id, tool_id=tool_id).first()
-    
+    toolbox_entry = MyToolbox.query.filter_by(
+        user_id=user_id, tool_id=tool_id).first()
+
     if toolbox_entry:
         # Remove the tool from the user's toolbox
         db.session.delete(toolbox_entry)
