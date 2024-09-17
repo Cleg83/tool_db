@@ -1,5 +1,6 @@
-from flask import abort, flash, jsonfiy, redirect
-from flask import render_template, request, session, url_for
+from flask import abort, flash
+from flask import jsonfiy  # noqa
+from flask import redirect, render_template, request, session, url_for
 
 from tool_db import app, db
 from tool_db.models import MainCategory, SubCategory, Tool, User, MyToolbox
