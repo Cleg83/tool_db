@@ -39,8 +39,8 @@ def random_tool():
 @app.route("/categories")
 def categories():
     # Fetch main categories and sort them alphabetically
-    main_categories = MainCategory.query.order_by
-    (MainCategory.main_category_name).all()
+    main_categories = MainCategory.query.order_by(
+        MainCategory.main_category_name).all()
 
     # Icon dictionary
     category_icons = {
